@@ -25,6 +25,7 @@ const CalendarContainer = React.createClass({
   render() {
     return (
       <div>
+        {moment().format('MMMM')}<br />
         <Calendar monthDates={this.buildMonthDates()} />
       </div>
     )
