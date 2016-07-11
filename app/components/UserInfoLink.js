@@ -6,7 +6,7 @@ export default function UserInfoLink(props) {
     <span>
       <Link to="/">Welcome, {props.user.userName}</Link>
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <Link to="/setup">Setup</Link>
+      <Link to="/calendar">Calendar</Link>
     </span>
   )
 }

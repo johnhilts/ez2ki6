@@ -1,6 +1,7 @@
 import React from 'react';
 import Main from '../containers/MainContainer';
 import LoginContainer from '../containers/LoginContainer';
+import CalendarContainer from '../containers/CalendarContainer';
 
 var styles = {
   container: {
@@ -22,7 +23,7 @@ var styles = {
 const Home = (props) => {
   return (
     props.user && props.user.owner !== 0
-    ? <div>Welcome to ez2ki6</div>
+    ? <CalendarContainer {...props} />
     : <LoginContainer user={props.user} onAuthorize={props.onAuthorize} />
   )
 }
