@@ -1,12 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router'
 
 const showDate = (date) => {
   return (
     <td key={date} style={{width: 100, textAlign: 'center', borderStyle: 'solid', borderWidth: 5,
       paddingLeft: 25, paddingRight: 25, paddingTop: 25, paddingBottom: 25, }}>
-      <a onClick={() => {alert('insert info!');}}>
-        {date}
-      </a>
+      <Link to={'calendar/' + date}>{date}</Link>
     </td>
   )
 }

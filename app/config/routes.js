@@ -5,6 +5,7 @@ import Home from '../components/Home';
 import RegisterContainer from '../containers/RegisterContainer';
 import LoginContainer from '../containers/LoginContainer';
 import CalendarContainer from '../containers/CalendarContainer';
+import DateContainer from '../containers/DateContainer';
 
 var routes = (
   <Router history={browserHistory}>
@@ -13,6 +14,7 @@ var routes = (
   		<Route path='register' header='Register' component={RegisterContainer} />
   		<Route path='login' header='Login' component={LoginContainer} />
   		<Route path='calendar' header='Calendar' component={CalendarContainer} />
+      <Route path='calendar/:date' header='Date' component={DateContainer} />
     </Route>
   </Router>
 );
