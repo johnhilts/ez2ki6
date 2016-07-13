@@ -8,10 +8,16 @@ const DateContainer = React.createClass({
       }
     )
   },
-  
+
   render() {
     return (
-      <div>Enter info here for {this.state.date}!</div>
+      <div>
+        <form>
+          What happened today?<br />
+          <textArea /><br />
+          <button type="submit">Save</button>
+        </form>
+      </div>
     )
   }
 });

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router'
 import moment from 'moment';
 import Calendar from '../components/Calendar';
 
@@ -19,13 +20,14 @@ const CalendarContainer = React.createClass({
       monthDates.push(i);
     }
     return monthDates;
-
   },
 
   render() {
+    let previousMonthLink = <Link to={{pathname: 'calendar', query:{ym: 201606, }, }}>&lt;&lt;</Link>
+    let nextMonthLink = <Link to="calendar">&gt;&gt;</Link>
     return (
       <div>
-        <h2>{moment().format('MMMM')}</h2>
+        <h2>{previousMonthLink} {moment().format('MMMM')} {nextMonthLink}</h2>
         <Calendar monthDates={this.buildMonthDates()} />
       </div>
     )

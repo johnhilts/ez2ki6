@@ -5,7 +5,7 @@ const showDate = (date) => {
   return (
     <td key={date} style={{width: 100, textAlign: 'center', borderStyle: 'solid', borderWidth: 5,
       paddingLeft: 25, paddingRight: 25, paddingTop: 25, paddingBottom: 25, }}>
-      <Link to={'calendar/' + date}>{date}</Link>
+      <Link to={{pathname: 'calendar/' + date, state: {test: 'abc', }}}>{date}</Link>
     </td>
   )
 }

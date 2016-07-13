@@ -13,8 +13,9 @@ var routes = (
       <IndexRoute component={Home} />
   		<Route path='register' header='Register' component={RegisterContainer} />
   		<Route path='login' header='Login' component={LoginContainer} />
-  		<Route path='calendar' header='Calendar' component={CalendarContainer} />
-      <Route path='calendar/:date' header='Date' component={DateContainer} />
+      <Route path='calendar' header='Date' component={CalendarContainer} location="history" />
+      <Route path='calendar/:ym' header='Date' component={CalendarContainer} location="history" />
+      <Route path='calendar/:day/edit' header='Date' component={DateContainer} location="history" />
     </Route>
   </Router>
 );
