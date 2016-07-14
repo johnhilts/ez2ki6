@@ -24,7 +24,7 @@ const CalendarContainer = React.createClass({
 
   render() {
     let previousMonthLink = <Link to={{pathname: 'calendar', query:{ym: 201606, }, }}>&lt;&lt;</Link>
-    let nextMonthLink = <Link to="calendar">&gt;&gt;</Link>
+    let nextMonthLink = <Link to={{pathname: 'calendar', query:{ym: 201608, }, }}>&gt;&gt;</Link>
     return (
       <div>
         <h2>{previousMonthLink} {moment().format('MMMM')} {nextMonthLink}</h2>
