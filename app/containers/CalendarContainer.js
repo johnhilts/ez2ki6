@@ -17,17 +17,20 @@ const CalendarContainer = React.createClass({
     let daysInMonth = theMonth.daysInMonth();
     let monthGrid = [];
     let nextCellIndex = 0;
+    let absoluteCellIndex = 0;
     for (let day = 1; day <= daysInMonth; day++) {
       let date = new moment(new Date(year, month, day));
       for (let cellIndex = nextCellIndex; cellIndex <= 6; cellIndex++) {
         if (date.weekday() == cellIndex) {
-          let monthInfo = {year: date.year(), month: date.month(), day: date.date(), isEmpty: false, };
+          let monthInfo = {year: date.year(), month: date.month(), day: date.date(), isEmpty: false, absoluteIndex: absoluteCellIndex, };
           monthGrid.push(monthInfo);
           nextCellIndex = cellIndex < 6 ? cellIndex + 1 : 0;
+          absoluteCellIndex++;
           break;
         }
         else {
-          let emptyInfo = {isEmpty: true, };
+          let emptyInfo = {isEmpty: true, absoluteIndex: absoluteCellIndex, };
+          absoluteCellIndex++;
           monthGrid.push(emptyInfo);
         }
       }

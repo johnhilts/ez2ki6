@@ -1,18 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router'
 
-const showDate = (monthInfo, cellIndex) => {
-  console.log("cell: " + cellIndex);
-  console.log("day: " + monthInfo.day);
+// NOTE: I couldn't use the index parameter because what's being mapped is a *filtered* array, not the complete original
+// so, to get around it I had to add the index to the object so that I have the original array's index even after going through a filter
+const showDate = (monthInfo) => {
   return (
     monthInfo.isEmpty
     ?
-    <td key={cellIndex} style={{width: 100, borderStyle: 'dotted', borderWidth: 1,
+    <td key={monthInfo.absoluteIndex} style={{width: 100, borderStyle: 'dotted', borderWidth: 1,
       paddingLeft: 25, paddingRight: 25, paddingTop: 25, paddingBottom: 25, }}>
       &nbsp;
     </td>
     :
-    <td key={cellIndex} style={{width: 100, textAlign: 'center', borderStyle: 'solid', borderWidth: 5,
+    <td key={monthInfo.absoluteIndex} style={{width: 100, textAlign: 'center', borderStyle: 'solid', borderWidth: 5,
       paddingLeft: 25, paddingRight: 25, paddingTop: 25, paddingBottom: 25, }}>
       <Link to={{pathname: 'calendar/' + monthInfo.day, state: {test: 'abc', }}}>{monthInfo.day}</Link>
     </td>
@@ -27,7 +27,7 @@ export default function Calendar(props) {
           let startCell = (weekIndex - 1) * 7;
           let endCell = startCell + 7;
           return (
-            <tr>
+            <tr key={weekIndex}>
               {props.monthGrid.filter((monthInfo, cellIndex)=>{return cellIndex >= startCell && cellIndex < endCell;}).map(showDate)}
             </tr>
           )
