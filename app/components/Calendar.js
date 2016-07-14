@@ -28,7 +28,7 @@ export default function Calendar(props) {
           let endCell = startCell + 7;
           return (
             <tr>
-              {props.monthGrid.filter((monthInfo, cellIndex)=>{return cellIndex > startCell && cellIndex <= endCell;}).map(showDate)}
+              {props.monthGrid.filter((monthInfo, cellIndex)=>{return cellIndex >= startCell && cellIndex < endCell;}).map(showDate)}
             </tr>
           )
         }
