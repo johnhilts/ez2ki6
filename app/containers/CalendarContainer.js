@@ -2,22 +2,40 @@ import React from 'react';
 import { Link } from 'react-router'
 import moment from 'moment';
 import Calendar from '../components/Calendar';
+import * as dateUtils from '../util/dateutils';
 
 const CalendarContainer = React.createClass({
   getInitialState() {
-    return(
-      {calendar: {},}
+    return(this.getCurrentYearMonthFromParamsOrDefault());
+  },
+
+  componentWillReceiveProps(nextProps) {
+    return this.setState(this.getCurrentYearMonthFromParamsOrDefault());
+  },
+
+  getCurrentYearMonthFromParamsOrDefault() {
+    let currentFormattedMonth = this.props.location.query['ym'];
+    if (!currentFormattedMonth) {
+      currentFormattedMonth = dateUtils.getCurrentFormattedYearMonth();
+    }
+    let currentYearMonth = dateUtils.getYearMonthByFormattedYearMonth(currentFormattedMonth);
+
+    return (
+      {
+        currentFormattedMonth: currentFormattedMonth,
+        currentYearMonth: currentYearMonth,
+      }
     )
   },
 
   buildMonthGrid() {
-    let year = moment().year();
-    let month = moment().month();
-    let theMonth = moment(new Date(year, month, 1));
-    let daysInMonth = theMonth.daysInMonth();
+    const currentYearMonth = this.state.currentYearMonth;
+    const daysInMonth = currentYearMonth.daysInMonth();
     let monthGrid = [];
     let nextCellIndex = 0;
     let absoluteCellIndex = 0;
+    const year = currentYearMonth.year();
+    const month = currentYearMonth.month();
     for (let day = 1; day <= daysInMonth; day++) {
       let date = new moment(new Date(year, month, day));
       for (let cellIndex = nextCellIndex; cellIndex <= 6; cellIndex++) {
@@ -39,11 +57,13 @@ const CalendarContainer = React.createClass({
   },
 
   render() {
-    let previousMonthLink = <Link to={{pathname: 'calendar', query:{ym: 201606, }, }}>&lt;&lt;</Link>
-    let nextMonthLink = <Link to={{pathname: 'calendar', query:{ym: 201608, }, }}>&gt;&gt;</Link>
+    let previousFormattedMonth = dateUtils.getFormattedYearMonthByQueryYearMonth(this.state.currentFormattedMonth, -1);
+    let nextFormattedMonth = dateUtils.getFormattedYearMonthByQueryYearMonth(this.state.currentFormattedMonth, 1);
+    let previousMonthLink = <Link to={{pathname: 'calendar', query:{ym: previousFormattedMonth, }, }}>&lt;&lt;</Link>
+    let nextMonthLink = <Link to={{pathname: 'calendar', query:{ym: nextFormattedMonth, }, }}>&gt;&gt;</Link>
     return (
       <div>
-        <h2>{previousMonthLink} {moment().format('MMMM')} {nextMonthLink}</h2>
+        <h2>{previousMonthLink} {this.state.currentYearMonth.format('MMMM')} {nextMonthLink}</h2>
         <Calendar monthGrid={this.buildMonthGrid()} />
       </div>
     )

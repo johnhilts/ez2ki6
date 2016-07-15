@@ -1,12 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router';
+import * as dateUtils from '../util/dateutils';
 
 export default function UserInfoLink(props) {
   return (
     <span>
       <Link to="/">Welcome, {props.user.userName}</Link>
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <Link to="/calendar">Calendar</Link>
+      <Link to={{pathname:'/calendar', query: {ym: dateUtils.getCurrentFormattedYearMonth(), } }}>Calendar</Link>
     </span>
   )
 }
