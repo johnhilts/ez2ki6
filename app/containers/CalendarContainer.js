@@ -6,15 +6,10 @@ import * as dateUtils from '../util/dateutils';
 
 const CalendarContainer = React.createClass({
   getInitialState() {
-    return(this.getCurrentYearMonthFromParamsOrDefault());
+    return(this.getCurrentYearMonthFromParamsOrDefault(this.props.location.query['ym']));
   },
 
-  componentWillReceiveProps(nextProps) {
-    return this.setState(this.getCurrentYearMonthFromParamsOrDefault());
-  },
-
-  getCurrentYearMonthFromParamsOrDefault() {
-    let currentFormattedMonth = this.props.location.query['ym'];
+  getCurrentYearMonthFromParamsOrDefault(currentFormattedMonth) {
     if (!currentFormattedMonth) {
       currentFormattedMonth = dateUtils.getCurrentFormattedYearMonth();
     }
@@ -56,11 +51,15 @@ const CalendarContainer = React.createClass({
     return monthGrid;
   },
 
+  updateByFormattedMonth(formattedMonth) {
+    this.setState(this.getCurrentYearMonthFromParamsOrDefault(formattedMonth));
+  },
+
   render() {
     let previousFormattedMonth = dateUtils.getFormattedYearMonthByQueryYearMonth(this.state.currentFormattedMonth, -1);
     let nextFormattedMonth = dateUtils.getFormattedYearMonthByQueryYearMonth(this.state.currentFormattedMonth, 1);
-    let previousMonthLink = <Link to={{pathname: 'calendar', query:{ym: previousFormattedMonth, }, }}>&lt;&lt;</Link>
-    let nextMonthLink = <Link to={{pathname: 'calendar', query:{ym: nextFormattedMonth, }, }}>&gt;&gt;</Link>
+    let previousMonthLink = <a onClick={this.updateByFormattedMonth.bind(null, previousFormattedMonth)}>&lt;&lt;</a>
+    let nextMonthLink = <a onClick={this.updateByFormattedMonth.bind(null, nextFormattedMonth)}>&gt;&gt;</a>
     return (
       <div>
         <h2>{previousMonthLink} {this.state.currentYearMonth.format('MMMM')} {nextMonthLink}</h2>
