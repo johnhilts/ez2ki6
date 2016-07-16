@@ -4,7 +4,7 @@ const DateContainer = React.createClass({
   getInitialState() {
     return (
       {
-        date: this.props.params.date,
+        monthInfo: this.props.location.state.monthInfo,
       }
     )
   },
@@ -13,9 +13,9 @@ const DateContainer = React.createClass({
     return (
       <div>
         <form>
-          What happened today?<br />
+          <div>Write down something related to {this.state.monthInfo.month+1}/{this.state.monthInfo.day}/{this.state.monthInfo.year}</div>
           <textArea /><br />
-          <button type="submit">Save</button>
+          <button type="submit" className="btn btn-info">Save</button>
         </form>
       </div>
     )
