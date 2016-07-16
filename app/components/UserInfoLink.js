@@ -7,7 +7,7 @@ export default function UserInfoLink(props) {
     <span>
       <Link to="/">Welcome, {props.user.userName}</Link>
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <Link to={{pathname:'/calendar', query: {ym: dateUtils.getCurrentFormattedYearMonth(), } }}>Calendar</Link>
+      <Link to='/calendar'>Calendar</Link>
     </span>
   )
 }
