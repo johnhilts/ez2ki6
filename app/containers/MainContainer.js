@@ -52,9 +52,9 @@ const MainContainer = React.createClass({
     return this.setState({user: user});
   },
 
-  handleSaveHelpers(helpers) {
+  handleSaveDateInfo(dates) {
     var user = this.state.user;
-    user.helpers = helpers;
+    user.dates = dates;
     return this.handleSaveUser(user);
   },
 
@@ -103,7 +103,7 @@ const MainContainer = React.createClass({
         {this.renderHeader()}
         <div style={styles.container}>
           {React.cloneElement(this.props.children, { onAuthorize: this.handleAuthorization, user: this.state.user,
-            onHelperClick: this.handleHelperClick, onHelperShowOnly: this.handleHelperShowOnly, onSaveHelpers: this.handleSaveHelpers, })}
+            onHelperClick: this.handleHelperClick, onHelperShowOnly: this.handleHelperShowOnly, onSaveDateInfo: this.handleSaveDateInfo, })}
         </div>
         {this.renderFooter()}
       </div>
