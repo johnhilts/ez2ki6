@@ -5,7 +5,7 @@ export default function Register(props) {
     <form onSubmit={props.onSubmit}>
         <input value={props.userName} onChange={props.onUpdateUserName} placeholder="your name" /><br />
         <br />
-        <input value={props.email} onChange={props.onUpdateEmail} placeholder="email" /><br />
+        <input value={props.email} onChange={props.onUpdateEmail} placeholder="email" type="email" /><br />
         <br />
         <input type="password" value={props.password} onChange={props.onUpdatePassword} placeholder="password" />
         <br />
