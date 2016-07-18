@@ -15,7 +15,7 @@ var routes = (
   		<Route path='login' header='Login' component={LoginContainer} />
       <Route path='calendar' header='Date' component={CalendarContainer} location="history" />
       <Route path='calendar/:ym' header='Date' component={CalendarContainer} location="history" />
-      <Route path='calendar/:day/edit' header='Date' component={DateContainer} location="history" />
+      <Route path='day' header='Date' component={DateContainer} location="history" />
     </Route>
   </Router>
 );

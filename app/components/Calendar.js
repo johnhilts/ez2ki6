@@ -21,7 +21,7 @@ const showDate = (monthInfo) => {
     :
     <td key={monthInfo.absoluteIndex} style={{width: 100, textAlign: 'center', borderStyle: 'solid', borderWidth: 5,
       paddingLeft: 25, paddingRight: 25, paddingTop: 25, paddingBottom: 25, }}>
-      <Link to={{pathname: 'calendar/' + monthInfo.day + '/edit', state: {monthInfo: monthInfo, }}}>{monthInfo.day}</Link>
+      <Link to={{pathname: 'day', state: {monthInfo: monthInfo, }}}>{monthInfo.day}</Link>
     </td>
   )
 }
