@@ -1,5 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router'
+import moment from 'moment';
+
+const weekdayHeader = (weekdayName) => {
+  return (
+    <th key={weekdayName} style={{textAlign: 'center', }}>{weekdayName}</th>
+  )
+}
 
 // NOTE: I couldn't use the index parameter because what's being mapped is a *filtered* array, not the complete original
 // so, to get around it I had to add the index to the object so that I have the original array's index even after going through a filter
@@ -22,6 +29,11 @@ const showDate = (monthInfo) => {
 export default function Calendar(props) {
   return (
     <table cellPadding="10" cellSpacing="10" border="5">
+      <thead>
+        <tr>
+          {moment.weekdays().map(weekdayHeader)}
+        </tr>
+      </thead>
       <tbody>
         {[1, 2, 3, 4, 5, 6].map(weekIndex => {
           let startCell = (weekIndex - 1) * 7;
