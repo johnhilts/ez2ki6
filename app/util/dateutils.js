@@ -17,3 +17,7 @@ export const getYearMonthByFormattedYearMonth = (formattedYearMonth) => {
   let reformattedYearMonth = getReformattedYearMonth(formattedYearMonth);
   return moment(reformattedYearMonth);
 }
+
+export const getCurrentDate = () => {
+  return moment();
+}

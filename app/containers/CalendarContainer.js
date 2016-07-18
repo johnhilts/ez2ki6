@@ -60,9 +60,18 @@ const CalendarContainer = React.createClass({
     let nextFormattedMonth = dateUtils.getFormattedYearMonthByQueryYearMonth(this.state.currentFormattedMonth, 1);
     let previousMonthLink = <a onClick={this.updateByFormattedMonth.bind(null, previousFormattedMonth)}>&lt;&lt;</a>
     let nextMonthLink = <a onClick={this.updateByFormattedMonth.bind(null, nextFormattedMonth)}>&gt;&gt;</a>
+    let currentDate = dateUtils.getCurrentDate();
+    let today = {year: currentDate.year(), month: currentDate.month(), day: currentDate.date(), };
     return (
       <div>
-        <h2>{previousMonthLink} {this.state.currentYearMonth.format('MMMM')} {nextMonthLink}</h2>
+        <div className="row">
+          <div className="col-sm-2">
+            <h2>{previousMonthLink} {this.state.currentYearMonth.format('MMMM')} {nextMonthLink}</h2>
+          </div>
+          <div className="col-sm-2">
+            <h2>&gt;&gt; <Link to={{pathname: 'day', state: {monthInfo: today, }}}>Today</Link> &lt;&lt;</h2>
+          </div>
+        </div>
         <Calendar monthGrid={this.buildMonthGrid()} />
       </div>
     )
