@@ -1,5 +1,11 @@
 import React from 'react';
 
+const alsoEnteredOnThisDate = (dateInfo) => {
+  return (
+    <li>{dateInfo.dateInfo}</li>
+  )
+}
+
 export default function Calendar(props) {
   let monthInfo = props.monthInfo;
   return (
@@ -16,6 +22,9 @@ export default function Calendar(props) {
           <input type="hidden" value={monthInfo.day} />
           <button type="submit" className="btn btn-info">Save</button>
         </form>
+        <ul>
+          {props.dates.map(alsoEnteredOnThisDate)}
+        </ul>
       </div>
   )
 }
