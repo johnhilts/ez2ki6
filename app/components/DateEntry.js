@@ -2,7 +2,7 @@ import React from 'react';
 
 const alsoEnteredOnThisDate = (dateInfo) => {
   return (
-    <li>{dateInfo.dateInfo}</li>
+    <li key={dateInfo.key}>{dateInfo.dateInfo}</li>
   )
 }
 
