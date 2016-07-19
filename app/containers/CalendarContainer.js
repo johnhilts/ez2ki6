@@ -65,8 +65,8 @@ const CalendarContainer = React.createClass({
     return (
       <div>
         <div className="row">
-          <div className="col-sm-2">
-            <h2>{previousMonthLink} {this.state.currentYearMonth.format('MMMM')} {nextMonthLink}</h2>
+          <div className="col-sm-3">
+            <h2>{previousMonthLink} {dateUtils.getMonthName(this.state.currentYearMonth.month())} {nextMonthLink}</h2>
           </div>
           <div className="col-sm-2">
             <h2>&gt;&gt; <Link to={{pathname: 'day', state: {monthInfo: today, }}}>Today</Link> &lt;&lt;</h2>
