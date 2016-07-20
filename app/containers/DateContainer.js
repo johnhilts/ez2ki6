@@ -62,12 +62,21 @@ const DateContainer = React.createClass({
 		event.target.reset();
   },
 
+	handleUpdateDateInfo(key, event) {
+    let index = this.state.dates.findIndex(x=>{return x.key == key});
+    let dateInfo = this.state.dates[index];
+    dateInfo.dateInfo = event.target.value;
+    this.state.dates[index].dateInfo = dateInfo.dateInfo;
+		this.setState({ dates : this.state.dates });
+		this.props.onSaveDateInfo(this.state.dates);
+	},
+
   render() {
     var monthInfo = this.state.monthInfo;
     var filteredDates =
       this.state.dates.filter(dateInfo => {return dateInfo.year == monthInfo.year && dateInfo.month == monthInfo.month && dateInfo.day == monthInfo.day;});
     return (
-      <DateEntry monthInfo={monthInfo} isLoading={this.state.isLoading} onSubmit={this.handleAddInfo} dates={filteredDates} />
+      <DateEntry monthInfo={monthInfo} isLoading={this.state.isLoading} onSubmit={this.handleAddInfo} onChange={this.handleUpdateDateInfo} dates={filteredDates} />
     )
   }
 });

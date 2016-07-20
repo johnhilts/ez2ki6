@@ -2,9 +2,23 @@ import React from 'react';
 import * as dateUtils from '../util/dateutils';
 import { Link } from 'react-router'
 
-const alsoEnteredOnThisDate = (dateInfo) => {
+const handleDateInfoEditStart = (key) => {
+  document.querySelector('[id="txt' + key + '"]').style.display = 'block';
+  document.querySelector('[id="a' + key + '"]').style.display = 'none';
+}
+
+const handleDateInfoEditComplete = (key) => {
+  document.querySelector('[id="txt' + key + '"]').style.display = 'none';
+  document.querySelector('[id="a' + key + '"]').style.display = 'block';
+}
+
+const alsoEnteredOnThisDate = (dateInfo, onChange) => {
   return (
-    <li key={dateInfo.key}>{dateInfo.dateInfo}</li>
+    <div key={dateInfo.key} className="list-group-item">
+      <a id={'a' + dateInfo.key} className="list-group-item" onClick={handleDateInfoEditStart.bind(null, dateInfo.key)}>{dateInfo.dateInfo}</a>
+      <textArea id={'txt' + dateInfo.key} onChange={onChange.bind(null, dateInfo.key)} onBlur={handleDateInfoEditComplete.bind(null, dateInfo.key)}
+        style={{display: 'none', width: '100%', }} value={dateInfo.dateInfo} />
+    </div>
   )
 }
 
@@ -29,7 +43,9 @@ export default function Calendar(props) {
           <button type="submit" className="btn btn-info">Save</button>
         </form>
         <ul>
-          {props.dates.map(alsoEnteredOnThisDate)}
+          {props.dates.map(dateInfo => {
+            return alsoEnteredOnThisDate(dateInfo, props.onChange);
+            })}
         </ul>
       </div>
   )
