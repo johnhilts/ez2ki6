@@ -1,6 +1,7 @@
 import React from 'react';
 import * as dateUtils from '../util/dateutils';
 import { Link } from 'react-router'
+import IsLoading from '../components/IsLoading';
 
 const handleDateInfoEditStart = (key) => {
   document.querySelector('[id="txt' + key + '"]').style.display = 'block';
@@ -28,7 +29,7 @@ export default function Calendar(props) {
   return (
     props.isLoading
     ?
-      <div style={{background: 'red',}}>L O A D I N G ...</div>
+      <IsLoading />
     :
       <div>
         <div style={{marginBottom: 15, fontSize: 'small', }}>

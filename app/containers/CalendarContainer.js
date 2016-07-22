@@ -1,13 +1,54 @@
 import React from 'react';
+import Rebase from 're-base';
 import { Link } from 'react-router'
 import moment from 'moment';
-import Calendar from '../components/Calendar';
 import * as dateUtils from '../util/dateutils';
+import * as db from '../core/database';
+var base = Rebase.createClass(db.firebaseConfig);
+import Calendar from '../components/Calendar';
+import IsLoading from '../components/IsLoading';
 
 const CalendarContainer = React.createClass({
   getInitialState() {
-    return(this.getCurrentYearMonthFromParamsOrDefault(this.props.location.query['ym']));
+    let currentYearMonthInfo = this.getCurrentYearMonthFromParamsOrDefault(this.props.location.query['ym']);
+    return(
+      {
+        currentFormattedMonth: currentYearMonthInfo.currentFormattedMonth,
+        currentYearMonth: currentYearMonthInfo.currentYearMonth,
+        dates: [],
+        isLoading: true,
+      }
+    );
   },
+
+  isAuthenticated(user) {
+    return (user && user.owner && user.owner != 0);
+  },
+
+  goToLogin() {
+    this.context.router.push({ pathname: '/', })
+  },
+
+	// NOTE: componentDidMount is used to initialize a component with server-side info
+	// fore more info, see react docs: https://facebook.github.io/react/docs/component-specs.html
+  componentDidMount() {
+    if (!this.isAuthenticated(this.props.user)) {
+      this.goToLogin();
+    }
+
+		this.ref = base.syncState(db.getUserRoot(this.props.user.owner) + '/dates', {
+			context : this,
+			state : 'dates',
+			asArray: true,
+			then(d) {
+				this.setState({isLoading: false,});
+			},
+		});
+	},
+
+	componentWillUnmount() {
+		base.removeBinding(this.ref);
+	},
 
   getCurrentYearMonthFromParamsOrDefault(currentFormattedMonth) {
     if (!currentFormattedMonth) {
@@ -36,6 +77,7 @@ const CalendarContainer = React.createClass({
       for (let cellIndex = nextCellIndex; cellIndex <= 6; cellIndex++) {
         if (date.weekday() == cellIndex) {
           let monthInfo = {year: date.year(), month: date.month(), day: date.date(), isEmpty: false, absoluteIndex: absoluteCellIndex, };
+          monthInfo.hasData = this.dateHasData(monthInfo);
           monthGrid.push(monthInfo);
           nextCellIndex = cellIndex < 6 ? cellIndex + 1 : 0;
           absoluteCellIndex++;
@@ -49,6 +91,10 @@ const CalendarContainer = React.createClass({
       }
     }
     return monthGrid;
+  },
+
+  dateHasData(date) {
+    return this.state.dates.some(dbDate => {return dbDate.year == date.year && dbDate.month == date.month && dbDate.day == date.day;});
   },
 
   updateByFormattedMonth(formattedMonth) {
@@ -72,7 +118,11 @@ const CalendarContainer = React.createClass({
             <h2>&gt;&gt; <Link to={{pathname: 'day', state: {monthInfo: today, }}}>Today</Link> &lt;&lt;</h2>
           </div>
         </div>
-        <Calendar monthGrid={this.buildMonthGrid()} />
+        {
+          this.state.isLoading
+          ? <IsLoading />
+          : <Calendar monthGrid={this.buildMonthGrid()} dates={this.state.dates} />
+        }
       </div>
     )
   }

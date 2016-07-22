@@ -11,6 +11,9 @@ const weekdayHeader = (weekdayName) => {
 // NOTE: I couldn't use the index parameter because what's being mapped is a *filtered* array, not the complete original
 // so, to get around it I had to add the index to the object so that I have the original array's index even after going through a filter
 const showDate = (monthInfo) => {
+  let dayStyle = monthInfo.hasData
+    ? {fontWeight: 'bold', fontSize: 'larger', }
+    : {fontWeight: 'normal', }
   return (
     monthInfo.isEmpty
     ?
@@ -21,7 +24,7 @@ const showDate = (monthInfo) => {
     :
     <td key={monthInfo.absoluteIndex} style={{width: 100, textAlign: 'center', borderStyle: 'solid', borderWidth: 5,
       paddingLeft: 25, paddingRight: 25, paddingTop: 25, paddingBottom: 25, }}>
-      <Link to={{pathname: 'day', state: {monthInfo: monthInfo, }}}>{monthInfo.day}</Link>
+      <Link style={dayStyle} to={{pathname: 'day', state: {monthInfo: monthInfo, }}}>{monthInfo.day}</Link>
     </td>
   )
 }
