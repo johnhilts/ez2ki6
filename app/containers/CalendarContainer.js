@@ -9,6 +9,7 @@ import Calendar from '../components/Calendar';
 import IsLoading from '../components/IsLoading';
 
 const CalendarContainer = React.createClass({
+  ViewTypes: {Calendar: 0, List: 1, },
   getInitialState() {
     let currentYearMonthInfo = this.getCurrentYearMonthFromParamsOrDefault(this.props.location.query['ym']);
     return(
@@ -16,6 +17,7 @@ const CalendarContainer = React.createClass({
         currentFormattedMonth: currentYearMonthInfo.currentFormattedMonth,
         currentYearMonth: currentYearMonthInfo.currentYearMonth,
         dates: [],
+        viewType: this.ViewTypes.Calendar,
         isLoading: true,
       }
     );
@@ -40,6 +42,7 @@ const CalendarContainer = React.createClass({
 			context : this,
 			state : 'dates',
 			asArray: true,
+      queries: {orderByChild: 'day',},
 			then(d) {
 				this.setState({isLoading: false,});
 			},
@@ -101,6 +104,10 @@ const CalendarContainer = React.createClass({
     this.setState(this.getCurrentYearMonthFromParamsOrDefault(formattedMonth));
   },
 
+  setViewType(viewType) {
+    this.setState({viewType: viewType,});
+  },
+
   render() {
     let previousFormattedMonth = dateUtils.getFormattedYearMonthByQueryYearMonth(this.state.currentFormattedMonth, -1);
     let nextFormattedMonth = dateUtils.getFormattedYearMonthByQueryYearMonth(this.state.currentFormattedMonth, 1);
@@ -110,18 +117,30 @@ const CalendarContainer = React.createClass({
     let today = {year: currentDate.year(), month: currentDate.month(), day: currentDate.date(), };
     return (
       <div>
-        <div className="row">
-          <div className="col-sm-3">
+        <div className="row" style={{verticalAlign: 'middle', }}>
+          <div className="col-sm-3" style={{verticalAlign: 'middle', }}>
             <h2>{previousMonthLink} {dateUtils.getMonthName(this.state.currentYearMonth.month())} {nextMonthLink}</h2>
           </div>
-          <div className="col-sm-2">
+          <div className="col-sm-2" style={{verticalAlign: 'middle', }}>
             <h2>&gt;&gt; <Link to={{pathname: 'day', state: {monthInfo: today, }}}>Today</Link> &lt;&lt;</h2>
+          </div>
+          <div className="col-sm-2" style={{paddingTop: 15, paddingBottom: 15, verticalAlign: 'middle', }}>
+            <h4>
+              <a onClick={this.setViewType.bind(null, this.ViewTypes.Calendar)}>Calendar</a> | <a onClick={this.setViewType.bind(null, this.ViewTypes.List)}>List</a>
+            </h4>
           </div>
         </div>
         {
           this.state.isLoading
           ? <IsLoading />
-          : <Calendar monthGrid={this.buildMonthGrid()} dates={this.state.dates} />
+          : this.state.viewType == this.ViewTypes.Calendar
+          ? <Calendar monthGrid={this.buildMonthGrid()} />
+          : <ul>
+              {this.state.dates
+              .filter(date => {return date.year == this.state.currentYearMonth.year() && date.month == this.state.currentYearMonth.month()})
+              .map(date => {return <li key={date.key}><b>{date.day}</b> - {date.dateInfo}</li>})
+              }
+            </ul>
         }
       </div>
     )
