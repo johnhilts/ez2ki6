@@ -92,7 +92,7 @@ const MainContainer = React.createClass({
     var year = (new Date()).getFullYear();
     return (
       <div style={styles.footer}>
-        <p>geo911 &copy; {year}</p>
+        <p>ez2ki6 &copy; {year}</p>
       </div>
     )
   },
