@@ -51,8 +51,8 @@ const DateContainer = React.createClass({
 
 		var timestamp = (new Date()).getTime();
 		var date = {key: 'date-' + timestamp, dateInfo: event.target[this.dateFields.dateInfo].value,
-      year: event.target[this.dateFields.year].value, month: event.target[this.dateFields.month].value,
-      day: event.target[this.dateFields.day].value};
+      year: Number(event.target[this.dateFields.year].value), month: Number(event.target[this.dateFields.month].value),
+      day: Number(event.target[this.dateFields.day].value)};
 
 		this.state.dates.push(date);
 
