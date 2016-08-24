@@ -40,3 +40,9 @@ export const getMonthName = (month) => {
 export const getCurrentDate = () => {
   return moment();
 }
+
+// Input: y,m,d
+// Output: MM/DD/YYYY
+export const getFormattedMonthDayYear = (year, month, day) => {
+  return moment(new Date(year, month, day)).format('MM/DD/YYYY');
+}
