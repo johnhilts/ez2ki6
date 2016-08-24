@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router'
+import * as dateUtils from '../util/dateutils';
 
 const searchResults = (day) => {
   return (
     <div key={day.key} className="col-sm-12">
-      {(day.month + 1)}/{day.day}/{day.year} : {day.dateInfo}
+      <Link to={{pathname: 'day', state: {monthInfo: day, }}}>{dateUtils.getFormattedMonthDayYear(day.year, day.month, day.day)} : {day.dateInfo}</Link>
     </div>
   )
 }
