@@ -10,7 +10,62 @@ const searchResults = (day) => {
   )
 }
 
+const getYears = (currentYear) => {
+    let years = [2015, 2016];
+    return (
+      <select value={currentYear}>
+        {years.map(year => {
+          return <option key={year} value={year}>{year}</option>
+        })}
+      </select>
+    )
+}
+
+const getMonths = (currentMonth) => {
+    let months = [1,2,3,4,5,6,7,8,9,10,11,12,];
+    return (
+      <select value={currentMonth}>
+        {months.map(month => {
+          return <option key={month} value={month}>{month}</option>
+        })}
+      </select>
+    )
+}
+
+const getDays = (currentYear, currentMonth, currentDay) => {
+    const getMonthDayRange = (year, month) => {
+      let range = [];
+      let end = 31;
+      switch (currentMonth) {
+        case 2:
+          end = 28;
+          break;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+          end = 30;
+          break;
+      }
+      for (let i = 1; i <= end; i++) {
+        range.push(i);
+      }
+      return range;
+    }
+    let days = getMonthDayRange(currentYear, currentMonth);
+    return (
+      <select value={currentDay}>
+        {days.map(day => {
+          return <option key={day} value={day}>{day}</option>
+        })}
+      </select>
+    )
+}
+
 export default function More(props) {
+  let currentYear = 2016;
+  let currentMonth = 8;
+  let currentDay = 24;
   return (
     <div>
       <form onSubmit={props.onSearch}>
@@ -21,12 +76,12 @@ export default function More(props) {
         </div>
         <div>&nbsp;</div>
         <div className="row">
-          <div className="col-sm-5 col-lg-1">
-            <input placeholder="From" />
+          <div>
+            From:&nbsp;{getMonths(currentMonth)}/{getDays(currentYear, currentMonth, currentDay)}/{getYears(currentYear)}
           </div>
-          <div className="col-sm-2">&nbsp;</div>
-          <div className="col-sm-5 col-lg-1">
-            <input placeholder="To" />
+          <div>&nbsp;</div>
+          <div>
+            To:&nbsp;&nbsp;{getMonths(currentMonth)}/{getDays(currentYear, currentMonth, currentDay)}/{getYears(currentYear)}
           </div>
         </div>
       </form>
