@@ -114,7 +114,7 @@ const CalendarContainer = React.createClass({
     let previousMonthLink = <a onClick={this.updateByFormattedMonth.bind(null, previousFormattedMonth)}>&lt;&lt;</a>
     let nextMonthLink = <a onClick={this.updateByFormattedMonth.bind(null, nextFormattedMonth)}>&gt;&gt;</a>
     let currentDate = dateUtils.getCurrentDate();
-    let today = {year: currentDate.year(), month: currentDate.month(), day: currentDate.date(), };
+    let today = {year: currentDate.year, month: currentDate.month, day: currentDate.day, };
     return (
       <div>
         <div className="row" style={{verticalAlign: 'middle', }}>

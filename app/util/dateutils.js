@@ -38,7 +38,7 @@ export const getMonthName = (month) => {
 
 // returns default moment object
 export const getCurrentDate = () => {
-  return moment();
+  return {year: moment().year(), month: moment().month(), day: moment().date(), };
 }
 
 // Input: y,m,d
