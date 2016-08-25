@@ -24,7 +24,7 @@ const getYears = (currentYear) => {
 const getMonths = (currentMonth) => {
     let months = [1,2,3,4,5,6,7,8,9,10,11,12,];
     return (
-      <select value={currentMonth}>
+      <select value={currentMonth+1}>
         {months.map(month => {
           return <option key={month} value={month}>{month}</option>
         })}
@@ -36,7 +36,7 @@ const getDays = (currentYear, currentMonth, currentDay) => {
     const getMonthDayRange = (year, month) => {
       let range = [];
       let end = 31;
-      switch (currentMonth) {
+      switch (month+1) {
         case 2:
           end = 28;
           break;
@@ -63,9 +63,7 @@ const getDays = (currentYear, currentMonth, currentDay) => {
 }
 
 export default function More(props) {
-  let currentYear = 2016;
-  let currentMonth = 8;
-  let currentDay = 24;
+  let currentDate = dateUtils.getCurrentDate();
   return (
     <div>
       <form onSubmit={props.onSearch}>
@@ -77,11 +75,11 @@ export default function More(props) {
         <div>&nbsp;</div>
         <div className="row">
           <div>
-            From:&nbsp;{getMonths(currentMonth)}/{getDays(currentYear, currentMonth, currentDay)}/{getYears(currentYear)}
+            From:&nbsp;{getMonths(currentDate.month)}/{getDays(currentDate.year, currentDate.month, currentDate.day)}/{getYears(currentDate.year)}
           </div>
           <div>&nbsp;</div>
           <div>
-            To:&nbsp;&nbsp;{getMonths(currentMonth)}/{getDays(currentYear, currentMonth, currentDay)}/{getYears(currentYear)}
+            To:&nbsp;&nbsp;{getMonths(currentDate.month)}/{getDays(currentDate.year, currentDate.month, currentDate.day)}/{getYears(currentDate.year)}
           </div>
         </div>
       </form>
