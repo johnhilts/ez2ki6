@@ -35,7 +35,13 @@ const MoreContainer = React.createClass({
   },
 
   render() {
-    return <More onSearch={this.handleSearch} searchResults={this.state.searchResults} years={this.state.years} />
+    return (
+      <More
+        onSearch={this.handleSearch}
+        searchResults={this.state.searchResults}
+        years={this.state.years}
+      />
+    )
   }
 });
 
