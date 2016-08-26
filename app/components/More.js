@@ -41,18 +41,7 @@ const getMonths = (currentMonth) => {
 const getDays = (currentYear, currentMonth, currentDay) => {
     const getMonthDayRange = (year, month) => {
       let range = [];
-      let end = 31;
-      switch (month+1) {
-        case 2:
-          end = 28;
-          break;
-        case 4:
-        case 6:
-        case 9:
-        case 11:
-          end = 30;
-          break;
-      }
+      let end = dateUtils.getDaysByYearMonth(currentYear, currentMonth);
       for (let i = 1; i <= end; i++) {
         range.push(i);
       }

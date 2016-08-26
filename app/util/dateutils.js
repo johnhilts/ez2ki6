@@ -46,3 +46,7 @@ export const getCurrentDate = () => {
 export const getFormattedMonthDayYear = (year, month, day) => {
   return moment(new Date(year, month, day)).format('MM/DD/YYYY');
 }
+
+export const getDaysByYearMonth = (year, month) => {
+  return moment(new Date(year, month, 1)).daysInMonth();
+}
