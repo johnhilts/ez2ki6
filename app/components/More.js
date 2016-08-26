@@ -10,8 +10,7 @@ const searchResults = (day) => {
   )
 }
 
-const getYears = (currentYear) => {
-    let years = [2015, 2016];
+const getYears = (currentYear, years) => {
     return (
       <select value={currentYear}>
         {years.map(year => {
@@ -75,11 +74,11 @@ export default function More(props) {
         <div>&nbsp;</div>
         <div className="row">
           <div>
-            From:&nbsp;{getMonths(currentDate.month)}/{getDays(currentDate.year, currentDate.month, currentDate.day)}/{getYears(currentDate.year)}
+            From:&nbsp;{getMonths(currentDate.month)}/{getDays(currentDate.year, currentDate.month, currentDate.day)}/{getYears(currentDate.year, props.years)}
           </div>
           <div>&nbsp;</div>
           <div>
-            To:&nbsp;&nbsp;{getMonths(currentDate.month)}/{getDays(currentDate.year, currentDate.month, currentDate.day)}/{getYears(currentDate.year)}
+            To:&nbsp;&nbsp;{getMonths(currentDate.month)}/{getDays(currentDate.year, currentDate.month, currentDate.day)}/{getYears(currentDate.year, props.years)}
           </div>
         </div>
       </form>
