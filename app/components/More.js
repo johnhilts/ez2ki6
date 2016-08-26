@@ -58,7 +58,7 @@ const getDays = (currentYear, currentMonth, currentDay) => {
 }
 
 export default function More(props) {
-  let currentDate = dateUtils.getCurrentDate();
+  let currentDate = props.currentDate ? props.currentDate : dateUtils.getCurrentDate();
   return (
     <div>
       <form onSubmit={props.onSearch}>

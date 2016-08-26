@@ -2,6 +2,7 @@ import React from 'react';
 import Rebase from 're-base';
 import * as db from '../core/database';
 var base = Rebase.createClass(db.firebaseConfig);
+import * as dateUtils from '../util/dateutils';
 import More from '../components/More';
 
 const MoreContainer = React.createClass({
@@ -40,6 +41,7 @@ const MoreContainer = React.createClass({
         onSearch={this.handleSearch}
         searchResults={this.state.searchResults}
         years={this.state.years}
+        currentDate={dateUtils.getCurrentDate()}
       />
     )
   }
