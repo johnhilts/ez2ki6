@@ -21,14 +21,21 @@ const getYears = (currentYear, years) => {
 }
 
 const getMonths = (currentMonth) => {
-    let months = [1,2,3,4,5,6,7,8,9,10,11,12,];
-    return (
-      <select value={currentMonth+1}>
-        {months.map(month => {
-          return <option key={month} value={month}>{month}</option>
-        })}
-      </select>
-    )
+  const getMonthRange = () => {
+    let months = [];
+    for (let m = 0; m < 12; m++) {
+      months.push(m);
+    }
+    return months;
+  }
+  let months = getMonthRange();
+  return (
+    <select value={currentMonth}>
+    {months.map(month => {
+      return <option key={month} value={month}>{month+1}</option>
+    })}
+    </select>
+  )
 }
 
 const getDays = (currentYear, currentMonth, currentDay) => {
