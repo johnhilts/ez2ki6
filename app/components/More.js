@@ -57,8 +57,28 @@ const getDays = (currentYear, currentMonth, currentDay) => {
     )
 }
 
-export default function More(props) {
+const RenderDateRanges = (props) => {
+  const getDateSelect = (years, year, month, day) => {
+    return <span>{getMonths(month)}/{getDays(year, month, day)}/{getYears(year, years)}</span>
+  }
   let currentDate = props.currentDate ? props.currentDate : dateUtils.getCurrentDate();
+  let fromDateSelect = getDateSelect(props.years, currentDate.year, currentDate.month, currentDate.day);
+  let toDateSelect = getDateSelect(props.years, currentDate.year, currentDate.month, currentDate.day);
+
+  return (
+    <div className="row">
+      <div>
+        From:&nbsp;{fromDateSelect}
+      </div>
+      <div>&nbsp;</div>
+      <div>
+        To:&nbsp;&nbsp;{toDateSelect}
+      </div>
+    </div>
+  )
+}
+
+export default function More(props) {
   return (
     <div>
       <form onSubmit={props.onSearch}>
@@ -68,15 +88,7 @@ export default function More(props) {
           </div>
         </div>
         <div>&nbsp;</div>
-        <div className="row">
-          <div>
-            From:&nbsp;{getMonths(currentDate.month)}/{getDays(currentDate.year, currentDate.month, currentDate.day)}/{getYears(currentDate.year, props.years)}
-          </div>
-          <div>&nbsp;</div>
-          <div>
-            To:&nbsp;&nbsp;{getMonths(currentDate.month)}/{getDays(currentDate.year, currentDate.month, currentDate.day)}/{getYears(currentDate.year, props.years)}
-          </div>
-        </div>
+          <RenderDateRanges {...props} />
       </form>
       <div>&nbsp;</div>
       <div>
