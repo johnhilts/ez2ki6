@@ -36,9 +36,16 @@ export const getMonthName = (month) => {
   return moment(new Date(moment().year(), month, 1)).format('MMMM');
 }
 
-// returns default moment object
+// returns date object based on default moment object
 export const getCurrentDate = () => {
   return {year: moment().year(), month: moment().month(), day: moment().date(), };
+}
+
+// Input: y,m,d
+// Output: date object
+export const getDateFromYearMonthDay = (year, month, day) => {
+  let date = moment(new Date(year, month, day));
+  return {year: date.year(), month: date.month(), day: date.date(), };
 }
 
 // Input: y,m,d
