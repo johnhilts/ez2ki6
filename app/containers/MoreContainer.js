@@ -30,11 +30,20 @@ const MoreContainer = React.createClass({
 		event.preventDefault();
 
     let searchText = event.target[this.searchFields.searhText].value;
+    let fromDate = new Date(this.state.fromDate.year, this.state.fromDate.month, this.state.fromDate.day);
+    let toDate = new Date(this.state.toDate.year, this.state.toDate.month, this.state.toDate.day);
 
-    this.setState(
-      {searchResults: this.props.user.dates.filter(date => {return date.dateInfo.toLowerCase().indexOf(searchText.toLowerCase()) >= 0})}
+    this.setState({
+        searchResults: this.props.user.dates.filter(date => {
+          let compareDate = new Date(date.year, date.month, date.day);
+          return (
+            date.dateInfo.toLowerCase().indexOf(searchText.toLowerCase()) >= 0
+            && fromDate <= compareDate
+            && toDate >= compareDate
+          );
+        })
+      }
     )
-
   },
 
   handleDateChange(searchField, event) {
