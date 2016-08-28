@@ -24,7 +24,7 @@ const MoreContainer = React.createClass({
     return years;
   },
 
-	searchFields : {searhText: 0, fromDate: 1, toDate: 2, },
+  searchFields : {searhText: 0, fromDateMonth: 1, fromDateDay: 2, fromDateYear: 3, toDateMonth: 4, toDateDay: 5, toDateYear: 6, },
 
   handleSearch(event) {
 		event.preventDefault();
@@ -51,10 +51,10 @@ const MoreContainer = React.createClass({
       case this.searchFields.toDateYear:
         this.setState({ toDate: dateUtils.getDateFromYearMonthDay(event.target.value, this.state.toDate.month, this.state.toDate.day), });
         break;
-      case this.searchFields.fromDateMonth:
+      case this.searchFields.toDateMonth:
         this.setState({ toDate: dateUtils.getDateFromYearMonthDay(this.state.toDate.year, event.target.value, this.state.toDate.day), });
         break;
-      case this.searchFields.fromDateDay:
+      case this.searchFields.toDateDay:
         this.setState({ toDate: dateUtils.getDateFromYearMonthDay(this.state.toDate.year, this.state.toDate.month, event.target.value), });
         break;
     }
