@@ -57,6 +57,9 @@ const RegisterContainer = React.createClass({
 
 		user.owner = authData.uid;
 
+		user.currentCalendarId = 0;
+		user.calendars = [{name: 'main', }] ;
+
 		this.state.users[user.owner] = user;
 
     this.setState({ users : this.state.users});

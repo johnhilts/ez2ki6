@@ -38,7 +38,7 @@ const CalendarContainer = React.createClass({
       this.goToLogin();
     }
 
-		this.ref = base.syncState(db.getUserRoot(this.props.user.owner) + '/dates', {
+		this.ref = base.syncState(db.getUserRoot(this.props.user.owner) + '/calendars/' + this.props.user.currentCalendarId + '/dates', {
 			context : this,
 			state : 'dates',
 			asArray: true,
