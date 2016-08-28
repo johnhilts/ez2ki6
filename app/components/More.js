@@ -10,9 +10,9 @@ const searchResults = (day) => {
   )
 }
 
-const getYears = (currentYear, years) => {
+const getYears = (currentYear, years, onDateChange, searchField) => {
     return (
-      <select value={currentYear}>
+      <select value={currentYear} onChange={onDateChange.bind(null, searchField)}>
         {years.map(year => {
           return <option key={year} value={year}>{year}</option>
         })}
@@ -20,7 +20,7 @@ const getYears = (currentYear, years) => {
     )
 }
 
-const getMonths = (currentMonth) => {
+const getMonths = (currentMonth, onDateChange, searchField) => {
   const getMonthRange = () => {
     let months = [];
     for (let m = 0; m < 12; m++) {
@@ -30,7 +30,7 @@ const getMonths = (currentMonth) => {
   }
   let months = getMonthRange();
   return (
-    <select value={currentMonth}>
+    <select value={currentMonth} onChange={onDateChange.bind(null, searchField)}>
     {months.map(month => {
       return <option key={month} value={month}>{month+1}</option>
     })}
@@ -38,7 +38,7 @@ const getMonths = (currentMonth) => {
   )
 }
 
-const getDays = (currentYear, currentMonth, currentDay) => {
+const getDays = (currentYear, currentMonth, currentDay, onDateChange, searchField) => {
     const getMonthDayRange = (year, month) => {
       let range = [];
       let end = dateUtils.getDaysByYearMonth(currentYear, currentMonth);
@@ -49,7 +49,7 @@ const getDays = (currentYear, currentMonth, currentDay) => {
     }
     let days = getMonthDayRange(currentYear, currentMonth);
     return (
-      <select value={currentDay}>
+      <select value={currentDay} onChange={onDateChange.bind(null, searchField)}>
         {days.map(day => {
           return <option key={day} value={day}>{day}</option>
         })}
@@ -58,12 +58,16 @@ const getDays = (currentYear, currentMonth, currentDay) => {
 }
 
 const RenderDateRanges = (props) => {
-  const getDateSelect = (years, year, month, day) => {
-    return <span>{getMonths(month)}/{getDays(year, month, day)}/{getYears(year, years)}</span>
+  const getDateSelect = (years, year, month, day, onDateChange, searchYear, searchMonth, searchDay) => {
+    return (
+      <span>{getMonths(month, onDateChange, searchMonth)}/{getDays(year, month, day, onDateChange, searchDay)}/{getYears(year, years, onDateChange, searchYear)}</span>
+    )
   }
-  let currentDate = props.currentDate ? props.currentDate : dateUtils.getCurrentDate();
-  let fromDateSelect = getDateSelect(props.years, currentDate.year, currentDate.month, currentDate.day);
-  let toDateSelect = getDateSelect(props.years, currentDate.year, currentDate.month, currentDate.day);
+  let searchFields = props.searchFields;
+  let fromDateSelect = getDateSelect(props.years, props.fromDate.year, props.fromDate.month, props.fromDate.day, props.onDateChange,
+    searchFields.fromDateYear, searchFields.fromDateMonth, searchFields.fromDateDay);
+  let toDateSelect = getDateSelect(props.years, props.toDate.year, props.toDate.month, props.toDate.day, props.onDateChange,
+    searchFields.toDateYear, searchFields.toDateMonth, searchFields.toDateDay);
 
   return (
     <div className="row">

@@ -11,6 +11,8 @@ const MoreContainer = React.createClass({
     return (
       {
         searchResults: [],
+        fromDate: dateUtils.getCurrentDate(),
+        toDate: dateUtils.getCurrentDate(),
         years: this.getYears(this.props.user.dates),
       }
     )
@@ -35,13 +37,39 @@ const MoreContainer = React.createClass({
 
   },
 
+  handleDateChange(searchField, event) {
+    switch (searchField) {
+      case this.searchFields.fromDateYear:
+        this.setState({ fromDate: dateUtils.getDateFromYearMonthDay(event.target.value, this.state.fromDate.month, this.state.fromDate.day), });
+        break;
+      case this.searchFields.fromDateMonth:
+        this.setState({ fromDate: dateUtils.getDateFromYearMonthDay(this.state.fromDate.year, event.target.value, this.state.fromDate.day), });
+        break;
+      case this.searchFields.fromDateDay:
+        this.setState({ fromDate: dateUtils.getDateFromYearMonthDay(this.state.fromDate.year, this.state.fromDate.month, event.target.value), });
+        break;
+      case this.searchFields.toDateYear:
+        this.setState({ toDate: dateUtils.getDateFromYearMonthDay(event.target.value, this.state.toDate.month, this.state.toDate.day), });
+        break;
+      case this.searchFields.fromDateMonth:
+        this.setState({ toDate: dateUtils.getDateFromYearMonthDay(this.state.toDate.year, event.target.value, this.state.toDate.day), });
+        break;
+      case this.searchFields.fromDateDay:
+        this.setState({ toDate: dateUtils.getDateFromYearMonthDay(this.state.toDate.year, this.state.toDate.month, event.target.value), });
+        break;
+    }
+  },
+
   render() {
     return (
       <More
         onSearch={this.handleSearch}
+        onDateChange={this.handleDateChange}
         searchResults={this.state.searchResults}
         years={this.state.years}
-        currentDate={dateUtils.getCurrentDate()}
+        fromDate={this.state.fromDate}
+        toDate={this.state.toDate}
+        searchFields={this.searchFields}
       />
     )
   }
