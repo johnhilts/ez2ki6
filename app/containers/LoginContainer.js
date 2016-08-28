@@ -48,19 +48,9 @@ const LoginContainer = React.createClass({
           alert('Login Failed');
           return;
         }
-
-        // re-read helpers asArray
-        this.ref = base.fetch(db.getUserRoot(user.owner) + '/helpers', {
-          context : this,
-          asArray : true,
-          then(helpers) {
-            user.helpers = helpers;
-
-            this.props.onAuthorize(user);
-
-            this.context.router.push('/');
-          },
-        });
+        this.props.onAuthorize(user);
+        
+        this.context.router.push('/');
       },
 		});
   },

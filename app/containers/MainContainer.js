@@ -58,21 +58,6 @@ const MainContainer = React.createClass({
     return this.handleSaveUser(user);
   },
 
-  handleHelperClick(event) {
-    event.preventDefault();
-    var linkElement = event.target.attributes["data-helper-key"].value;
-    document.querySelector('[data-helper-key="' + linkElement + '"]').style.display = "none";
-    var divElement = 'div' + linkElement.substring(1);
-    document.querySelector('[data-helper-key=\"' + divElement + '\"]').style.display = "block";
-  },
-
-  handleHelperShowOnly(helperIndex) {
-    var linkElement = 'a' + helperIndex;
-    document.querySelector('[data-helper-key="' + linkElement + '"]').style.display = "block";
-    var divElement = 'div' + linkElement.substring(1);
-    document.querySelector('[data-helper-key=\"' + divElement + '\"]').style.display = "none";
-  },
-
   renderHeader() {
     return (
       <div style={styles.header}>
@@ -102,8 +87,7 @@ const MainContainer = React.createClass({
       <div>
         {this.renderHeader()}
         <div style={styles.container}>
-          {React.cloneElement(this.props.children, { onAuthorize: this.handleAuthorization, user: this.state.user,
-            onHelperClick: this.handleHelperClick, onHelperShowOnly: this.handleHelperShowOnly, onSaveDateInfo: this.handleSaveDateInfo, })}
+          {React.cloneElement(this.props.children, { onAuthorize: this.handleAuthorization, user: this.state.user, onSaveDateInfo: this.handleSaveDateInfo, })}
         </div>
         {this.renderFooter()}
       </div>
