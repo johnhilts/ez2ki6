@@ -14,7 +14,7 @@ const getYears = (currentYear, years, onDateChange, searchField) => {
     return (
       <select value={currentYear} onChange={onDateChange.bind(null, searchField)}>
         {years.map(year => {
-          return <option key={year} value={year}>{year}</option>
+          return <option key={searchField + year} value={year}>{year}</option>
         })}
       </select>
     )
@@ -32,7 +32,7 @@ const getMonths = (currentMonth, onDateChange, searchField) => {
   return (
     <select value={currentMonth} onChange={onDateChange.bind(null, searchField)}>
     {months.map(month => {
-      return <option key={month} value={month}>{month+1}</option>
+      return <option key={searchField + month} value={month}>{month+1}</option>
     })}
     </select>
   )
@@ -51,7 +51,7 @@ const getDays = (currentYear, currentMonth, currentDay, onDateChange, searchFiel
     return (
       <select value={currentDay} onChange={onDateChange.bind(null, searchField)}>
         {days.map(day => {
-          return <option key={day} value={day}>{day}</option>
+          return <option key={searchField + day} value={day}>{day}</option>
         })}
       </select>
     )
