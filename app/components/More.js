@@ -82,6 +82,20 @@ const RenderDateRanges = (props) => {
   )
 }
 
+function Calendars(props) {
+  return (
+    <div>
+      Calendars<br />
+      <select>
+        {props.calendars.map(calendar => {return <option key={calendar.name} value={calendar.name}>{calendar.name}</option>})}
+      </select>
+      <br />
+      Add a New Calendar<br />
+      <input placeholder="Calendar Name" />&nbsp;<button><span className="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+    </div>
+  )
+}
+
 export default function More(props) {
   return (
     <div>
@@ -100,6 +114,8 @@ export default function More(props) {
           {props.searchResults.map(searchResults)}
         </div>
       </div>
+      <div>&nbsp;</div>
+      <Calendars {...props} />
     </div>
   )
 }

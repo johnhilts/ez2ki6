@@ -79,6 +79,7 @@ const MoreContainer = React.createClass({
         fromDate={this.state.fromDate}
         toDate={this.state.toDate}
         searchFields={this.searchFields}
+        calendars={this.props.user.calendars}
       />
     )
   }
