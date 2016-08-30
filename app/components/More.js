@@ -83,15 +83,18 @@ const RenderDateRanges = (props) => {
 }
 
 function Calendars(props) {
+  let calendars = props.calendars;
+  let calendarKeys = Array.from(calendars.keys());
   return (
     <div>
       Calendars<br />
       <select>
-        {props.calendars.map(calendar => {return <option key={calendar.name} value={calendar.name}>{calendar.name}</option>})}
+        {calendarKeys.map(calendarKey => {return <option key={calendarKey} value={calendarKey}>{calendars[calendarKey].name}</option>})}
       </select>
       <br />
       Add a New Calendar<br />
-      <input placeholder="Calendar Name" />&nbsp;<button><span className="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+      <input placeholder="Calendar Name" id="newCalendarName" />&nbsp;
+      <button onClick={props.onAddCalendar}><span className="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
     </div>
   )
 }

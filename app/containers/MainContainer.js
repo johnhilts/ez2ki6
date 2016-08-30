@@ -58,6 +58,12 @@ const MainContainer = React.createClass({
     return this.handleSaveUser(user);
   },
 
+  handleSaveCalendarInfo(calendar) {
+    var user = this.state.user;
+    user.calendars.push(calendar);
+    return this.handleSaveUser(user);
+  },
+
   renderHeader() {
     return (
       <div style={styles.header}>
@@ -87,7 +93,8 @@ const MainContainer = React.createClass({
       <div>
         {this.renderHeader()}
         <div style={styles.container}>
-          {React.cloneElement(this.props.children, { onAuthorize: this.handleAuthorization, user: this.state.user, onSaveDateInfo: this.handleSaveDateInfo, })}
+          {React.cloneElement(this.props.children,
+            { onAuthorize: this.handleAuthorization, user: this.state.user, onSaveDateInfo: this.handleSaveDateInfo, onSaveCalendarInfo: this.handleSaveCalendarInfo, })}
         </div>
         {this.renderFooter()}
       </div>

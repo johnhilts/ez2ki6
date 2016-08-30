@@ -10,6 +10,7 @@ const MoreContainer = React.createClass({
   getInitialState() {
     return (
       {
+        isLoading: true,
         searchResults: [],
         fromDate: dateUtils.getCurrentDate(),
         toDate: dateUtils.getCurrentDate(),
@@ -23,6 +24,35 @@ const MoreContainer = React.createClass({
     dates.map((date) => { if (years.indexOf(date.year) < 0) years.push(date.year); } );
     return years;
   },
+
+  isAuthenticated(user) {
+    return (user && user.owner && user.owner != 0);
+  },
+
+  goToLogin() {
+    this.context.router.push({ pathname: '/', })
+  },
+
+	// NOTE: componentDidMount is used to initialize a component with server-side info
+	// fore more info, see react docs: https://facebook.github.io/react/docs/component-specs.html
+  componentDidMount() {
+    if (!this.isAuthenticated(this.props.user)) {
+      this.goToLogin();
+    }
+
+		this.ref = base.syncState(db.getUserRoot(this.props.user.owner) + '/calendars/', {
+			context : this,
+			state : 'calendars',
+			asArray: true,
+			then(d) {
+				this.setState({isLoading: false,});
+			},
+		});
+	},
+
+	componentWillUnmount() {
+		base.removeBinding(this.ref);
+	},
 
   searchFields : {searhText: 0, fromDateMonth: 1, fromDateDay: 2, fromDateYear: 3, toDateMonth: 4, toDateDay: 5, toDateYear: 6, },
 
@@ -69,11 +99,26 @@ const MoreContainer = React.createClass({
     }
   },
 
+  handleAddCalendar(event) {
+    event.preventDefault();
+    let newCalendarName = document.querySelector("#newCalendarName").value;
+    if (!newCalendarName || newCalendarName.length == 0) {
+      alert("Please enter a Calendar Name to add a new Calendar");
+      return;
+    }
+    // this won't work well with multiple users logged in as the same person
+    let calendar = {name: newCalendarName, };
+    this.state.calendars.push(calendar);
+    this.setState({calendars: this.state.calendars, });
+		this.props.onSaveCalendarInfo(calendar);
+  },
+
   render() {
     return (
       <More
         onSearch={this.handleSearch}
         onDateChange={this.handleDateChange}
+        onAddCalendar={this.handleAddCalendar}
         searchResults={this.state.searchResults}
         years={this.state.years}
         fromDate={this.state.fromDate}
