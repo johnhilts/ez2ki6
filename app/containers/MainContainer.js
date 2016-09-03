@@ -64,6 +64,12 @@ const MainContainer = React.createClass({
     return this.handleSaveUser(user);
   },
 
+  handleSaveCurrentCalendarId(currentCalendarId) {
+    var user = this.state.user;
+    user.currentCalendarId = currentCalendarId;
+    return this.handleSaveUser(user);
+  },
+
   renderHeader() {
     return (
       <div style={styles.header}>
@@ -94,7 +100,8 @@ const MainContainer = React.createClass({
         {this.renderHeader()}
         <div style={styles.container}>
           {React.cloneElement(this.props.children,
-            { onAuthorize: this.handleAuthorization, user: this.state.user, onSaveDateInfo: this.handleSaveDateInfo, onSaveCalendarInfo: this.handleSaveCalendarInfo, })}
+            { onAuthorize: this.handleAuthorization, user: this.state.user, onSaveDateInfo: this.handleSaveDateInfo, onSaveCalendarInfo: this.handleSaveCalendarInfo,
+              onSaveCurrentCalendarId: this.handleSaveCurrentCalendarId, })}
         </div>
         {this.renderFooter()}
       </div>

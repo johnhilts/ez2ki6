@@ -15,11 +15,16 @@ const MoreContainer = React.createClass({
         fromDate: dateUtils.getCurrentDate(),
         toDate: dateUtils.getCurrentDate(),
         years: this.getYears(this.props.user.dates),
+        currentCalendarId: this.props.user.currentCalendarId,
       }
     )
   },
 
   getYears(dates) {
+    if (!dates) {
+      return [dateUtils.getCurrentDate().year];
+    }
+
     let years = [];
     dates.map((date) => { if (years.indexOf(date.year) < 0) years.push(date.year); } );
     return years;
@@ -108,9 +113,21 @@ const MoreContainer = React.createClass({
     }
     // this won't work well with multiple users logged in as the same person
     let calendar = {name: newCalendarName, };
+    let newCalendarId = this.state.calendars.length;
     this.state.calendars.push(calendar);
-    this.setState({calendars: this.state.calendars, });
+    this.setState({calendars: this.state.calendars, currentCalendarId: newCalendarId, });
 		this.props.onSaveCalendarInfo(calendar);
+		this.props.onSaveCurrentCalendarId(newCalendarId);
+  },
+
+  handleChangeCalendar(event) {
+    event.preventDefault();
+    let currentCalendarId = Number(event.target.value);
+    this.setState({currentCalendarId: currentCalendarId, });
+		this.props.onSaveCurrentCalendarId(currentCalendarId);
+    base.update(db.getUserRoot(this.props.user.owner), {
+      data: {currentCalendarId: currentCalendarId},
+    });
   },
 
   render() {
@@ -119,12 +136,14 @@ const MoreContainer = React.createClass({
         onSearch={this.handleSearch}
         onDateChange={this.handleDateChange}
         onAddCalendar={this.handleAddCalendar}
+        onChangeCalendar={this.handleChangeCalendar}
         searchResults={this.state.searchResults}
         years={this.state.years}
         fromDate={this.state.fromDate}
         toDate={this.state.toDate}
         searchFields={this.searchFields}
         calendars={this.props.user.calendars}
+        currentCalendarId={this.props.user.currentCalendarId}
       />
     )
   }

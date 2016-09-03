@@ -88,7 +88,7 @@ function Calendars(props) {
   return (
     <div>
       Calendars<br />
-      <select>
+      <select value={props.currentCalendarId} onChange={props.onChangeCalendar}>
         {calendarKeys.map(calendarKey => {return <option key={calendarKey} value={calendarKey}>{calendars[calendarKey].name}</option>})}
       </select>
       <br />
