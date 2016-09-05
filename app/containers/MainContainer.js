@@ -54,7 +54,7 @@ const MainContainer = React.createClass({
 
   handleSaveDateInfo(dates) {
     var user = this.state.user;
-    user.dates = dates;
+    user.calendars[user.currentCalendarId].dates = dates;
     return this.handleSaveUser(user);
   },
 
