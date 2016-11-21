@@ -1,5 +1,6 @@
 import React from 'react';
 import * as dateUtils from '../util/dateutils';
+import * as stringUtils from '../util/stringutils';
 import { Link } from 'react-router'
 import IsLoading from '../components/IsLoading';
 
@@ -16,7 +17,7 @@ const handleDateInfoEditComplete = (key) => {
 const alsoEnteredOnThisDate = (dateInfo, onChange) => {
   return (
     <div key={dateInfo.key} className="list-group-item">
-      <a id={'a' + dateInfo.key} className="list-group-item" onClick={handleDateInfoEditStart.bind(null, dateInfo.key)}>{dateInfo.dateInfo}</a>
+      <a id={'a' + dateInfo.key} className="list-group-item" onClick={handleDateInfoEditStart.bind(null, dateInfo.key)}>{stringUtils.formatLineBreaksForHtml(dateInfo.dateInfo)}</a>
       <textArea id={'txt' + dateInfo.key} onChange={onChange.bind(null, dateInfo.key)} onBlur={handleDateInfoEditComplete.bind(null, dateInfo.key)}
         style={{display: 'none', width: '100%', }} value={dateInfo.dateInfo} />
     </div>

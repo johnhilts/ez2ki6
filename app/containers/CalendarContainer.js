@@ -3,6 +3,7 @@ import Rebase from 're-base';
 import { Link } from 'react-router'
 import moment from 'moment';
 import * as dateUtils from '../util/dateutils';
+import * as stringUtils from '../util/stringutils';
 import * as db from '../core/database';
 var base = Rebase.createClass(db.firebaseConfig);
 import Calendar from '../components/Calendar';
@@ -138,7 +139,7 @@ const CalendarContainer = React.createClass({
           : <ul>
               {this.state.dates
               .filter(date => {return date.year == this.state.currentYearMonth.year() && date.month == this.state.currentYearMonth.month()})
-              .map(date => {return <li key={date.key}><b>{date.day}</b> - {date.dateInfo}</li>})
+              .map(date => {return <li key={date.key}><b>{date.day}</b> - {stringUtils.formatLineBreaksForHtml(date.dateInfo)}</li>})
               }
             </ul>
         }
