@@ -42,6 +42,14 @@ export const getCurrentDate = () => {
 }
 
 // Input: y,m,d
+// Output: true or false if y,m,d is for the actual current date
+export const isToday = (year, month, day) => {
+  let date = moment(new Date(year, month, day));
+  let today = moment(new Date());
+  return today.isSame(date, 'day');
+}
+
+// Input: y,m,d
 // Output: date object
 export const getDateFromYearMonthDay = (year, month, day) => {
   let date = moment(new Date(year, month, day));

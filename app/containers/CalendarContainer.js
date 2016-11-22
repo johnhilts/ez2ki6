@@ -80,7 +80,8 @@ const CalendarContainer = React.createClass({
       let date = new moment(new Date(year, month, day));
       for (let cellIndex = nextCellIndex; cellIndex <= 6; cellIndex++) {
         if (date.weekday() == cellIndex) {
-          let monthInfo = {year: date.year(), month: date.month(), day: date.date(), isEmpty: false, absoluteIndex: absoluteCellIndex, };
+          let isToday = dateUtils.isToday(date.year(), date.month(), date.date());
+          let monthInfo = {year: date.year(), month: date.month(), day: date.date(), isEmpty: false, absoluteIndex: absoluteCellIndex, isToday: isToday, };
           monthInfo.hasData = this.dateHasData(monthInfo);
           monthGrid.push(monthInfo);
           nextCellIndex = cellIndex < 6 ? cellIndex + 1 : 0;
