@@ -16,6 +16,7 @@ const showDate = (monthInfo) => {
     : {fontWeight: 'normal', }
   if (monthInfo.isToday) {
     dayStyle.color = '#EC7063';
+    dayStyle.border = '2px solid red';
   }
   return (
     monthInfo.isEmpty
