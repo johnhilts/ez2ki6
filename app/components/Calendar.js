@@ -14,6 +14,9 @@ const showDate = (monthInfo) => {
   let dayStyle = monthInfo.hasData
     ? {fontWeight: 'bold', fontSize: 'larger', }
     : {fontWeight: 'normal', }
+  let dataIcon = monthInfo.hasData
+    ? <span className='glyphicon glyphicon-list-alt'></span>
+    : ''
   if (monthInfo.isToday) {
     dayStyle.color = '#EC7063';
     dayStyle.border = '2px solid red';
@@ -28,7 +31,10 @@ const showDate = (monthInfo) => {
     :
     <td key={monthInfo.absoluteIndex} style={{width: 100, textAlign: 'center', borderStyle: 'solid', borderWidth: 5,
       paddingLeft: 25, paddingRight: 25, paddingTop: 25, paddingBottom: 25, }}>
-      <Link style={dayStyle} to={{pathname: 'day', state: {monthInfo: monthInfo, }}}>{monthInfo.day}</Link>
+      <Link style={dayStyle} to={{pathname: 'day', state: {monthInfo: monthInfo, }}}>
+        {monthInfo.day}
+        {dataIcon}
+      </Link>
     </td>
   )
 }
