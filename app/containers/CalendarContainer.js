@@ -68,7 +68,23 @@ const CalendarContainer = React.createClass({
     )
   },
 
+  getLastCalendarCellIndex(year, month, lastDay) {
+      let lastCurrentMonthWeekday = dateUtils.getWeekdayFromYearMonthDay(year, month, lastDay);
+      return (
+        lastCurrentMonthWeekday == 6
+        ? lastDay
+        : lastDay + (6 - lastCurrentMonthWeekday)
+      )
+  },
+
   buildMonthGrid() {
+    const setDateInfo = (date, isCurrentMonth) => {
+      let isToday = dateUtils.isToday(date.year(), date.month(), date.date());
+      let monthInfo = {year: date.year(), month: date.month(), day: date.date(), isEmpty: false, absoluteIndex: absoluteCellIndex, isToday: isToday, isCurrentMonth: isCurrentMonth, };
+      monthInfo.hasData = this.dateHasData(monthInfo);
+      monthGrid.push(monthInfo);
+    }
+
     const currentYearMonth = this.state.currentYearMonth;
     const daysInMonth = currentYearMonth.daysInMonth();
     let monthGrid = [];
@@ -76,22 +92,28 @@ const CalendarContainer = React.createClass({
     let absoluteCellIndex = 0;
     const year = currentYearMonth.year();
     const month = currentYearMonth.month();
-    for (let day = 1; day <= daysInMonth; day++) {
+    const lastCalendarCellIndex = this.getLastCalendarCellIndex(year, month, daysInMonth);
+    for (let day = 1; day <= lastCalendarCellIndex; day++) {
       let date = new moment(new Date(year, month, day));
       for (let cellIndex = nextCellIndex; cellIndex <= 6; cellIndex++) {
-        if (date.weekday() == cellIndex) {
-          let isToday = dateUtils.isToday(date.year(), date.month(), date.date());
-          let monthInfo = {year: date.year(), month: date.month(), day: date.date(), isEmpty: false, absoluteIndex: absoluteCellIndex, isToday: isToday, };
-          monthInfo.hasData = this.dateHasData(monthInfo);
-          monthGrid.push(monthInfo);
+        if (date.weekday() == cellIndex && day <= daysInMonth) {
+          setDateInfo(date, true);
           nextCellIndex = cellIndex < 6 ? cellIndex + 1 : 0;
           absoluteCellIndex++;
           break;
         }
         else {
-          let emptyInfo = {isEmpty: true, absoluteIndex: absoluteCellIndex, };
+          if (day > daysInMonth) {
+            setDateInfo(date, false);
+          }
+          else {
+            let emptyInfo = {isEmpty: true, absoluteIndex: absoluteCellIndex, };
+            monthGrid.push(emptyInfo);
+          }
           absoluteCellIndex++;
-          monthGrid.push(emptyInfo);
+          if (day > daysInMonth) {
+            break;
+          }
         }
       }
     }

@@ -57,6 +57,12 @@ export const getDateFromYearMonthDay = (year, month, day) => {
 }
 
 // Input: y,m,d
+// Output: integer to represent weekday (0 to 6, Sunday to Saturday)
+export const getWeekdayFromYearMonthDay = (year, month, day) => {
+  return moment(new Date(year, month, day)).weekday();
+}
+
+// Input: y,m,d
 // Output: MM/DD/YYYY
 export const getFormattedMonthDayYear = (year, month, day) => {
   return moment(new Date(year, month, day)).format('MM/DD/YYYY');

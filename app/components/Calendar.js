@@ -38,10 +38,12 @@ const renderEmptyCell = (monthInfo) => {
 
 const renderDateCell = (monthInfo) => {
   let {dayStyle, dataIcon} = getDecorator(monthInfo);
+  let cellStyle = monthInfo.isCurrentMonth
+    ? {width: 100, textAlign: 'center', borderStyle: 'solid', borderWidth: 5, paddingLeft: 25, paddingRight: 25, paddingTop: 25, paddingBottom: 25, }
+    : {width: 100, borderStyle: 'dotted', borderWidth: 1, paddingLeft: 25, paddingRight: 25, paddingTop: 25, paddingBottom: 25, }
 
   return (
-    <td key={monthInfo.absoluteIndex} style={{width: 100, textAlign: 'center', borderStyle: 'solid', borderWidth: 5,
-      paddingLeft: 25, paddingRight: 25, paddingTop: 25, paddingBottom: 25, }}>
+    <td key={monthInfo.absoluteIndex} style={cellStyle}>
       <Link style={dayStyle} to={{pathname: 'day', state: {monthInfo: monthInfo, }}}>
         {monthInfo.day}
         {dataIcon}
