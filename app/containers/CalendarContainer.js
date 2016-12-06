@@ -103,7 +103,12 @@ const CalendarContainer = React.createClass({
           break;
         }
         else {
-          if (day > daysInMonth) {
+          if (day == 1) {
+            let dateClone = new moment(new Date(year, month, day));
+            let previousMonthDate = dateClone.add((date.weekday() - cellIndex) * -1, 'days');
+            setDateInfo(previousMonthDate, false);
+          }
+          else if (day > daysInMonth) {
             setDateInfo(date, false);
           }
           else {
