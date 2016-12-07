@@ -80,21 +80,33 @@ const CalendarContainer = React.createClass({
   buildMonthGrid() {
     const setDateInfo = (date, isCurrentMonth) => {
       let isToday = dateUtils.isToday(date.year(), date.month(), date.date());
-      let monthInfo = {year: date.year(), month: date.month(), day: date.date(), isEmpty: false, absoluteIndex: absoluteCellIndex, isToday: isToday, isCurrentMonth: isCurrentMonth, };
+      let monthInfo = {year: date.year(), month: date.month(), day: date.date(), absoluteIndex: absoluteCellIndex, isToday: isToday, isCurrentMonth: isCurrentMonth, };
       monthInfo.hasData = this.dateHasData(monthInfo);
       monthGrid.push(monthInfo);
     }
 
-    const currentYearMonth = this.state.currentYearMonth;
-    const daysInMonth = currentYearMonth.daysInMonth();
-    let monthGrid = [];
-    let nextCellIndex = 0;
-    let absoluteCellIndex = 0;
-    const year = currentYearMonth.year();
-    const month = currentYearMonth.month();
-    const lastCalendarCellIndex = this.getLastCalendarCellIndex(year, month, daysInMonth);
+    const getCurrentDateValues = (currentYearMonth) => {
+      let currentYear = currentYearMonth.year();
+      let currentMonth = currentYearMonth.month();
+      let daysInMonth = currentYearMonth.daysInMonth();
+      return (
+        {
+          daysInMonth: daysInMonth,
+          monthGrid: [],
+          nextCellIndex: 0,
+          absoluteCellIndex: 0,
+          currentYear: currentYear,
+          currentMonth: currentMonth,
+          lastCalendarCellIndex: this.getLastCalendarCellIndex(currentYear, currentMonth, daysInMonth),
+        }
+      )
+    }
+
+    let {daysInMonth, monthGrid, nextCellIndex, absoluteCellIndex, currentYear, currentMonth, lastCalendarCellIndex} =
+      getCurrentDateValues(this.state.currentYearMonth);
+
     for (let day = 1; day <= lastCalendarCellIndex; day++) {
-      let date = new moment(new Date(year, month, day));
+      let date = new moment(new Date(currentYear, currentMonth, day));
       for (let cellIndex = nextCellIndex; cellIndex <= 6; cellIndex++) {
         if (date.weekday() == cellIndex && day <= daysInMonth) {
           setDateInfo(date, true);
@@ -104,16 +116,12 @@ const CalendarContainer = React.createClass({
         }
         else {
           if (day == 1) {
-            let dateClone = new moment(new Date(year, month, day));
+            let dateClone = new moment(new Date(currentYear, currentMonth, day));
             let previousMonthDate = dateClone.add((date.weekday() - cellIndex) * -1, 'days');
             setDateInfo(previousMonthDate, false);
           }
           else if (day > daysInMonth) {
             setDateInfo(date, false);
-          }
-          else {
-            let emptyInfo = {isEmpty: true, absoluteIndex: absoluteCellIndex, };
-            monthGrid.push(emptyInfo);
           }
           absoluteCellIndex++;
           if (day > daysInMonth) {
