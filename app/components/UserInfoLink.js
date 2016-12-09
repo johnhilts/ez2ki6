@@ -5,11 +5,11 @@ import * as dateUtils from '../util/dateutils';
 export default function UserInfoLink(props) {
   return (
     <span>
-      <Link to="/">Welcome, {props.user.userName}</Link>
+      <Link to="/" style={{color: 'white', }}>Welcome, {props.user.userName}</Link>
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <Link to='/calendar'>Calendar</Link>
+      <Link to='/calendar' style={{color: 'white', }}>Calendar</Link>
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <Link to='/more'>More</Link>
+      <Link to='/more' style={{color: 'white', }}>More</Link>
     </span>
   )
 }
