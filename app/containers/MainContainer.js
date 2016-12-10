@@ -10,7 +10,7 @@ var styles = {
     background: '#EC7063',
   },
   innerHeader: {
-    marginLeft:20,marginTop:20,marginBottom:20,
+    marginLeft:20,marginTop:5,marginBottom:5,
   },
   container: {
     width: '90%',
@@ -70,16 +70,20 @@ const MainContainer = React.createClass({
     return this.handleSaveUser(user);
   },
 
-  renderHeader() {
+  renderHeader(user) {
+    let calendarName = user.calendars ? `[${user.calendars[user.currentCalendarId].name}]` : '';
     return (
       <div style={styles.header}>
-        <div style={styles.innerHeader}>
-          <h1>
-            <Link to="/">ez2ki6</Link>
-          </h1>
+        <div className="row">
+          <div className="col-sm-3" style={styles.innerHeader}>
+            <h1>
+              <Link to="/">ez2ki6</Link>
+            </h1>
+          </div>
+          <div className="col-sm-3" style={styles.innerHeader}><h3>{calendarName}</h3></div>
         </div>
         <div style={styles.innerHeader}>
-          <UserPrompt user={this.state.user} onDeauthorize={this.handleDeauthorization} />
+          <UserPrompt user={user} onDeauthorize={this.handleDeauthorization} />
         </div>
       </div>
     )
@@ -97,7 +101,7 @@ const MainContainer = React.createClass({
   render() {
     return (
       <div>
-        {this.renderHeader()}
+        {this.renderHeader(this.state.user)}
         <div style={styles.container}>
           {React.cloneElement(this.props.children,
             { onAuthorize: this.handleAuthorization, user: this.state.user, onSaveDateInfo: this.handleSaveDateInfo, onSaveCalendarInfo: this.handleSaveCalendarInfo,
