@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router'
 import * as dateUtils from '../util/dateutils';
+import CalendarEntryContainer from '../containers/CalendarEntryContainer';
 
 const searchResults = (day) => {
   return (
@@ -82,22 +83,6 @@ const RenderDateRanges = (props) => {
   )
 }
 
-function Calendars(props) {
-  let calendars = props.calendars;
-  let calendarKeys = Array.from(calendars.keys());
-  return (
-    <div>
-      Calendars<br />
-      <select value={props.currentCalendarId} onChange={props.onChangeCalendar}>
-        {calendarKeys.map(calendarKey => {return <option key={calendarKey} value={calendarKey}>{calendars[calendarKey].name}</option>})}
-      </select>
-      <br />
-      Add a New Calendar<br />
-      <input placeholder="Calendar Name" id="newCalendarName" />&nbsp;
-      <button onClick={props.onAddCalendar}><span className="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-    </div>
-  )
-}
 
 export default function More(props) {
   return (
@@ -118,7 +103,7 @@ export default function More(props) {
         </div>
       </div>
       <div>&nbsp;</div>
-      <Calendars {...props} />
+      <CalendarEntryContainer {...props} />
     </div>
   )
 }
