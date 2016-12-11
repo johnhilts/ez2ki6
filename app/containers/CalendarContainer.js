@@ -145,7 +145,7 @@ const CalendarContainer = React.createClass({
     this.setState({viewType: viewType,});
   },
 
-  render() {
+  renderCalendarHeader() {
     let previousFormattedMonth = dateUtils.getFormattedYearMonthByQueryYearMonth(this.state.currentFormattedMonth, -1);
     let nextFormattedMonth = dateUtils.getFormattedYearMonthByQueryYearMonth(this.state.currentFormattedMonth, 1);
     let previousMonthLink = <a onClick={this.updateByFormattedMonth.bind(null, previousFormattedMonth)}>&lt;&lt;</a>
@@ -153,7 +153,6 @@ const CalendarContainer = React.createClass({
     let currentDate = dateUtils.getCurrentDate();
     let today = {year: currentDate.year, month: currentDate.month, day: currentDate.day, };
     return (
-      <div>
         <div className="row" style={{verticalAlign: 'middle', }}>
           <div className="col-sm-3" style={{verticalAlign: 'middle', }}>
             <h2>{previousMonthLink} {dateUtils.getMonthName(this.state.currentYearMonth.month())} {nextMonthLink}</h2>
@@ -167,6 +166,13 @@ const CalendarContainer = React.createClass({
             </h4>
           </div>
         </div>
+    )
+  },
+
+  render() {
+    return (
+      <div>
+        {this.renderCalendarHeader()}
         {
           this.state.isLoading
           ? <IsLoading />
