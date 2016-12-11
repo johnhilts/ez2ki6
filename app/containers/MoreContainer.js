@@ -15,7 +15,6 @@ const MoreContainer = React.createClass({
         fromDate: dateUtils.getCurrentDate(),
         toDate: dateUtils.getCurrentDate(),
         years: years,
-        currentCalendarId: currentCalendarId,
       }
     )
   },
@@ -40,7 +39,7 @@ const MoreContainer = React.createClass({
     let toDate = new Date(this.state.toDate.year, this.state.toDate.month, this.state.toDate.day);
 
     this.setState({
-        searchResults: this.props.user.calendars[this.state.currentCalendarId].dates.filter(date => {
+        searchResults: this.props.user.calendars[this.props.user.currentCalendarId].dates.filter(date => {
           let compareDate = new Date(date.year, date.month, date.day);
           return (
             date.dateInfo.toLowerCase().indexOf(searchText.toLowerCase()) >= 0

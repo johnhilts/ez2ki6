@@ -12,35 +12,6 @@ const CalendarEntryContainer = React.createClass({
     )
   },
 
-  isAuthenticated(user) {
-    return (user && user.owner && user.owner != 0);
-  },
-
-  goToLogin() {
-    this.context.router.push({ pathname: '/', })
-  },
-
-	// NOTE: componentDidMount is used to initialize a component with server-side info
-	// fore more info, see react docs: https://facebook.github.io/react/docs/component-specs.html
-  componentDidMount() {
-    if (!this.isAuthenticated(this.props.user)) {
-      this.goToLogin();
-    }
-
-		this.ref = base.syncState(db.getUserRoot(this.props.user.owner) + '/calendars/', {
-			context : this,
-			state : 'calendars',
-			asArray: true,
-			then(d) {
-				this.setState({isLoading: false,});
-			},
-		});
-	},
-
-	componentWillUnmount() {
-		base.removeBinding(this.ref);
-	},
-
   handleShowCalendarNameChange() {
     this.setState({canShowCalendarNameOnly: !this.state.canShowCalendarNameOnly})
   },
@@ -54,17 +25,19 @@ const CalendarEntryContainer = React.createClass({
     }
     // this won't work well with multiple users logged in as the same person
     let calendar = {name: newCalendarName, };
-    let newCalendarId = this.state.calendars.length;
-    this.state.calendars.push(calendar);
-    this.setState({calendars: this.state.calendars, currentCalendarId: newCalendarId, canShowCalendarNameOnly: true, });
+    let newCalendarId = this.props.calendars.length;
+    this.setState({canShowCalendarNameOnly: true, });
 		this.props.onSaveCalendarInfo(calendar);
 		this.props.onSaveCurrentCalendarId(newCalendarId);
+    base.update(db.getUserRoot(this.props.user.owner), {
+      data: {currentCalendarId: newCalendarId, calendars: this.props.calendars, },
+    });
   },
 
   handleChangeCalendar(event) {
     event.preventDefault();
     let currentCalendarId = Number(event.target.value);
-    this.setState({currentCalendarId: currentCalendarId, canShowCalendarNameOnly: true, });
+    this.setState({canShowCalendarNameOnly: true, });
 		this.props.onSaveCurrentCalendarId(currentCalendarId);
     base.update(db.getUserRoot(this.props.user.owner), {
       data: {currentCalendarId: currentCalendarId},

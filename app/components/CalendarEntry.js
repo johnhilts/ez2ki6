@@ -7,6 +7,9 @@ const showAddNewCalendar = () => {
 
 export default function CalendarEntry(props) {
   let calendars = props.calendars;
+  if (!calendars) {
+    return <span>&nbsp;</span>
+  }
   let calendarKeys = Array.from(calendars.keys());
   if (props.canShowCalendarNameOnly) {
     return <div onClick={props.onShowCalendarNameChange}>[{calendars[props.currentCalendarId].name}]...</div>

@@ -115,7 +115,7 @@ const MainContainer = React.createClass({
         <div style={styles.container}>
           {React.cloneElement(this.props.children,
             { onAuthorize: this.handleAuthorization, user: this.state.user, onSaveDateInfo: this.handleSaveDateInfo, onSaveCalendarInfo: this.handleSaveCalendarInfo,
-              onSaveCurrentCalendarId: this.handleSaveCurrentCalendarId, })}
+              onSaveCurrentCalendarId: this.handleSaveCurrentCalendarId,  key: this.state.user.currentCalendarId, })}
         </div>
         {this.renderFooter()}
       </div>
