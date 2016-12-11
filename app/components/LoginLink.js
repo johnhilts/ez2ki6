@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
+import HeaderLink from '../components/HeaderLink';
 
 export default function LoginLink(props) {
-  return (<Link to="/login" style={{color: 'white', }}>Sign In</Link>);
+  return (<HeaderLink to="/login">Sign In</HeaderLink>);
 }

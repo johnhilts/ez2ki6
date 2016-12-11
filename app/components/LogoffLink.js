@@ -1,5 +1,6 @@
 import React from 'react';
+import HeaderLink from '../components/HeaderLink';
 
 export default function LogoffLink(props) {
-  return (<a href="/" onClick={props.onDeauthorize} style={{color: 'white', }}>Sign Out</a>);
+  return (<HeaderLink to="/" onClick={props.onDeauthorize}>Sign Out</HeaderLink>);
 }

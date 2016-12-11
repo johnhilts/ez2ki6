@@ -1,15 +1,16 @@
 import React from 'react';
 import {Link} from 'react-router';
 import * as dateUtils from '../util/dateutils';
+import HeaderLink from '../components/HeaderLink';
 
 export default function UserInfoLink(props) {
   return (
     <span>
-      <Link to="/" style={{color: 'white', }}>Welcome, {props.user.userName}</Link>
+      <HeaderLink to="/">Welcome, {props.user.userName}</HeaderLink>
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <Link to='/calendar' style={{color: 'white', }}>Calendar</Link>
+      <HeaderLink to='/calendar'>Calendar</HeaderLink>
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <Link to='/more' style={{color: 'white', }}>More</Link>
+      <HeaderLink to='/more'>More</HeaderLink>
     </span>
   )
 }
