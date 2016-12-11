@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactRouter, {Link} from 'react-router';
 import UserPrompt from '../components/UserPrompt';
+import CalendarEntryContainer from '../containers/CalendarEntryContainer';
 import Rebase from 're-base';
 import * as db from '../core/database';
 var base = Rebase.createClass(db.firebaseConfig);
@@ -71,7 +72,6 @@ const MainContainer = React.createClass({
   },
 
   renderHeader(user) {
-    let calendarName = user.calendars ? `[${user.calendars[user.currentCalendarId].name}]` : '';
     return (
       <div style={styles.header}>
         <div className="row">
@@ -80,7 +80,17 @@ const MainContainer = React.createClass({
               <Link to="/">ez2ki6</Link>
             </h1>
           </div>
-          <div className="col-sm-3" style={styles.innerHeader}><h3>{calendarName}</h3></div>
+          <div className="col-sm-3" style={styles.innerHeader}>
+            <h3>
+              <CalendarEntryContainer
+                calendars={user.calendars}
+                currentCalendarId={user.currentCalendarId}
+                onSaveCalendarInfo={this.handleSaveCalendarInfo}
+                onSaveCurrentCalendarId={this.handleSaveCurrentCalendarId}
+                user={user}
+              />
+            </h3>
+          </div>
         </div>
         <div style={styles.innerHeader}>
           <UserPrompt user={user} onDeauthorize={this.handleDeauthorization} />
@@ -105,7 +115,7 @@ const MainContainer = React.createClass({
         <div style={styles.container}>
           {React.cloneElement(this.props.children,
             { onAuthorize: this.handleAuthorization, user: this.state.user, onSaveDateInfo: this.handleSaveDateInfo, onSaveCalendarInfo: this.handleSaveCalendarInfo,
-              onSaveCurrentCalendarId: this.handleSaveCurrentCalendarId, })}
+              onSaveCurrentCalendarId: this.handleSaveCurrentCalendarId,  key: this.state.user.currentCalendarId, })}
         </div>
         {this.renderFooter()}
       </div>

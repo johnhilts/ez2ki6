@@ -3,10 +3,10 @@ import Rebase from 're-base';
 import { Link } from 'react-router'
 import moment from 'moment';
 import * as dateUtils from '../util/dateutils';
-import * as stringUtils from '../util/stringutils';
 import * as db from '../core/database';
 var base = Rebase.createClass(db.firebaseConfig);
 import Calendar from '../components/Calendar';
+import MonthList from '../components/MonthList';
 import IsLoading from '../components/IsLoading';
 
 const CalendarContainer = React.createClass({
@@ -178,12 +178,7 @@ const CalendarContainer = React.createClass({
           ? <IsLoading />
           : this.state.viewType == this.ViewTypes.Calendar
           ? <Calendar monthGrid={this.buildMonthGrid()} />
-          : <ul>
-              {this.state.dates
-              .filter(date => {return date.year == this.state.currentYearMonth.year() && date.month == this.state.currentYearMonth.month()})
-              .map(date => {return <li key={date.key}><b>{date.day}</b> - {stringUtils.formatLineBreaksForHtml(date.dateInfo)}</li>})
-              }
-            </ul>
+          : <MonthList dates={this.state.dates} date={this.state.date} currentYearMonth={this.state.currentYearMonth} />
         }
       </div>
     )
