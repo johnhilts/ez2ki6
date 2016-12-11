@@ -34,7 +34,7 @@ export default function Calendar(props) {
     :
       <div>
         <div style={{marginBottom: 15, fontSize: 'small', }}>
-          <Link to={{pathname: 'calendar', query: {ym: dateUtils.getFormattedYearMonthByYearMonth(monthInfo.year, monthInfo.month) , },}}>Return to {monthName}</Link>
+          <Link to={{pathname: 'calendar', query: {ym: dateUtils.getFormattedYearMonthByYearMonth(monthInfo.year, monthInfo.month) , },}}><h4>&gt;&gt;Return to {monthName}&lt;&lt;</h4></Link>
         </div>
         <form onSubmit={props.onSubmit}>
           <div>Write down something related to {monthInfo.month+1}/{monthInfo.day}/{monthInfo.year}</div>
