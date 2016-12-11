@@ -76,8 +76,6 @@ const CalendarEntryContainer = React.createClass({
       <CalendarEntry
         calendars={this.props.calendars}
         currentCalendarId={this.props.currentCalendarId}
-        onChangeCalendar={this.props.onChangeCalendar}
-        onAddCalendar={this.props.onAddCalendar}
         canShowCalendarNameOnly={this.state.canShowCalendarNameOnly}
         onShowCalendarNameChange={this.handleShowCalendarNameChange}
         onAddCalendar={this.handleAddCalendar}
