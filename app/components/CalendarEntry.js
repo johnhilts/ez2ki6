@@ -10,10 +10,10 @@ export default function CalendarEntry(props) {
   if (!calendars) {
     return <span>&nbsp;</span>
   }
-  let calendarKeys = Array.from(calendars.keys());
   if (props.canShowCalendarNameOnly) {
     return <div onClick={props.onShowCalendarNameChange}>[{calendars[props.currentCalendarId].name}]...</div>
   }
+  let calendarKeys = Array.from(calendars.keys());
   return (
     <div>
       Calendars<br />
