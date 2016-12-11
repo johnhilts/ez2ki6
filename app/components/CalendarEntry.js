@@ -13,7 +13,14 @@ export default function CalendarEntry(props) {
   if (props.canShowCalendarNameOnly) {
     return <div onClick={props.onShowCalendarNameChange}>[{calendars[props.currentCalendarId].name}]...</div>
   }
-  let calendarKeys = Array.from(calendars.keys());
+  // let calendarKeys = Array.from(calendars.keys());
+  let calendarKeys = [];
+  let calendarKeyIteration = calendars.keys();
+  let calendarKeyResult = calendarKeyIteration.next();
+  while (!calendarKeyResult.done){
+    calendarKeys.push(calendarKeyResult.value);
+    calendarKeyResult = calendarKeyIteration.next();
+  }
   return (
     <div>
       Calendars<br />
