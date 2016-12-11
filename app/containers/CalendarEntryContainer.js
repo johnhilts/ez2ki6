@@ -56,7 +56,7 @@ const CalendarEntryContainer = React.createClass({
     let calendar = {name: newCalendarName, };
     let newCalendarId = this.state.calendars.length;
     this.state.calendars.push(calendar);
-    this.setState({calendars: this.state.calendars, currentCalendarId: newCalendarId, });
+    this.setState({calendars: this.state.calendars, currentCalendarId: newCalendarId, canShowCalendarNameOnly: true, });
 		this.props.onSaveCalendarInfo(calendar);
 		this.props.onSaveCurrentCalendarId(newCalendarId);
   },
@@ -64,7 +64,7 @@ const CalendarEntryContainer = React.createClass({
   handleChangeCalendar(event) {
     event.preventDefault();
     let currentCalendarId = Number(event.target.value);
-    this.setState({currentCalendarId: currentCalendarId, });
+    this.setState({currentCalendarId: currentCalendarId, canShowCalendarNameOnly: true, });
 		this.props.onSaveCurrentCalendarId(currentCalendarId);
     base.update(db.getUserRoot(this.props.user.owner), {
       data: {currentCalendarId: currentCalendarId},
