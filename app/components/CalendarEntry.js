@@ -2,7 +2,7 @@ import React from 'react';
 import 'babel-polyfill';
 
 const showAddNewCalendar = () => {
-  document.getElementById('divAddNewCalendar').style='block';
+  document.getElementById('divAddNewCalendar').style.display='block';
   document.getElementById('newCalendarName').focus();
 }
 
