@@ -1,4 +1,5 @@
 import React from 'react';
+import 'babel-polyfill';
 
 const showAddNewCalendar = () => {
   document.getElementById('divAddNewCalendar').style='block';
