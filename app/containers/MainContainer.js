@@ -80,7 +80,7 @@ const MainContainer = React.createClass({
               <Link to="/">ez2ki6</Link>
             </h1>
           </div>
-          <div className="col-sm-3" style={styles.innerHeader}>
+          <div className="col-sm-5 col-md-6" style={styles.innerHeader}>
             <h3>
               <CalendarEntryContainer
                 calendars={user.calendars}
