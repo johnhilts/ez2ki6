@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router';
 import * as dateUtils from '../util/dateutils';
 import HeaderLink from '../components/HeaderLink';
 
