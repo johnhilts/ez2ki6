@@ -15,11 +15,12 @@ export default function CalendarEntry(props) {
     return <div onClick={props.onShowCalendarNameChange}>[{calendars[props.currentCalendarId].name}]...</div>
   }
   let calendarKeys = Array.from(calendars.keys());
+  const calendarEntries = (calendarKey) => { return <option key={calendarKey} value={calendarKey}>{calendars[calendarKey].name}</option> }
   return (
     <div>
       Calendars<br />
       <select value={props.currentCalendarId} onChange={props.onChangeCalendar}>
-        {calendarKeys.map(calendarKey => {return <option key={calendarKey} value={calendarKey}>{calendars[calendarKey].name}</option>})}
+        {calendarKeys.map(calendarEntries)}
       </select>
       &nbsp;
       <button onClick={showAddNewCalendar}><span className="glyphicon glyphicon-plus" aria-hidden="true"></span></button>

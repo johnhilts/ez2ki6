@@ -27,6 +27,7 @@ const alsoEnteredOnThisDate = (dateInfo, onChange) => {
 export default function Calendar(props) {
   let monthInfo = props.monthInfo;
   let monthName = dateUtils.getMonthName(monthInfo.month);
+  const datesWithEntries = (dateInfo) => {return alsoEnteredOnThisDate(dateInfo, props.onChange);}
   return (
     props.isLoading
     ?
@@ -45,9 +46,7 @@ export default function Calendar(props) {
           <button type="submit" className="btn btn-info">Save</button>
         </form>
         <ul>
-          {props.dates.map(dateInfo => {
-            return alsoEnteredOnThisDate(dateInfo, props.onChange);
-            })}
+          {props.dates.map(datesWithEntries)}
         </ul>
       </div>
   )

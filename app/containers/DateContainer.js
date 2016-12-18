@@ -65,9 +65,9 @@ const DateContainer = React.createClass({
 	},
 
   render() {
+    const byCurrentDate = (dateInfo) => {return dateInfo.year == monthInfo.year && dateInfo.month == monthInfo.month && dateInfo.day == monthInfo.day;}
     var monthInfo = this.state.monthInfo;
-    var filteredDates =
-      this.state.dates.filter(dateInfo => {return dateInfo.year == monthInfo.year && dateInfo.month == monthInfo.month && dateInfo.day == monthInfo.day;});
+    var filteredDates = this.state.dates.filter(byCurrentDate);
     return (
       <DateEntry monthInfo={monthInfo} isLoading={this.state.isLoading} onSubmit={this.handleAddInfo} onChange={this.handleUpdateDateInfo} dates={filteredDates} />
     )
