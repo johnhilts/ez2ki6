@@ -1,9 +1,8 @@
 import React from 'react';
-import Rebase from 're-base';
 import { Link } from 'react-router'
 import * as dateUtils from '../util/dateutils';
 import * as db from '../core/database';
-var base = Rebase.createClass(db.firebaseConfig);
+import * as userRepository from '../domain/UserRepository';
 import Calendar from '../components/Calendar';
 import MonthList from '../components/MonthList';
 import IsLoading from '../components/IsLoading';
@@ -38,19 +37,12 @@ const CalendarContainer = React.createClass({
       this.goToLogin();
     }
 
-		this.ref = base.syncState(db.getUserRoot(this.props.user.owner) + '/calendars/' + this.props.user.currentCalendarId + '/dates', {
-			context : this,
-			state : 'dates',
-			asArray: true,
-      queries: {orderByChild: 'day',},
-			then(d) {
-				this.setState({isLoading: false,});
-			},
-		});
+		this.databaseReference = userRepository.sync(db.getUserRoot(this.props.user.owner) + '/calendars/' + this.props.user.currentCalendarId + '/dates',
+      this, 'dates', true, {orderByChild: 'day',}, () => {this.setState({isLoading: false,})});
 	},
 
 	componentWillUnmount() {
-		base.removeBinding(this.ref);
+		userRepository.removeBinding(this.databaseReference);
 	},
 
   getCurrentYearMonthFromParamsOrDefault(currentFormattedMonth) {

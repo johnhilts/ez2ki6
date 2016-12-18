@@ -30,6 +30,13 @@ export const sync = (endpoint, reactContext, state, asArray, queries, callback) 
   return base.syncState(endpoint, {
     context : reactContext,
     state : state,
+    asArray: asArray,
+    queries: queries,
+    then(d) {
+      if (callback) {
+        callback();
+      }
+    },
   });
 }
 
