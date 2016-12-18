@@ -1,7 +1,6 @@
 import React from 'react';
-import Rebase from 're-base';
 import * as db from '../core/database';
-var base = Rebase.createClass(db.firebaseConfig);
+import * as userRepository from '../domain/UserRepository';
 import CalendarEntry from '../components/CalendarEntry';
 
 const CalendarEntryContainer = React.createClass({
@@ -29,7 +28,7 @@ const CalendarEntryContainer = React.createClass({
     this.setState({canShowCalendarNameOnly: true, });
 		this.props.onSaveCalendarInfo(calendar);
 		this.props.onSaveCurrentCalendarId(newCalendarId);
-    base.update(db.getUserRoot(this.props.user.owner), {
+    userRepository.update(db.getUserRoot(this.props.user.owner), {
       data: {currentCalendarId: newCalendarId, calendars: this.props.calendars, },
     });
   },
@@ -39,7 +38,7 @@ const CalendarEntryContainer = React.createClass({
     let currentCalendarId = Number(event.target.value);
     this.setState({canShowCalendarNameOnly: true, });
 		this.props.onSaveCurrentCalendarId(currentCalendarId);
-    base.update(db.getUserRoot(this.props.user.owner), {
+    userRepository.update(db.getUserRoot(this.props.user.owner), {
       data: {currentCalendarId: currentCalendarId},
     });
   },

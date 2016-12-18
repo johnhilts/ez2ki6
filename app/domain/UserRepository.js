@@ -40,6 +40,10 @@ export const sync = (endpoint, reactContext, state, asArray, queries, callback) 
   });
 }
 
+export const update = (endpoint, data) => {
+    base.update(endpoint, data);
+}
+
 export const removeBinding = (ref) => {
 		base.removeBinding(ref);
 }
