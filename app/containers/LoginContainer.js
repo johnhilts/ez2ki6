@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactRouter from 'react-router';
-import Rebase from 're-base';
-import * as db from '../core/database';
-var base = Rebase.createClass(db.firebaseConfig);
+import * as userRepository from '../domain/UserRepository';
 import Login from '../components/Login';
 
 const LoginContainer = React.createClass({
@@ -26,10 +24,8 @@ const LoginContainer = React.createClass({
 
     var loginInput = {email: event.target[this.loginFields.email].value, password: event.target[this.loginFields.password].value};
 
-    base.authWithPassword({
-      email    : loginInput.email,
-      password : loginInput.password,
-    }, this.authUserSuccess.bind(null, loginInput));
+    userRepository.authenticateByEmailAndPassword(loginInput.email, loginInput.password,
+      this.authUserSuccess.bind(null, loginInput));
   },
 
   authUserSuccess(loginInput, err, authData) {
@@ -41,18 +37,17 @@ const LoginContainer = React.createClass({
 
     this.setState({password: loginInput.password});
 
-		this.ref = base.fetch(db.getUserRoot(authData.uid), { // NOTE: Firebase's security rules prevent a user from accessing someone else's data
-			context : this,
-      then(user) {
-        if (!user) {
-          alert('Login Failed');
-          return;
-        }
-        this.props.onAuthorize(user);
-        
-        this.context.router.push('/');
-      },
-		});
+    const onFetchSuccess = (user) => {
+      if (!user) {
+        alert('Login Failed');
+        return;
+      }
+      this.props.onAuthorize(user);
+
+      this.context.router.push('/');
+    }
+
+    userRepository.fetchUserInfo(this, authData.uid, onFetchSuccess);
   },
 
   handleUpdateEmail(event) {

@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactRouter from 'react-router';
-import Rebase from 're-base';
-import * as db from '../core/database';
-var base = Rebase.createClass(db.firebaseConfig);
+import * as userRepository from '../domain/UserRepository';
 import Register from '../components/Register';
 
 const RegisterContainer = React.createClass({
@@ -21,14 +19,11 @@ const RegisterContainer = React.createClass({
 	// NOTE: componentDidMount is used to initialize a component with server-side info
 	// fore more info, see react docs: https://facebook.github.io/react/docs/component-specs.html
 	componentDidMount() {
-		this.ref = base.syncState('users', {
-			context : this,
-			state : 'users',
-		});
+		this.databaseReference = userRepository.sync('users', this, 'users');
 	},
 
 	componentWillUnmount() {
-		base.removeBinding(this.ref);
+		userRepository.removeBinding(this.databaseReference);
 	},
 
 	registerFields : {name: 0, email: 1, password: 2, },
@@ -42,11 +37,7 @@ const RegisterContainer = React.createClass({
     };
 		let password = event.target[this.registerFields.password].value;
 
-		base.createUser({
-			email: user.email,
-			password: password,
-		}, this.createUserSuccess.bind(null, user));
-
+		userRepository.createUser(user.email, password, this.createUserSuccess.bind(null, user));
   },
 
 	createUserSuccess: function(user, err, authData) {

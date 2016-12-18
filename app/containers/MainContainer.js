@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactRouter, {Link} from 'react-router';
+import * as userRepository from '../domain/UserRepository';
 import UserPrompt from '../components/UserPrompt';
 import CalendarEntryContainer from '../containers/CalendarEntryContainer';
-import Rebase from 're-base';
-import * as db from '../core/database';
-var base = Rebase.createClass(db.firebaseConfig);
 
 var styles = {
   header: {
@@ -44,7 +42,7 @@ const MainContainer = React.createClass({
 
   handleDeauthorization() {
     var user = {owner: 0};
-    base.unauth();
+    userRepository.unauth();
     return this.handleSaveUser(user);
   },
 
