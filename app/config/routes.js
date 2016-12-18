@@ -7,6 +7,7 @@ import LoginContainer from '../containers/LoginContainer';
 import CalendarContainer from '../containers/CalendarContainer';
 import DateContainer from '../containers/DateContainer';
 import MoreContainer from '../containers/MoreContainer';
+import NotFound from '../components/NotFound';
 
 var routes = (
   <Router history={browserHistory}>
@@ -18,6 +19,7 @@ var routes = (
       <Route path='calendar/:ym' header='Date' component={CalendarContainer} location="history" />
       <Route path='day' header='Date' component={DateContainer} location="history" />
       <Route path='more' component={MoreContainer} location="history" />
+      <Route path="*" component={NotFound} />
     </Route>
   </Router>
 );
