@@ -26,8 +26,8 @@ export const createUser = (email, password, onSuccess) => {
 		}, onSuccess);
 }
 
-export const sync = (reactContext, state) => {
-  return base.syncState(state, {
+export const sync = (endpoint, reactContext, state, asArray, queries, callback) => {
+  return base.syncState(endpoint, {
     context : reactContext,
     state : state,
   });

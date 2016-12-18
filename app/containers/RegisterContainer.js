@@ -19,7 +19,7 @@ const RegisterContainer = React.createClass({
 	// NOTE: componentDidMount is used to initialize a component with server-side info
 	// fore more info, see react docs: https://facebook.github.io/react/docs/component-specs.html
 	componentDidMount() {
-		this.databaseReference = userRepository.sync(this, 'users');
+		this.databaseReference = userRepository.sync('users', this, 'users');
 	},
 
 	componentWillUnmount() {
