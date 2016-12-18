@@ -71,3 +71,13 @@ export const getFormattedMonthDayYear = (year, month, day) => {
 export const getDaysByYearMonth = (year, month) => {
   return moment(new Date(year, month, 1)).daysInMonth();
 }
+
+export const getWeekdays = () => {
+  return moment.weekdays();
+}
+
+export const addDays = (year, month, day, increment) => {
+  let date = moment(new Date(year, month, day));
+  date.add(increment, 'days');
+  return {year: date.year(), month: date.month(), day: date.date(), };
+}

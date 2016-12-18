@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router'
-import moment from 'moment';
+import * as dateUtils from '../util/dateutils';
 
 const weekdayHeader = (weekdayName) => {
   return (
@@ -73,7 +73,7 @@ export default function Calendar(props) {
     <table cellPadding="10" cellSpacing="10" border="5">
       <thead>
         <tr>
-          {moment.weekdays().map(weekdayHeader)}
+          {dateUtils.getWeekdays().map(weekdayHeader)}
         </tr>
       </thead>
       <tbody>
