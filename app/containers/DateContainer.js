@@ -1,7 +1,6 @@
 import React from 'react';
-import Rebase from 're-base';
 import * as db from '../core/database';
-var base = Rebase.createClass(db.firebaseConfig);
+import * as userRepository from '../domain/UserRepository';
 import DateEntry from '../components/DateEntry';
 
 const DateContainer = React.createClass({
@@ -30,18 +29,12 @@ const DateContainer = React.createClass({
       this.goToLogin();
     }
 
-		this.ref = base.syncState(db.getUserRoot(this.props.user.owner) + '/calendars/' + this.props.user.currentCalendarId + '/dates', {
-			context : this,
-			state : 'dates',
-			asArray: true,
-			then(d) {
-				this.setState({isLoading: false,});
-			},
-		});
+    let endpoint = db.getUserRoot(this.props.user.owner) + '/calendars/' + this.props.user.currentCalendarId + '/dates';
+		this.databaseReference = userRepository.sync(endpoint, this, 'dates', true, {orderByChild: 'day',}, () => {this.setState({isLoading: false,})});
 	},
 
 	componentWillUnmount() {
-		base.removeBinding(this.ref);
+		userRepository.removeBinding(this.databaseReference);
 	},
 
 	dateFields : {dateInfo: 0, year: 1, month: 2, day: 3, },
