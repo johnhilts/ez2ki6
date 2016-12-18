@@ -18,3 +18,25 @@ export const fetchUserInfo = (reactContext, uid, onSuccess) => {
     },
   });
 }
+
+export const createUser = (email, password, onSuccess) => {
+		base.createUser({
+			email: email,
+			password: password,
+		}, onSuccess);
+}
+
+export const sync = (reactContext, state) => {
+  return base.syncState(state, {
+    context : reactContext,
+    state : state,
+  });
+}
+
+export const removeBinding = (ref) => {
+		base.removeBinding(ref);
+}
+
+export const unauth = () => {
+    base.unauth();
+}
