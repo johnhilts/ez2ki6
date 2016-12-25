@@ -73,6 +73,9 @@ const CalendarContainer = React.createClass({
       let isToday = dateUtils.isToday(date.year, date.month, date.day);
       let monthInfo = {year: date.year, month: date.month, day: date.day, absoluteIndex: absoluteCellIndex, isToday: isToday, isCurrentMonth: isCurrentMonth, };
       monthInfo.hasData = this.dateHasData(monthInfo);
+      if (monthInfo.hasData) {
+        monthInfo.dateEntries = this.state.dates.filter(dbDate => {return dbDate.year == date.year && dbDate.month == date.month && dbDate.day == date.day;});
+      }
       monthGrid.push(monthInfo);
     }
 

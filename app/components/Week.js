@@ -30,31 +30,40 @@ const getDecorator = (dayInfo) => {
   return decorator;
 }
 
+const renderDateEntries = (entry, entryIndex) => {
+  let hr = entryIndex > 0
+    ? <hr style={{background: '#000', border: 0, height: '1px', }}/>
+    : ''
+  return (
+    <div key={entry.key}>
+      {hr}
+      {entry.dateInfo}
+    </div>
+  )
+}
+
 // NOTE: I couldn't use the index parameter because what's being mapped is a *filtered* array, not the complete original
 // so, to get around it I had to add the index to the object so that I have the original array's index even after going through a filter
 const renderDateCell = (dayInfo) => {
   let {dayStyle, dataIcon, borderStyle, borderWidth} = getDecorator(dayInfo);
   let cellStyle =
     {width: 100, textAlign: 'center', borderStyle: borderStyle, borderWidth: borderWidth, paddingLeft: 25, paddingRight: 25, paddingTop: 25, paddingBottom: 25, }
+  let dayInfoContent = dayInfo.dateEntries
+    ? dayInfo.dateEntries.map(renderDateEntries)
+    : dataIcon
 
   return (
     <td key={dayInfo.absoluteIndex} style={cellStyle}>
       <Link style={dayStyle} to={{pathname: 'day', state: {dayInfo: dayInfo, }}}>
         {dayInfo.day}
-        {dataIcon}
       </Link>
+      <br />
+      {dayInfoContent}
     </td>
   )
 }
 
 export default function Week(props) {
-
-  const dayIterator = (dayInfo) => {
-    let startCell = 0;
-    let endCell = startCell + 7;
-
-    return renderDateCell(dayInfo)
-  }
 
   return (
     <table cellPadding="10" cellSpacing="10" border="5">
@@ -65,9 +74,10 @@ export default function Week(props) {
       </thead>
       <tbody>
         <tr>
-          {props.weekInfo.map(dayIterator)}
+          {props.weekInfo.map(renderDateCell)}
         </tr>
       </tbody>
     </table>
   )
+
 }
