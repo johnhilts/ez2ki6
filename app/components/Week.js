@@ -32,14 +32,14 @@ const getDecorator = (dayInfo) => {
 
 // NOTE: I couldn't use the index parameter because what's being mapped is a *filtered* array, not the complete original
 // so, to get around it I had to add the index to the object so that I have the original array's index even after going through a filter
-const renderDateCell = (dayInfo, dayIndex, weekInfo) => {
+const renderDateCell = (dayInfo) => {
   let {dayStyle, dataIcon, borderStyle, borderWidth} = getDecorator(dayInfo);
   let cellStyle =
     {width: 100, textAlign: 'center', borderStyle: borderStyle, borderWidth: borderWidth, paddingLeft: 25, paddingRight: 25, paddingTop: 25, paddingBottom: 25, }
 
   return (
     <td key={dayInfo.absoluteIndex} style={cellStyle}>
-      <Link style={dayStyle} to={{pathname: 'week', state: {weekInfo: weekInfo, }}}>
+      <Link style={dayStyle} to={{pathname: 'day', state: {dayInfo: dayInfo, }}}>
         {dayInfo.day}
         {dataIcon}
       </Link>
@@ -47,21 +47,13 @@ const renderDateCell = (dayInfo, dayIndex, weekInfo) => {
   )
 }
 
-export default function Calendar(props) {
+export default function Week(props) {
 
-  const weekIterator = (weekIndex) => {
-    let startCell = (weekIndex - 1) * 7;
+  const dayIterator = (dayInfo) => {
+    let startCell = 0;
     let endCell = startCell + 7;
 
-    const currentWeek = (monthInfo, cellIndex) => {
-      return cellIndex >= startCell && cellIndex < endCell;
-    }
-
-    return (
-      <tr key={weekIndex}>
-        {props.monthGrid.filter(currentWeek).map(renderDateCell)}
-      </tr>
-    )
+    return renderDateCell(dayInfo)
   }
 
   return (
@@ -72,7 +64,9 @@ export default function Calendar(props) {
         </tr>
       </thead>
       <tbody>
-        {[1, 2, 3, 4, 5, 6].map(weekIterator)}
+        <tr>
+          {props.weekInfo.map(dayIterator)}
+        </tr>
       </tbody>
     </table>
   )

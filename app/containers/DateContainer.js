@@ -7,7 +7,7 @@ const DateContainer = React.createClass({
   getInitialState() {
     return (
       {
-        monthInfo: this.props.location.state.monthInfo,
+        dayInfo: this.props.location.state.dayInfo,
         dates: [],
         isLoading: true,
       }
@@ -65,11 +65,11 @@ const DateContainer = React.createClass({
 	},
 
   render() {
-    const byCurrentDate = (dateInfo) => {return dateInfo.year == monthInfo.year && dateInfo.month == monthInfo.month && dateInfo.day == monthInfo.day;}
-    var monthInfo = this.state.monthInfo;
+    const byCurrentDate = (dateInfo) => {return dateInfo.year == dayInfo.year && dateInfo.month == dayInfo.month && dateInfo.day == dayInfo.day;}
+    var dayInfo = this.state.dayInfo;
     var filteredDates = this.state.dates.filter(byCurrentDate);
     return (
-      <DateEntry monthInfo={monthInfo} isLoading={this.state.isLoading} onSubmit={this.handleAddInfo} onChange={this.handleUpdateDateInfo} dates={filteredDates} />
+      <DateEntry dayInfo={dayInfo} isLoading={this.state.isLoading} onSubmit={this.handleAddInfo} onChange={this.handleUpdateDateInfo} dates={filteredDates} />
     )
   }
 });
