@@ -25,8 +25,8 @@ const alsoEnteredOnThisDate = (dateInfo, onChange) => {
 }
 
 export default function Calendar(props) {
-  let monthInfo = props.monthInfo;
-  let monthName = dateUtils.getMonthName(monthInfo.month);
+  let dayInfo = props.dayInfo;
+  let monthName = dateUtils.getMonthName(dayInfo.month);
   const datesWithEntries = (dateInfo) => {return alsoEnteredOnThisDate(dateInfo, props.onChange);}
   return (
     props.isLoading
@@ -35,14 +35,14 @@ export default function Calendar(props) {
     :
       <div>
         <div style={{marginBottom: 15, fontSize: 'small', }}>
-          <Link to={{pathname: 'calendar', query: {ym: dateUtils.getFormattedYearMonthByYearMonth(monthInfo.year, monthInfo.month) , },}}><h4>&gt;&gt;Return to {monthName}&lt;&lt;</h4></Link>
+          <Link to={{pathname: 'calendar', query: {ym: dateUtils.getFormattedYearMonthByYearMonth(dayInfo.year, dayInfo.month) , },}}><h4>&gt;&gt;Return to {monthName}&lt;&lt;</h4></Link>
         </div>
         <form onSubmit={props.onSubmit}>
-          <div>Write down something related to {monthInfo.month+1}/{monthInfo.day}/{monthInfo.year}</div>
+          <div>Write down something related to {dayInfo.month+1}/{dayInfo.day}/{dayInfo.year}</div>
           <textArea style={{width: 300, height: 150, }}/><br />
-          <input type="hidden" value={monthInfo.year} />
-          <input type="hidden" value={monthInfo.month} />
-          <input type="hidden" value={monthInfo.day} />
+          <input type="hidden" value={dayInfo.year} />
+          <input type="hidden" value={dayInfo.month} />
+          <input type="hidden" value={dayInfo.day} />
           <button type="submit" className="btn btn-info">Save</button>
         </form>
         <ul>

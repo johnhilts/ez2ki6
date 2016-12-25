@@ -73,6 +73,9 @@ const CalendarContainer = React.createClass({
       let isToday = dateUtils.isToday(date.year, date.month, date.day);
       let monthInfo = {year: date.year, month: date.month, day: date.day, absoluteIndex: absoluteCellIndex, isToday: isToday, isCurrentMonth: isCurrentMonth, };
       monthInfo.hasData = this.dateHasData(monthInfo);
+      if (monthInfo.hasData) {
+        monthInfo.dateEntries = this.state.dates.filter(dbDate => {return dbDate.year == date.year && dbDate.month == date.month && dbDate.day == date.day;});
+      }
       monthGrid.push(monthInfo);
     }
 
@@ -149,7 +152,7 @@ const CalendarContainer = React.createClass({
             <h2>{previousMonthLink} {dateUtils.getMonthName(this.state.currentYearMonth.month())} {nextMonthLink}</h2>
           </div>
           <div className="col-sm-3 col-lg-2" style={{verticalAlign: 'middle', }}>
-            <h2>&gt;&gt; <Link to={{pathname: 'day', state: {monthInfo: today, }}}>Today</Link> &lt;&lt;</h2>
+            <h2>&gt;&gt; <Link to={{pathname: 'day', state: {dayInfo: today, }}}>Today</Link> &lt;&lt;</h2>
           </div>
           <div className="col-sm-3" style={{paddingTop: 15, paddingBottom: 15, verticalAlign: 'middle', }}>
             <h4>
