@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router'
 import * as dateUtils from '../util/dateutils';
-import {weekdayHeader} from '../fragments/WeekdayHeader';
+import WeekdayHeader from '../components/WeekdayHeader';
 import Day from '../components/Day';
 import * as enums from '../core/enums';
 
@@ -23,7 +23,7 @@ export default function Calendar(props) {
     <table cellPadding="10" cellSpacing="10" border="5">
       <thead>
         <tr>
-          {dateUtils.getWeekdays().map(weekdayHeader)}
+          {dateUtils.getWeekdays().map(WeekdayHeader)}
         </tr>
       </thead>
       <tbody>

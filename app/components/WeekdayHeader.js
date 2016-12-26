@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const weekdayHeader = (weekdayName) => {
+export default function WeekdayHeader(weekdayName) {
   return (
     <th key={weekdayName} style={{textAlign: 'center', }}>{weekdayName}</th>
   )
