@@ -16,7 +16,7 @@ export default function Calendar(props) {
     }
 
     let weekInfo = props.monthGrid.filter(currentWeek);
-    return <Day key={weekIndex} weekInfo={weekInfo} detailLevel={enums.detailLevel.month} /> 
+    return <Day key={weekIndex} weekInfo={weekInfo} detailLevel={enums.detailLevel.month} />
   }
 
   return (
