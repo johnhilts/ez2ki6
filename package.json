@@ -23,7 +23,9 @@
     "unmockedModulePathPatterns": [
       "./node_modules"
     ],
-    "testPathDirs": ["__tests__"]
+    "testPathDirs": [
+      "__tests__"
+    ]
   },
   "devDependencies": {
     "babel-core": "^6.5.1",
