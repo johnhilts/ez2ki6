@@ -1,0 +1,1 @@
+exports[`Week component snapshot test Should compare the Week component with a snapshot 1`] = `"<div>Hello Jest</div>"`;
