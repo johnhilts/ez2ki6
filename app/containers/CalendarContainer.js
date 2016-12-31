@@ -140,8 +140,8 @@ const CalendarContainer = React.createClass({
   },
 
   renderCalendarHeader() {
-    let previousFormattedMonth = dateUtils.getFormattedYearMonthByQueryYearMonth(this.state.currentFormattedMonth, -1);
-    let nextFormattedMonth = dateUtils.getFormattedYearMonthByQueryYearMonth(this.state.currentFormattedMonth, 1);
+    let previousFormattedMonth = dateUtils.getFormattedYearMonthByYearMonthAndOffset(this.state.currentFormattedMonth, dateUtils.monthOffset.previous);
+    let nextFormattedMonth = dateUtils.getFormattedYearMonthByYearMonthAndOffset(this.state.currentFormattedMonth, dateUtils.monthOffset.next);
     let previousMonthLink = <a onClick={this.updateByFormattedMonth.bind(null, previousFormattedMonth)}>&lt;&lt;</a>
     let nextMonthLink = <a onClick={this.updateByFormattedMonth.bind(null, nextFormattedMonth)}>&gt;&gt;</a>
     let currentDate = dateUtils.getCurrentDate();

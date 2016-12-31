@@ -10,10 +10,12 @@ const getReformattedYearMonth = (formattedYearMonth) => {
   return formattedYearMonth.substring(0, 4) + '-' + formattedYearMonth.substring(4);
 }
 
+export const monthOffset = {previous: -1, current: 0, next: 1, }
+
 // Input: YYYYMM, -1|1
-// Output: YYYY-MM
-export const getFormattedYearMonthByQueryYearMonth = (queryYearMonth, offset) => {
-  let reformattedYearMonth = getReformattedYearMonth(queryYearMonth);
+// Output: YYYYMM
+export const getFormattedYearMonthByYearMonthAndOffset = (yearMonth, offset) => {
+  let reformattedYearMonth = getReformattedYearMonth(yearMonth);
   return moment(reformattedYearMonth).add({months: offset}).format('YYYYMM');
 }
 
