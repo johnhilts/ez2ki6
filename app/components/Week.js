@@ -7,7 +7,7 @@ import * as enums from '../core/enums';
 export default function Week(props) {
 
   return (
-    <table cellPadding="10" cellSpacing="10" border="5">
+    <table cellPadding="10" cellSpacing="10">
       <thead>
         <tr>
           {dateUtils.getWeekdays().map(WeekdayHeader)}
