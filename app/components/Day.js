@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router'
 import * as enums from '../core/enums';
+import * as stringUtils from '../util/stringutils';
 
 const getDecorator = (dayInfo) => {
   let decorator = {
@@ -37,7 +38,7 @@ const renderDateEntries = (entry, entryIndex) => {
   return (
     <div key={entry.key}>
       {hr}
-      {entry.dateInfo}
+      {stringUtils.formatLineBreaksForHtml(entry.dateInfo)}
     </div>
   )
 }
