@@ -1,0 +1,12 @@
+cd \Project\Personal\ez2ki6\src\react
+npm start
+y
+npm run production
+npm update create-react-app
+npm install axios
+npm update react
+npm install --save-dev jest babel-jest babel-preset-es2015 babel-preset-react react-test-renderer
+npm update react-dom
+node --version
+npm test
+npm t # same as npm test
