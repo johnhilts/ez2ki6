@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import * as dateUtils from '../util/dateutils';
 import * as db from '../core/database';
 import * as userRepository from '../domain/UserRepository';
+import * as calendarGrid from '../core/calendarGrid';
 import Calendar from '../components/Calendar';
 import MonthList from '../components/MonthList';
 import IsLoading from '../components/IsLoading';
@@ -69,14 +70,9 @@ const CalendarContainer = React.createClass({
   },
 
   buildMonthGrid() {
-    const setDateInfo = (date, isCurrentMonth) => {
-      let isToday = dateUtils.isToday(date.year, date.month, date.day);
-      let monthInfo = {year: date.year, month: date.month, day: date.day, absoluteIndex: absoluteCellIndex, isToday: isToday, isCurrentMonth: isCurrentMonth, };
-      monthInfo.hasData = this.dateHasData(monthInfo);
-      if (monthInfo.hasData) {
-        monthInfo.dateEntries = this.state.dates.filter(dbDate => {return dbDate.year == date.year && dbDate.month == date.month && dbDate.day == date.day;});
-      }
-      monthGrid.push(monthInfo);
+    const getDayInfo = (currentDate, isCurrentMonth) => {
+      let dayInfo = calendarGrid.getDayInfo(this.state.dates, currentDate, isCurrentMonth, absoluteCellIndex);
+      monthGrid.push(dayInfo);
     }
 
     const getCurrentDateValues = (currentYearMonth) => {
@@ -104,7 +100,7 @@ const CalendarContainer = React.createClass({
       for (let cellIndex = nextCellIndex; cellIndex <= 6; cellIndex++) {
         let weekday = dateUtils.getWeekdayFromYearMonthDay(currentYear, currentMonth, day);
         if (weekday == cellIndex && day <= daysInMonth) {
-          setDateInfo(date, true);
+          getDayInfo(date, true);
           nextCellIndex = cellIndex < 6 ? cellIndex + 1 : 0;
           absoluteCellIndex++;
           break;
@@ -112,10 +108,10 @@ const CalendarContainer = React.createClass({
         else {
           if (day == 1) {
             let previousMonthDate = dateUtils.addDays(currentYear, currentMonth, day, (weekday - cellIndex) * -1);
-            setDateInfo(previousMonthDate, false);
+            getDayInfo(previousMonthDate, false);
           }
           else if (day > daysInMonth) {
-            setDateInfo(date, false);
+            getDayInfo(date, false);
           }
           absoluteCellIndex++;
           if (day > daysInMonth) {
