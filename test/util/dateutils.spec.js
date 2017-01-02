@@ -1,7 +1,8 @@
+import {expect} from 'chai';
 import * as dateUtils from '../../app/util/dateutils';
 
 const getFormattedYearMonthByYearMonthAndOffset = (currentYearMonth, formattedYearMonth, offset) => {
-    expect(dateUtils.getFormattedYearMonthByYearMonthAndOffset(currentYearMonth, offset)).toBe(formattedYearMonth);
+    expect(dateUtils.getFormattedYearMonthByYearMonthAndOffset(currentYearMonth, offset)).to.eql(formattedYearMonth);
 }
 
 describe('dateUtils', () => {

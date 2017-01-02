@@ -2,7 +2,7 @@ import {expect} from 'chai';
 import * as calendarGrid from '../../app/core/calendarGrid';
 import * as dateUtils from '../../app/util/dateutils';
 
-describe('calendar', () => {
+describe('calendar grid', () => {
   it('returns day info for a given date', () => {
     let dates = [
       {dateInfo: 'a note about this day', year: 2017, month: 1, day: 1, key: '0', },

@@ -1,4 +1,5 @@
 import React from 'react';
+import {expect} from 'chai';
 import * as stringUtils from '../../app/util/stringutils';
 
 describe('stringUtils', () => {
@@ -16,6 +17,6 @@ describe('stringUtils', () => {
   			</span>
     ]
 
-    expect(stringUtils.formatLineBreaksForHtml('line1\nline2')).toEqual(formattedHtml);
+    expect(stringUtils.formatLineBreaksForHtml('line1\nline2')).to.eql(formattedHtml);
   });
 })
