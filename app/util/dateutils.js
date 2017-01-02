@@ -23,7 +23,8 @@ export const getFormattedYearMonthByYearMonthAndOffset = (yearMonth, offset) => 
 // Output: moment object
 export const getYearMonthByFormattedYearMonth = (formattedYearMonth) => {
   let reformattedYearMonth = getReformattedYearMonth(formattedYearMonth);
-  return moment(reformattedYearMonth);
+  let yearMonth = moment(reformattedYearMonth);
+  return {year: yearMonth.year(), month: yearMonth.month(), daysInMonth: yearMonth.daysInMonth(), };
 }
 
 // Input: y, m

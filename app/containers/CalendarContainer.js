@@ -76,9 +76,9 @@ const CalendarContainer = React.createClass({
     }
 
     const getCurrentDateValues = (currentYearMonth) => {
-      let currentYear = currentYearMonth.year();
-      let currentMonth = currentYearMonth.month();
-      let daysInMonth = currentYearMonth.daysInMonth();
+      let currentYear = currentYearMonth.year;
+      let currentMonth = currentYearMonth.month;
+      let daysInMonth = currentYearMonth.daysInMonth;
       return (
         {
           daysInMonth: daysInMonth,
@@ -145,7 +145,7 @@ const CalendarContainer = React.createClass({
     return (
         <div className="row" style={{verticalAlign: 'middle', }}>
           <div className="col-sm-4 col-lg-3" style={{verticalAlign: 'middle', }}>
-            <h2>{previousMonthLink} {dateUtils.getMonthName(this.state.currentYearMonth.month())} {nextMonthLink}</h2>
+            <h2>{previousMonthLink} {dateUtils.getMonthName(this.state.currentYearMonth.month)} {nextMonthLink}</h2>
           </div>
           <div className="col-sm-3 col-lg-2" style={{verticalAlign: 'middle', }}>
             <h2>&gt;&gt; <Link to={{pathname: 'day', state: {dayInfo: today, }}}>Today</Link> &lt;&lt;</h2>

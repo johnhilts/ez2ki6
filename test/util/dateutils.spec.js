@@ -15,4 +15,10 @@ describe('dateUtils', () => {
   it('gets a formatted year/month for this month', () => {
     expect(getFormattedYearMonthByYearMonthAndOffset('201611', '201611', dateUtils.monthOffset.current));
   });
+  it('parses Formatted Year Month', () => {
+    let formattedYearMonth = '201701';
+    let expected = {year: 2017, month: 0, daysInMonth: 31, };
+    let actual = dateUtils.getYearMonthByFormattedYearMonth(formattedYearMonth);
+    expect(actual).to.eql(expected);
+  });
 })
