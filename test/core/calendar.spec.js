@@ -1,3 +1,4 @@
+import {expect} from 'chai';
 import * as calendarGrid from '../../app/core/calendarGrid';
 import * as dateUtils from '../../app/util/dateutils';
 
@@ -15,6 +16,6 @@ describe('calendar', () => {
     let expectedDayInfo = {year: current.year, month: current.month, day: current.day, absoluteIndex: absoluteCellIndex,
       isToday: dateUtils.isToday(currentDate.year, currentDate.month, currentDate.day), isCurrentMonth: isCurrentMonth,
       hasData: true, dateEntries: [dates[expectedDateIndex]], };
-    expect(calendarGrid.getDayInfo(dates, currentDate, isCurrentMonth, absoluteCellIndex)).toEqual(expectedDayInfo);
+    expect(calendarGrid.getDayInfo(dates, currentDate, isCurrentMonth, absoluteCellIndex)).to.eql(expectedDayInfo);
   });
 })

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "mocha": "mocha --compilers js:babel-core/register ./test/**/*.spec.js",
     "start": "webpack-dev-server --inline --content-base . --history-api-fallback",
     "production": "webpack -p"
   },
@@ -34,10 +35,12 @@
     "babel-polyfill": "^6.20.0",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
+    "chai": "^3.5.0",
     "eslint": "^3.12.2",
     "firebase": "2.3.1",
     "html-webpack-plugin": "^2.7.1",
     "jest": "^18.1.0",
+    "mocha": "^3.2.0",
     "re-base": "^2.0.0",
     "react-test-renderer": "^15.4.1",
     "webpack": "^1.12.13",
