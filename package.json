@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "mocha": "mocha --compilers js:babel-core/register ./test/**/*.spec.js",
+    "mocha": "mocha --compilers js:babel-core/register ./test/**/*.spec.js --watch",
     "start": "webpack-dev-server --inline --content-base . --history-api-fallback",
     "production": "webpack -p"
   },
