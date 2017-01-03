@@ -14,3 +14,13 @@ export const getDayInfo = (dates, currentDate, isCurrentMonth, absoluteCellIndex
 
   return dayInfo;
 }
+
+export const getLastCalendarCellIndexFromStartOfCurrentMonth = (year, month, lastDay) => {
+  const saturday = 6;
+  let lastCurrentMonthWeekday = dateUtils.getWeekdayFromYearMonthDay(year, month, lastDay);
+  return (
+    lastCurrentMonthWeekday == saturday
+    ? lastDay
+    : lastDay + (saturday - lastCurrentMonthWeekday)
+  )
+}

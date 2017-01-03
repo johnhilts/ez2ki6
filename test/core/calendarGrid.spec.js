@@ -18,4 +18,18 @@ describe('calendar grid', () => {
       hasData: true, dateEntries: [dates[expectedDateIndex]], };
     expect(calendarGrid.getDayInfo(dates, currentDate, isCurrentMonth, absoluteCellIndex)).to.eql(expectedDayInfo);
   });
+
+  let testYearMonths = [
+    {year: 2017, month: 0, lastDay: 31, lastCalendarCellIndex: 35, },
+    {year: 2016, month: 11, lastDay: 31, lastCalendarCellIndex: 31, },
+    {year: 2016, month: 10, lastDay: 30, lastCalendarCellIndex: 33, },
+  ];
+  testYearMonths.forEach(function(testYearMonth) {
+    it('gets the Last Calendar Cell Index', () => {
+      let {year, month, lastDay, } = testYearMonth;
+      let actual = calendarGrid.getLastCalendarCellIndexFromStartOfCurrentMonth(year, month, lastDay);
+      expect(actual, `testing with ${testYearMonth.year}/${testYearMonth.month}`).to.eql(testYearMonth.lastCalendarCellIndex);
+    });
+  });
+
 })

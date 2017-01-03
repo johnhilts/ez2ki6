@@ -60,50 +60,34 @@ const CalendarContainer = React.createClass({
     )
   },
 
-  getLastCalendarCellIndex(year, month, lastDay) {
-      let lastCurrentMonthWeekday = dateUtils.getWeekdayFromYearMonthDay(year, month, lastDay);
-      return (
-        lastCurrentMonthWeekday == 6
-        ? lastDay
-        : lastDay + (6 - lastCurrentMonthWeekday)
-      )
-  },
-
   buildMonthGrid() {
     const getDayInfo = (currentDate, isCurrentMonth) => {
       let dayInfo = calendarGrid.getDayInfo(this.state.dates, currentDate, isCurrentMonth, absoluteCellIndex);
       monthGrid.push(dayInfo);
     }
 
-    const getCurrentDateValues = (currentYearMonth) => {
-      let currentYear = currentYearMonth.year;
-      let currentMonth = currentYearMonth.month;
-      let daysInMonth = currentYearMonth.daysInMonth;
-      return (
-        {
-          daysInMonth: daysInMonth,
-          monthGrid: [],
-          nextCellIndex: 0,
-          absoluteCellIndex: 0,
-          currentYear: currentYear,
-          currentMonth: currentMonth,
-          lastCalendarCellIndex: this.getLastCalendarCellIndex(currentYear, currentMonth, daysInMonth),
-        }
-      )
-    }
+    let currentYearMonth = this.state.currentYearMonth;
+    let daysInMonth = currentYearMonth.daysInMonth;
+    let monthGrid = [];
+    let nextCellIndex = 0;
+    let absoluteCellIndex = 0;
+    let currentYear = currentYearMonth.year;
+    let currentMonth = currentYearMonth.month;
+    let lastCalendarCellIndex = calendarGrid.getLastCalendarCellIndexFromStartOfCurrentMonth(currentYear, currentMonth, daysInMonth);
+    const saturday = 6;
 
-    let {daysInMonth, monthGrid, nextCellIndex, absoluteCellIndex, currentYear, currentMonth, lastCalendarCellIndex} =
-      getCurrentDateValues(this.state.currentYearMonth);
-
-    for (let day = 1; day <= lastCalendarCellIndex; day++) {
+    const processCalendarCell = (cellIndex) => {
+      let day = cellIndex + 1;
       let date = dateUtils.getDateFromYearMonthDay(currentYear, currentMonth, day);
-      for (let cellIndex = nextCellIndex; cellIndex <= 6; cellIndex++) {
+
+      // TODO: I think what needs to happen here is we need to isolate each of the below ifs into their own function and then map those
+      const processWeek = (cellIndex) => {
         let weekday = dateUtils.getWeekdayFromYearMonthDay(currentYear, currentMonth, day);
         if (weekday == cellIndex && day <= daysInMonth) {
           getDayInfo(date, true);
-          nextCellIndex = cellIndex < 6 ? cellIndex + 1 : 0;
+          nextCellIndex = cellIndex < saturday ? cellIndex + 1 : 0;
           absoluteCellIndex++;
-          break;
+          return;
         }
         else {
           if (day == 1) {
@@ -115,11 +99,18 @@ const CalendarContainer = React.createClass({
           }
           absoluteCellIndex++;
           if (day > daysInMonth) {
-            break;
+            return;
           }
         }
       }
+
+      let calendarCellsForWeek = [...Array(saturday+1).keys()];
+      calendarCellsForWeek.filter(cellIndex => cellIndex >= nextCellIndex).map(processWeek);
     }
+
+    let calendarCellsFromStartOfCurrentMonth = [...Array(lastCalendarCellIndex).keys()];
+    calendarCellsFromStartOfCurrentMonth.map(processCalendarCell);
+
     return monthGrid;
   },
 
