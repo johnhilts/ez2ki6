@@ -62,37 +62,33 @@ const CalendarContainer = React.createClass({
 
   buildMonthGrid() {
     const getDayInfo = (currentDate, isCurrentMonth) => {
-      let dayInfo = calendarGrid.getDayInfo(this.state.dates, currentDate, isCurrentMonth, absoluteCellIndex);
-      monthGrid.push(dayInfo);
+      return calendarGrid.getDayInfo(this.state.dates, currentDate, isCurrentMonth, absoluteCellIndex++);
     }
 
-    let currentYearMonth = this.state.currentYearMonth;
-    let daysInMonth = currentYearMonth.daysInMonth;
+    const currentYearMonth = this.state.currentYearMonth;
+    const daysInMonth = currentYearMonth.daysInMonth;
     let monthGrid = [];
     let absoluteCellIndex = 0;
-    let currentYear = currentYearMonth.year;
-    let currentMonth = currentYearMonth.month;
-    let lastCalendarCellIndex = calendarGrid.getLastCalendarCellIndexFromStartOfCurrentMonth(currentYear, currentMonth, daysInMonth);
+    const currentYear = currentYearMonth.year;
+    const currentMonth = currentYearMonth.month;
+    const lastCalendarCellIndex = calendarGrid.getLastCalendarCellIndexFromStartOfCurrentMonth(currentYear, currentMonth, daysInMonth);
     const saturday = 6;
 
     const processCalendarCell = (cellIndex) => {
       let day = cellIndex + 1;
       let date = dateUtils.getDateFromYearMonthDay(currentYear, currentMonth, day);
 
-      const processPartOfWeekInPreviousMonth = (cellIndex) => {
+      const partOfWeekInPreviousMonth = (cellIndex) => {
         let previousMonthDate = dateUtils.addDays(currentYear, currentMonth, day, (weekday - cellIndex) * -1);
-        getDayInfo(previousMonthDate, false);
-        absoluteCellIndex++;
+        return getDayInfo(previousMonthDate, false);
       }
 
-      const processWeekInCurrentMonth = (cellIndex) => {
-        getDayInfo(date, true);
-        absoluteCellIndex++;
+      const weekInCurrentMonth = (cellIndex) => {
+        return getDayInfo(date, true);
       }
 
-      const processPartOfWeekInNextMonth = (cellIndex) => {
-        getDayInfo(date, false);
-        absoluteCellIndex++;
+      const partOfWeekInNextMonth = (cellIndex) => {
+        return getDayInfo(date, false);
       }
 
       const daysInSameWeekPreviousMonth = (weekCellIndex) => {
@@ -107,12 +103,13 @@ const CalendarContainer = React.createClass({
         return weekday == weekCellIndex && day > daysInMonth;
       }
 
-      let calendarCellsForWeek = [...Array(saturday+1).keys()];
+      const weekLength = 7;
+      let calendarCellsForWeek = [...Array(weekLength).keys()];
       let weekday = dateUtils.getWeekdayFromYearMonthDay(currentYear, currentMonth, day);
 
-      calendarCellsForWeek.filter(daysInSameWeekPreviousMonth).map(processPartOfWeekInPreviousMonth);
-      calendarCellsForWeek.filter(daysInCurrentMonth).map(processWeekInCurrentMonth);
-      calendarCellsForWeek.filter(daysInSameWeekNextMonth).map(processPartOfWeekInNextMonth);
+      monthGrid.push(...calendarCellsForWeek.filter(daysInSameWeekPreviousMonth).map(partOfWeekInPreviousMonth));
+      monthGrid.push(...calendarCellsForWeek.filter(daysInCurrentMonth).map(weekInCurrentMonth));
+      monthGrid.push(...calendarCellsForWeek.filter(daysInSameWeekNextMonth).map(partOfWeekInNextMonth));
     }
 
     let calendarCellsFromStartOfCurrentMonth = [...Array(lastCalendarCellIndex).keys()];
