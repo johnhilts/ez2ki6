@@ -80,32 +80,28 @@ const CalendarContainer = React.createClass({
       let day = cellIndex + 1;
       let date = dateUtils.getDateFromYearMonthDay(currentYear, currentMonth, day);
 
-      // TODO: I think what needs to happen here is we need to isolate each of the below ifs into their own function and then map those
-      const processWeek = (cellIndex) => {
-        let weekday = dateUtils.getWeekdayFromYearMonthDay(currentYear, currentMonth, day);
-        if (weekday == cellIndex && day <= daysInMonth) {
-          getDayInfo(date, true);
-          nextCellIndex = cellIndex < saturday ? cellIndex + 1 : 0;
-          absoluteCellIndex++;
-          return;
-        }
-        else {
-          if (day == 1) {
-            let previousMonthDate = dateUtils.addDays(currentYear, currentMonth, day, (weekday - cellIndex) * -1);
-            getDayInfo(previousMonthDate, false);
-          }
-          else if (day > daysInMonth) {
-            getDayInfo(date, false);
-          }
-          absoluteCellIndex++;
-          if (day > daysInMonth) {
-            return;
-          }
-        }
+      const processWeekInPreviousMonth = (cellIndex) => {
+        let previousMonthDate = dateUtils.addDays(currentYear, currentMonth, day, (weekday - cellIndex) * -1);
+        getDayInfo(previousMonthDate, false);
+        absoluteCellIndex++;
+      }
+
+      const processWeekInCurrentMonth = (cellIndex) => {
+        getDayInfo(date, true);
+        nextCellIndex = cellIndex < saturday ? cellIndex + 1 : 0;
+        absoluteCellIndex++;
+      }
+
+      const processWeekInNextMonth = (cellIndex) => {
+        getDayInfo(date, false);
+        absoluteCellIndex++;
       }
 
       let calendarCellsForWeek = [...Array(saturday+1).keys()];
-      calendarCellsForWeek.filter(cellIndex => cellIndex >= nextCellIndex).map(processWeek);
+      let weekday = dateUtils.getWeekdayFromYearMonthDay(currentYear, currentMonth, day);
+      calendarCellsForWeek.filter(weekCellIndex => weekCellIndex < saturday && weekday > weekCellIndex && day == 1).map(processWeekInPreviousMonth);
+      calendarCellsForWeek.filter(weekCellIndex => weekCellIndex >= nextCellIndex && weekday == weekCellIndex && day <= daysInMonth).map(processWeekInCurrentMonth);
+      calendarCellsForWeek.filter(weekCellIndex => weekCellIndex >= nextCellIndex && weekday == weekCellIndex && day > daysInMonth).map(processWeekInNextMonth);
     }
 
     let calendarCellsFromStartOfCurrentMonth = [...Array(lastCalendarCellIndex).keys()];
