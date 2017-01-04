@@ -121,10 +121,6 @@ const CalendarContainer = React.createClass({
     return monthGrid;
   },
 
-  dateHasData(date) {
-    return this.state.dates.some(dbDate => {return dbDate.year == date.year && dbDate.month == date.month && dbDate.day == date.day;});
-  },
-
   updateByFormattedMonth(formattedMonth) {
     this.setState(this.getCurrentYearMonthFromParamsOrDefault(formattedMonth));
   },
