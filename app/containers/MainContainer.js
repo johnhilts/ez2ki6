@@ -107,6 +107,7 @@ const MainContainer = React.createClass({
   },
 
   render() {
+    try {
     return (
       <div>
         {this.renderHeader(this.state.user)}
@@ -118,6 +119,10 @@ const MainContainer = React.createClass({
         {this.renderFooter()}
       </div>
     )
+  }
+    catch (e) {
+      alert(e.toString());
+    }
   }
 });
 
