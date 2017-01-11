@@ -4,7 +4,7 @@
   "description": "Eazy to enter date log",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watchAll",
     "mocha": "mocha --compilers js:babel-core/register ./test/**/*.spec.js --watch",
     "start": "webpack-dev-server --inline --content-base . --history-api-fallback",
     "production": "webpack -p"
