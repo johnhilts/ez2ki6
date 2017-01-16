@@ -1,0 +1,1100 @@
+exports[`Calendar component snapshot test Should compare the Calendar component with a snapshot 1`] = `
+<table
+  cellPadding="10"
+  cellSpacing="10">
+  <thead>
+    <tr>
+      <th
+        style={
+          Object {
+            "textAlign": "center",
+          }
+        }>
+        Sunday
+      </th>
+      <th
+        style={
+          Object {
+            "textAlign": "center",
+          }
+        }>
+        Monday
+      </th>
+      <th
+        style={
+          Object {
+            "textAlign": "center",
+          }
+        }>
+        Tuesday
+      </th>
+      <th
+        style={
+          Object {
+            "textAlign": "center",
+          }
+        }>
+        Wednesday
+      </th>
+      <th
+        style={
+          Object {
+            "textAlign": "center",
+          }
+        }>
+        Thursday
+      </th>
+      <th
+        style={
+          Object {
+            "textAlign": "center",
+          }
+        }>
+        Friday
+      </th>
+      <th
+        style={
+          Object {
+            "textAlign": "center",
+          }
+        }>
+        Saturday
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontSize": "larger",
+                "fontWeight": "bold",
+              }
+            }>
+            1
+            <span
+              className="glyphicon glyphicon-list-alt" />
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontSize": "larger",
+                "fontWeight": "bold",
+              }
+            }>
+            2
+            <span
+              className="glyphicon glyphicon-list-alt" />
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            3
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            4
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            5
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            6
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            7
+            
+            
+          </div>
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            8
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            9
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            10
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            11
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            12
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            13
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            14
+            
+            
+          </div>
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            15
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "border": "2px solid red",
+                "color": "#EC7063",
+                "fontWeight": "normal",
+              }
+            }>
+            16
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            17
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            18
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            19
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            20
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            21
+            
+            
+          </div>
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            22
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            23
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            24
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            25
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            26
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            27
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            28
+            
+            
+          </div>
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            29
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            30
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "solid",
+            "borderWidth": 5,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            31
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "dotted",
+            "borderWidth": 1,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            1
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "dotted",
+            "borderWidth": 1,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            2
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "dotted",
+            "borderWidth": 1,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            3
+            
+            
+          </div>
+        </a>
+      </td>
+      <td
+        style={
+          Object {
+            "borderStyle": "dotted",
+            "borderWidth": 1,
+            "paddingBottom": 25,
+            "paddingLeft": 25,
+            "paddingRight": 25,
+            "paddingTop": 25,
+            "textAlign": "center",
+            "verticalAlign": "middle",
+            "width": 100,
+          }
+        }>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <div
+            style={
+              Object {
+                "fontWeight": "normal",
+              }
+            }>
+            4
+            
+            
+          </div>
+        </a>
+      </td>
+    </tr>
+    <tr />
+  </tbody>
+</table>
+`;

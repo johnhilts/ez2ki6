@@ -1,0 +1,211 @@
+exports[`Day component snapshot test Should compare the Day component with a snapshot 1`] = `
+<tr>
+  <td
+    style={
+      Object {
+        "borderStyle": "solid",
+        "borderWidth": 5,
+        "paddingBottom": 25,
+        "paddingLeft": 25,
+        "paddingRight": 25,
+        "paddingTop": 25,
+        "textAlign": "center",
+        "verticalAlign": "middle",
+        "width": 100,
+      }
+    }>
+    <a
+      onClick={[Function]}
+      style={Object {}}>
+      <div
+        style={
+          Object {
+            "fontSize": "larger",
+            "fontWeight": "bold",
+          }
+        }>
+        1
+        <span
+          className="glyphicon glyphicon-list-alt" />
+        
+      </div>
+    </a>
+  </td>
+  <td
+    style={
+      Object {
+        "borderStyle": "solid",
+        "borderWidth": 5,
+        "paddingBottom": 25,
+        "paddingLeft": 25,
+        "paddingRight": 25,
+        "paddingTop": 25,
+        "textAlign": "center",
+        "verticalAlign": "middle",
+        "width": 100,
+      }
+    }>
+    <a
+      onClick={[Function]}
+      style={Object {}}>
+      <div
+        style={
+          Object {
+            "fontSize": "larger",
+            "fontWeight": "bold",
+          }
+        }>
+        2
+        <span
+          className="glyphicon glyphicon-list-alt" />
+        
+      </div>
+    </a>
+  </td>
+  <td
+    style={
+      Object {
+        "borderStyle": "solid",
+        "borderWidth": 5,
+        "paddingBottom": 25,
+        "paddingLeft": 25,
+        "paddingRight": 25,
+        "paddingTop": 25,
+        "textAlign": "center",
+        "verticalAlign": "middle",
+        "width": 100,
+      }
+    }>
+    <a
+      onClick={[Function]}
+      style={Object {}}>
+      <div
+        style={
+          Object {
+            "fontWeight": "normal",
+          }
+        }>
+        3
+        
+        
+      </div>
+    </a>
+  </td>
+  <td
+    style={
+      Object {
+        "borderStyle": "solid",
+        "borderWidth": 5,
+        "paddingBottom": 25,
+        "paddingLeft": 25,
+        "paddingRight": 25,
+        "paddingTop": 25,
+        "textAlign": "center",
+        "verticalAlign": "middle",
+        "width": 100,
+      }
+    }>
+    <a
+      onClick={[Function]}
+      style={Object {}}>
+      <div
+        style={
+          Object {
+            "fontWeight": "normal",
+          }
+        }>
+        4
+        
+        
+      </div>
+    </a>
+  </td>
+  <td
+    style={
+      Object {
+        "borderStyle": "solid",
+        "borderWidth": 5,
+        "paddingBottom": 25,
+        "paddingLeft": 25,
+        "paddingRight": 25,
+        "paddingTop": 25,
+        "textAlign": "center",
+        "verticalAlign": "middle",
+        "width": 100,
+      }
+    }>
+    <a
+      onClick={[Function]}
+      style={Object {}}>
+      <div
+        style={
+          Object {
+            "fontWeight": "normal",
+          }
+        }>
+        5
+        
+        
+      </div>
+    </a>
+  </td>
+  <td
+    style={
+      Object {
+        "borderStyle": "solid",
+        "borderWidth": 5,
+        "paddingBottom": 25,
+        "paddingLeft": 25,
+        "paddingRight": 25,
+        "paddingTop": 25,
+        "textAlign": "center",
+        "verticalAlign": "middle",
+        "width": 100,
+      }
+    }>
+    <a
+      onClick={[Function]}
+      style={Object {}}>
+      <div
+        style={
+          Object {
+            "fontWeight": "normal",
+          }
+        }>
+        6
+        
+        
+      </div>
+    </a>
+  </td>
+  <td
+    style={
+      Object {
+        "borderStyle": "solid",
+        "borderWidth": 5,
+        "paddingBottom": 25,
+        "paddingLeft": 25,
+        "paddingRight": 25,
+        "paddingTop": 25,
+        "textAlign": "center",
+        "verticalAlign": "middle",
+        "width": 100,
+      }
+    }>
+    <a
+      onClick={[Function]}
+      style={Object {}}>
+      <div
+        style={
+          Object {
+            "fontWeight": "normal",
+          }
+        }>
+        7
+        
+        
+      </div>
+    </a>
+  </td>
+</tr>
+`;
