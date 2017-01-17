@@ -101,7 +101,7 @@ const CalendarContainer = React.createClass({
           ? <IsLoading />
           : this.state.viewType == this.ViewTypes.Calendar
           ? <Calendar monthGrid={calendarGrid.buildMonthGrid(this.state.dates, this.state.currentYearMonth)} />
-          : <MonthList dates={this.state.dates} date={this.state.date} currentYearMonth={this.state.currentYearMonth} />
+          : <MonthList dates={this.state.dates} currentYearMonth={this.state.currentYearMonth} />
         }
       </div>
     )
