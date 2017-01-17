@@ -1,0 +1,24 @@
+exports[`Calendar component snapshot test Should compare the Calendar component with a snapshot 1`] = `
+<ul>
+  <li>
+    <b>
+      1
+    </b>
+     - 
+    <span>
+      a note about this day
+      <br />
+    </span>
+  </li>
+  <li>
+    <b>
+      2
+    </b>
+     - 
+    <span>
+      a note about that day
+      <br />
+    </span>
+  </li>
+</ul>
+`;
