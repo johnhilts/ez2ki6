@@ -527,8 +527,6 @@ exports[`Calendar component snapshot test Should compare the Calendar component 
           <div
             style={
               Object {
-                "border": "2px solid red",
-                "color": "#EC7063",
                 "fontWeight": "normal",
               }
             }>

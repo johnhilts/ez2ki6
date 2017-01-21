@@ -46,7 +46,9 @@ const renderDateEntries = (entry, entryIndex) => {
 const getInfoBasedOnDetailLevel = (detailLevel, dateEntries) => {
   switch (detailLevel) {
     case enums.detailLevel.month:
-      return {dayInfoContent: '', pathname: 'week', showDataIcon: true, verticalAlign: 'middle', }
+    case enums.detailLevel.month_with_data:
+      let pathname = detailLevel == enums.detailLevel.month_with_data ? 'week' : 'day';
+      return {dayInfoContent: '', pathname: pathname, showDataIcon: true, verticalAlign: 'middle', }
     case enums.detailLevel.week:
       return {dayInfoContent: dateEntries ? <span><br />{dateEntries.map(renderDateEntries)}</span> : '', pathname: 'day', verticalAlign: 'top', }
   }
@@ -79,7 +81,7 @@ export default function Day(props) {
     dataIcon = showDataIcon ? dataIcon : '';
     return (
       <td key={dayInfo.absoluteIndex} style={cellStyle}>
-        <Link to={{pathname: pathname, state: {dayInfo: dayInfo, weekInfo: weekInfo, }}}>
+        <Link to={{pathname: pathname, state: {dayInfo: dayInfo, weekInfo: weekInfo, weekIndex: props.weekIndex, monthGrid: props.monthGrid, }}}>
           <div style={dayStyle}>
             {dayInfo.day}
             {dataIcon}

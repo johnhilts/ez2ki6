@@ -5,6 +5,7 @@ import * as db from '../core/database';
 import * as userRepository from '../domain/UserRepository';
 import * as calendarGrid from '../core/calendarGrid';
 import Calendar from '../components/Calendar';
+import CalendarNavigation from '../components/CalendarNavigation';
 import MonthList from '../components/MonthList';
 import IsLoading from '../components/IsLoading';
 
@@ -74,12 +75,11 @@ const CalendarContainer = React.createClass({
     let previousMonthLink = <a onClick={this.updateByFormattedMonth.bind(null, previousFormattedMonth)}>&lt;&lt;</a>
     let nextMonthLink = <a onClick={this.updateByFormattedMonth.bind(null, nextFormattedMonth)}>&gt;&gt;</a>
     let currentDate = dateUtils.getCurrentDate();
+    let currentMonth = this.state.currentYearMonth.month;
     let today = {year: currentDate.year, month: currentDate.month, day: currentDate.day, };
     return (
         <div className="row" style={{verticalAlign: 'middle', }}>
-          <div className="col-sm-4 col-lg-3" style={{verticalAlign: 'middle', }}>
-            <h2>{previousMonthLink} {dateUtils.getMonthName(this.state.currentYearMonth.month)} {nextMonthLink}</h2>
-          </div>
+          <CalendarNavigation previousLink={previousMonthLink} nextLink={nextMonthLink} title={dateUtils.getMonthName(currentMonth)} />
           <div className="col-sm-3 col-lg-2" style={{verticalAlign: 'middle', }}>
             <h2>&gt;&gt; <Link to={{pathname: 'day', state: {dayInfo: today, }}}>Today</Link> &lt;&lt;</h2>
           </div>

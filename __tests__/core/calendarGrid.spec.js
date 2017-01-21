@@ -1,5 +1,6 @@
 import * as calendarGrid from '../../app/core/calendarGrid';
 import * as dateUtils from '../../app/util/dateutils';
+import * as enums from '../../app/core/enums';
 import * as testHelper from '../../test/Helper/DateHelper';
 
 describe('calendar grid', () => {
@@ -43,5 +44,25 @@ describe('calendar grid', () => {
     let actualLastDate = dateUtils.getDateFromYearMonthDay(monthGrid[34].year, monthGrid[34].month, monthGrid[34].day);
     expect(actualLastDate).toEqual(expectedLastDate);
   });
+
+  it('links directly to a day if no info yet for that week', ()=>{
+    let monthGrid = calendarGrid.buildMonthGrid(testHelper.dates, testHelper.currentYearMonth);
+    monthGrid.forEach(m => m.hasData = false);
+    expect(calendarGrid.setLinkDetailLevelForMonthView(monthGrid)).toBe(enums.detailLevel.month)
+  })
+
+  it('links to a week if that week has info', ()=>{
+    let monthGrid = calendarGrid.buildMonthGrid(testHelper.dates, testHelper.currentYearMonth);
+    monthGrid.forEach(m => m.hasData = true);
+    expect(calendarGrid.setLinkDetailLevelForMonthView(monthGrid)).toBe(enums.detailLevel.month_with_data)
+  })
+
+  it('returns week info for a given week index', () => {
+    let monthGrid = calendarGrid.buildMonthGrid(testHelper.dates, testHelper.currentYearMonth);
+    monthGrid.forEach(m => m.hasData = true);
+    let weekIndex = 1;
+    let weekInfo = calendarGrid.getWeekByIndex(monthGrid, weekIndex);
+    expect(weekInfo.length).toBe(7);
+  })
 
 })
