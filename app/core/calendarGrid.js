@@ -1,4 +1,5 @@
 import * as dateUtils from '../util/dateutils';
+import * as enums from '../core/enums';
 
 const saturday = 6;
 
@@ -81,4 +82,13 @@ export const buildMonthGrid = (dates, currentYearMonth) => {
   calendarCellsFromStartOfCurrentMonth.map(processCalendarCell);
 
   return monthGrid;
+}
+
+export const setLinkDetailLevelForMonthView = (monthGrid) => {
+  if (monthGrid.some(m => m.hasData)) {
+    return enums.detailLevel.month_with_data
+  }
+  else {
+    return enums.detailLevel.month
+  }
 }

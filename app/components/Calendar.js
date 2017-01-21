@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router'
 import * as dateUtils from '../util/dateutils';
+import * as calendarGrid from '../core/calendarGrid';
 import WeekdayHeader from '../components/WeekdayHeader';
 import Day from '../components/Day';
 import * as enums from '../core/enums';
@@ -16,7 +17,8 @@ export default function Calendar(props) {
     }
 
     let weekInfo = props.monthGrid.filter(currentWeek);
-    return <Day key={weekIndex} weekInfo={weekInfo} detailLevel={enums.detailLevel.month} />
+    let detailLevel = calendarGrid.setLinkDetailLevelForMonthView(weekInfo);
+    return <Day key={weekIndex} weekInfo={weekInfo} detailLevel={detailLevel} />
   }
 
   return (

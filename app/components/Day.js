@@ -46,7 +46,9 @@ const renderDateEntries = (entry, entryIndex) => {
 const getInfoBasedOnDetailLevel = (detailLevel, dateEntries) => {
   switch (detailLevel) {
     case enums.detailLevel.month:
-      return {dayInfoContent: '', pathname: 'week', showDataIcon: true, verticalAlign: 'middle', }
+    case enums.detailLevel.month_with_data:
+      let pathname = detailLevel == enums.detailLevel.month_with_data ? 'week' : 'day';
+      return {dayInfoContent: '', pathname: pathname, showDataIcon: true, verticalAlign: 'middle', }
     case enums.detailLevel.week:
       return {dayInfoContent: dateEntries ? <span><br />{dateEntries.map(renderDateEntries)}</span> : '', pathname: 'day', verticalAlign: 'top', }
   }
