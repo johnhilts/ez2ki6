@@ -92,3 +92,15 @@ export const setLinkDetailLevelForMonthView = (monthGrid) => {
     return enums.detailLevel.month
   }
 }
+
+export const getWeekByIndex = (monthGrid, weekIndex) => {
+  let startCell = (weekIndex - 1) * 7;
+  let endCell = startCell + 7;
+
+  const currentWeek = (monthInfo, cellIndex) => {
+    return cellIndex >= startCell && cellIndex < endCell;
+  }
+
+  let weekInfo = monthGrid.filter(currentWeek);
+  return weekInfo;
+}

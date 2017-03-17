@@ -57,4 +57,12 @@ describe('calendar grid', () => {
     expect(calendarGrid.setLinkDetailLevelForMonthView(monthGrid)).toBe(enums.detailLevel.month_with_data)
   })
 
+  it('returns week info for a given week index', () => {
+    let monthGrid = calendarGrid.buildMonthGrid(testHelper.dates, testHelper.currentYearMonth);
+    monthGrid.forEach(m => m.hasData = true);
+    let weekIndex = 1;
+    let weekInfo = calendarGrid.getWeekByIndex(monthGrid, weekIndex);
+    expect(weekInfo.length).toBe(7);
+  })
+
 })
