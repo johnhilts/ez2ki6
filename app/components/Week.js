@@ -1,15 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router'
 import * as dateUtils from '../util/dateutils';
 import Day from '../components/Day';
 import WeekdayHeader from '../components/WeekdayHeader';
 import CalendarNavigation from '../components/CalendarNavigation';
 import * as enums from '../core/enums';
+import * as calendarGrid from '../core/calendarGrid';
 
 export default function Week(props) {
 
-  let previousMonthLink = <a>&lt;&lt;</a>
-  let nextMonthLink = <a>&gt;&gt;</a>
   let weekIndex = props.weekIndex;
+  let currentYearMonth = {year: props.weekInfo[0].year, month: props.weekInfo[0].month, daysInMonth: 31, };
+  let monthGrid = calendarGrid.buildMonthGrid([], currentYearMonth);
+  const getWeekInfo = (weekIndex) => {return {weekInfo: calendarGrid.getWeekByIndex(monthGrid, weekIndex), weekIndex: weekIndex, };}
+  let previousMonthLink = // <a>prev</a> //
+    <Link to={{pathname: 'week', state: getWeekInfo(weekIndex - 1)}}>&lt;&lt;</Link>
+  let nextMonthLink = <a>&gt;&gt;</a>
 
   return (
     <div>
