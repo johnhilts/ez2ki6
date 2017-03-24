@@ -7,29 +7,20 @@ import CalendarNavigation from '../components/CalendarNavigation';
 import * as enums from '../core/enums';
 import * as calendarGrid from '../core/calendarGrid';
 
-const weekOffsets = {previous: -1, next: 1, }
+const weekSettings = {previous: {offset: -1, linkText: '<<', }, next: {offset: 1, linkText: '>>', }, }
 
-const getWeekLinkText = (weekOffset) => {
-  switch (weekOffset) {
-    case weekOffsets.previous:
-      return '<<'
-    case weekOffsets.next:
-      return '>>'
-  }
-}
-
-const getWeekLink = (weekIndex, monthGrid, weekOffset) => {
+const getWeekLink = (weekIndex, monthGrid, weekSetting) => {
   const getWeekInfo = (weekIndex) => {return {weekInfo: calendarGrid.getWeekByIndex(monthGrid, weekIndex), weekIndex: weekIndex, monthGrid: monthGrid, };}
-  let weekInfo = getWeekInfo(weekIndex + weekOffset);
+  let weekInfo = getWeekInfo(weekIndex + weekSetting.offset);
   let weekLink = weekInfo.weekInfo.some(x => x.isCurrentMonth) // only navigate weeks in the current month
-    ? <Link to={{pathname: 'week', state: weekInfo}}>{getWeekLinkText(weekOffset)}</Link>
-    : getWeekLinkText(weekOffset)
+    ? <Link to={{pathname: 'week', state: weekInfo}}>{weekSetting.linkText}</Link>
+    : weekSetting.linkText
   return weekLink;
 }
 
 const getWeekLinks = (weekIndex, monthGrid) => {
-  let previousWeekLink = getWeekLink(weekIndex, monthGrid, weekOffsets.previous);
-  let nextWeekLink = getWeekLink(weekIndex, monthGrid, weekOffsets.next);
+  let previousWeekLink = getWeekLink(weekIndex, monthGrid, weekSettings.previous);
+  let nextWeekLink = getWeekLink(weekIndex, monthGrid, weekSettings.next);
 
   return {previousWeekLink: previousWeekLink, nextWeekLink: nextWeekLink, };
 }
