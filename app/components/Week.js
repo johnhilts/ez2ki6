@@ -12,9 +12,8 @@ export default function Week(props) {
   let weekIndex = props.weekIndex;
   let monthGrid = props.monthGrid;
   const getWeekInfo = (weekIndex) => {return {weekInfo: calendarGrid.getWeekByIndex(monthGrid, weekIndex), weekIndex: weekIndex, monthGrid: monthGrid, };}
-  let previousMonthLink = // <a>prev</a> //
-    <Link to={{pathname: 'week', state: getWeekInfo(weekIndex - 1)}}>&lt;&lt;</Link>
-  let nextMonthLink = <a>&gt;&gt;</a>
+  let previousMonthLink = <Link to={{pathname: 'week', state: getWeekInfo(weekIndex - 1)}}>&lt;&lt;</Link>
+  let nextMonthLink = <Link to={{pathname: 'week', state: getWeekInfo(weekIndex + 1)}}>&gt;&gt;</Link>
 
   return (
     <div>
