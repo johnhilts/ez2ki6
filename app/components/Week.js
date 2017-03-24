@@ -7,18 +7,42 @@ import CalendarNavigation from '../components/CalendarNavigation';
 import * as enums from '../core/enums';
 import * as calendarGrid from '../core/calendarGrid';
 
+const weekOffsets = {previous: -1, next: 1, }
+
+const getWeekLinkText = (weekOffset) => {
+  switch (weekOffset) {
+    case weekOffsets.previous:
+      return '<<'
+    case weekOffsets.next:
+      return '>>'
+  }
+}
+
+const getWeekLink = (weekIndex, monthGrid, weekOffset) => {
+  const getWeekInfo = (weekIndex) => {return {weekInfo: calendarGrid.getWeekByIndex(monthGrid, weekIndex), weekIndex: weekIndex, monthGrid: monthGrid, };}
+  let weekInfo = getWeekInfo(weekIndex + weekOffset);
+  let weekLink = weekInfo.weekInfo.some(x => x.isCurrentMonth) // only navigate weeks in the current month
+    ? <Link to={{pathname: 'week', state: weekInfo}}>{getWeekLinkText(weekOffset)}</Link>
+    : getWeekLinkText(weekOffset)
+  return weekLink;
+}
+
+const getWeekLinks = (weekIndex, monthGrid) => {
+  let previousWeekLink = getWeekLink(weekIndex, monthGrid, weekOffsets.previous);
+  let nextWeekLink = getWeekLink(weekIndex, monthGrid, weekOffsets.next);
+
+  return {previousWeekLink: previousWeekLink, nextWeekLink: nextWeekLink, };
+}
+
 export default function Week(props) {
 
   let weekIndex = props.weekIndex;
-  let monthGrid = props.monthGrid;
-  const getWeekInfo = (weekIndex) => {return {weekInfo: calendarGrid.getWeekByIndex(monthGrid, weekIndex), weekIndex: weekIndex, monthGrid: monthGrid, };}
-  let previousMonthLink = <Link to={{pathname: 'week', state: getWeekInfo(weekIndex - 1)}}>&lt;&lt;</Link>
-  let nextMonthLink = <Link to={{pathname: 'week', state: getWeekInfo(weekIndex + 1)}}>&gt;&gt;</Link>
+  const {previousWeekLink, nextWeekLink} = getWeekLinks(props.weekIndex, props.monthGrid);
 
   return (
     <div>
       <div className="row" style={{verticalAlign: 'middle', }}>
-          <CalendarNavigation previousLink={previousMonthLink} nextLink={nextMonthLink} title={`Week # ${weekIndex}`} />
+          <CalendarNavigation previousLink={previousWeekLink} nextLink={nextWeekLink} title={`Week # ${weekIndex}`} />
       </div>
       <div className="row" style={{verticalAlign: 'middle', }}>
         <table cellPadding="10" cellSpacing="10">
