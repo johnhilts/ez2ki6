@@ -10,9 +10,8 @@ import * as calendarGrid from '../core/calendarGrid';
 export default function Week(props) {
 
   let weekIndex = props.weekIndex;
-  let currentYearMonth = {year: props.weekInfo[0].year, month: props.weekInfo[0].month, daysInMonth: 31, };
-  let monthGrid = calendarGrid.buildMonthGrid([], currentYearMonth);
-  const getWeekInfo = (weekIndex) => {return {weekInfo: calendarGrid.getWeekByIndex(monthGrid, weekIndex), weekIndex: weekIndex, };}
+  let monthGrid = props.monthGrid;
+  const getWeekInfo = (weekIndex) => {return {weekInfo: calendarGrid.getWeekByIndex(monthGrid, weekIndex), weekIndex: weekIndex, monthGrid: monthGrid, };}
   let previousMonthLink = // <a>prev</a> //
     <Link to={{pathname: 'week', state: getWeekInfo(weekIndex - 1)}}>&lt;&lt;</Link>
   let nextMonthLink = <a>&gt;&gt;</a>

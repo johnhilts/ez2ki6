@@ -81,7 +81,7 @@ export default function Day(props) {
     dataIcon = showDataIcon ? dataIcon : '';
     return (
       <td key={dayInfo.absoluteIndex} style={cellStyle}>
-        <Link to={{pathname: pathname, state: {dayInfo: dayInfo, weekInfo: weekInfo, weekIndex: props.weekIndex, }}}>
+        <Link to={{pathname: pathname, state: {dayInfo: dayInfo, weekInfo: weekInfo, weekIndex: props.weekIndex, monthGrid: props.monthGrid, }}}>
           <div style={dayStyle}>
             {dayInfo.day}
             {dataIcon}

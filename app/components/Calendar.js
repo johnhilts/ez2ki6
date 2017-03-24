@@ -18,7 +18,7 @@ export default function Calendar(props) {
 
     let weekInfo = props.monthGrid.filter(currentWeek);
     let detailLevel = calendarGrid.setLinkDetailLevelForMonthView(weekInfo);
-    return <Day key={weekIndex} weekIndex={weekIndex} weekInfo={weekInfo} detailLevel={detailLevel} />
+    return <Day key={weekIndex} weekIndex={weekIndex} weekInfo={weekInfo} detailLevel={detailLevel} monthGrid={props.monthGrid} />
   }
 
   return (
