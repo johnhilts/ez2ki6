@@ -15,13 +15,17 @@ exports[`Week component snapshot test Should compare the Week component with a s
         }
       }>
       <h2>
-        <a>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
           <<
         </a>
          
-        Week # undefined
+        Week # 2
          
-        <a>
+        <a
+          onClick={[Function]}
+          style={Object {}}>
           >>
         </a>
       </h2>
