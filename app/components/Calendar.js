@@ -9,14 +9,7 @@ import * as enums from '../core/enums';
 export default function Calendar(props) {
 
   const weekIterator = (weekIndex) => {
-    let startCell = (weekIndex - 1) * 7;
-    let endCell = startCell + 7;
-
-    const currentWeek = (monthInfo, cellIndex) => {
-      return cellIndex >= startCell && cellIndex < endCell;
-    }
-
-    let weekInfo = props.monthGrid.filter(currentWeek);
+    let weekInfo = calendarGrid.getWeekByIndex(props.monthGrid, weekIndex);
     let detailLevel = calendarGrid.setLinkDetailLevelForMonthView(weekInfo);
     return <Day key={weekIndex} weekIndex={weekIndex} weekInfo={weekInfo} detailLevel={detailLevel} monthGrid={props.monthGrid} />
   }
