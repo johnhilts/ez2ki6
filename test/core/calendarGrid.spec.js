@@ -39,7 +39,7 @@ describe('calendar grid', () => {
 
   it('builds a full month grid for a given year/month', () => {
     let monthGrid = calendarGrid.buildMonthGrid(dates, currentYearMonth);
-    console.log(calendarGrid.buildMonthGrid(dates, currentYearMonth));
+    // console.log(calendarGrid.buildMonthGrid(dates, currentYearMonth));
     expect(monthGrid.length).to.eql(35);
   });
 
