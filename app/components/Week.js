@@ -4,6 +4,7 @@ import * as dateUtils from '../util/dateutils';
 import Day from '../components/Day';
 import WeekdayHeader from '../components/WeekdayHeader';
 import CalendarNavigation from '../components/CalendarNavigation';
+import CurrentMonthLink from '../components/CurrentMonthLink';
 import * as enums from '../core/enums';
 import * as calendarGrid from '../core/calendarGrid';
 
@@ -32,6 +33,7 @@ export default function Week(props) {
 
   return (
     <div>
+      <CurrentMonthLink dayInfo={props.dayInfo} />
       <div className="row" style={{verticalAlign: 'middle', }}>
           <CalendarNavigation previousLink={previousWeekLink} nextLink={nextWeekLink} title={`Week # ${weekIndex}`} />
       </div>

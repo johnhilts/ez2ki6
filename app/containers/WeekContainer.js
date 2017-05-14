@@ -4,7 +4,8 @@ import Week from '../components/Week';
 class WeekContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {weekInfo: props.location.state.weekInfo, weekIndex: props.location.state.weekIndex, monthGrid: props.location.state.monthGrid, };
+    this.state = {weekInfo: props.location.state.weekInfo, weekIndex: props.location.state.weekIndex, monthGrid: props.location.state.monthGrid,
+      dayInfo: props.location.state.dayInfo, };
   }
 
 	componentWillReceiveProps(nextProps) {
@@ -15,7 +16,7 @@ class WeekContainer extends Component {
 	}
 
   render () {
-    return <Week weekInfo={this.state.weekInfo} weekIndex={this.state.weekIndex} monthGrid={this.state.monthGrid} />
+    return <Week weekInfo={this.state.weekInfo} weekIndex={this.state.weekIndex} monthGrid={this.state.monthGrid} dayInfo={this.state.dayInfo} />
   }
 }
 

@@ -12,8 +12,9 @@ const getWeekInfo = () => {
 describe('Week component snapshot test', () => {
   it('Should compare the Week component with a snapshot', () => {
     let weekInfo = getWeekInfo();
+    let dayInfo = {year: 2017, month: 4, };
     const component = ReactTestRenderer.create(
-      <Week weekInfo={weekInfo} weekIndex={2} monthGrid={calendarGrid.buildMonthGrid(testHelper.dates, testHelper.currentYearMonth)} />
+      <Week weekInfo={weekInfo} weekIndex={2} monthGrid={calendarGrid.buildMonthGrid(testHelper.dates, testHelper.currentYearMonth)} dayInfo={dayInfo} />
     );
     const json = component.toJSON();
     expect(json).toMatchSnapshot();

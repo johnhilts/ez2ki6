@@ -1,0 +1,19 @@
+exports[`CurrentMonthLink component snapshot test Should compare the CurrentMonthLink component with a snapshot 1`] = `
+<div
+  style={
+    Object {
+      "fontSize": "small",
+      "marginBottom": 15,
+    }
+  }>
+  <a
+    onClick={[Function]}
+    style={Object {}}>
+    <h4>
+      >>Return to 
+      Invalid date
+      <<
+    </h4>
+  </a>
+</div>
+`;
