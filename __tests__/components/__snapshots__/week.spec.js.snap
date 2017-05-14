@@ -1,6 +1,23 @@
 exports[`Week component snapshot test Should compare the Week component with a snapshot 1`] = `
 <div>
   <div
+    style={
+      Object {
+        "fontSize": "small",
+        "marginBottom": 15,
+      }
+    }>
+    <a
+      onClick={[Function]}
+      style={Object {}}>
+      <h4>
+        >>Return to 
+        May
+        <<
+      </h4>
+    </a>
+  </div>
+  <div
     className="row"
     style={
       Object {
