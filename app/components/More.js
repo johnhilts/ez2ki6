@@ -86,6 +86,22 @@ const RenderDateRanges = (props) => {
   )
 }
 
+const theme = {dark: 0, light: 1};
+
+const RenderThemeChoices = (props) => {
+  let defaultTheme = theme.dark;
+  let selectedTheme = props.selectedTheme
+    ? props.selectedTheme
+    : defaultTheme
+
+    return (
+      <div>
+        <label htmlFor="dark-theme">Dark Theme</label>&nbsp;<input type="radio" name="theme" id="dark-theme" value={theme.dark} onChange={props.onThemeChange} checked={selectedTheme==theme.dark} />
+        &nbsp;&nbsp;
+        <label htmlFor="light-theme">Light Theme</label>&nbsp;<input type="radio" name="theme" id="light-theme" value={theme.light} onChange={props.onThemeChange} checked={selectedTheme==theme.light} />
+      </div>
+    )
+}
 
 export default function More(props) {
   return (
@@ -107,6 +123,8 @@ export default function More(props) {
       </div>
       <div>&nbsp;</div>
       <CalendarEntryContainer {...props} />
+      <div>&nbsp;</div>
+      <RenderThemeChoices {...props} />
     </div>
   )
 }

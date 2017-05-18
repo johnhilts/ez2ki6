@@ -74,11 +74,16 @@ const MoreContainer = React.createClass({
     }
   },
 
+  handleThemeChange(event) {
+    this.setState({selectedTheme: event.target.value, })
+  },
+
   render() {
     return (
       <More
         onSearch={this.handleSearch}
         onDateChange={this.handleDateChange}
+        onThemeChange={this.handleThemeChange}
         searchResults={this.state.searchResults}
         years={this.state.years}
         fromDate={this.state.fromDate}
@@ -86,6 +91,7 @@ const MoreContainer = React.createClass({
         searchFields={this.searchFields}
         calendars={this.props.user.calendars}
         currentCalendarId={this.props.user.currentCalendarId}
+        selectedTheme={this.state.selectedTheme}
         onSaveCalendarInfo={this.props.onSaveCalendarInfo}
         onSaveCurrentCalendarId={this.props.onSaveCurrentCalendarId}
         user={this.props.user}
