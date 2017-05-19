@@ -85,7 +85,8 @@ const MoreContainer = React.createClass({
     let selectedThemeId = isNaN(inputThemeId)
       ? this.defaultThemeId
       : parseInt(event.target.value);
-    this.setState({selectedThemeId: selectedThemeId, })
+    this.setState({selectedThemeId: selectedThemeId, });
+    this.props.onSaveThemeId(selectedThemeId);
   },
 
   render() {

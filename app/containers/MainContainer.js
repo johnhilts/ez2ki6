@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactRouter, {Link} from 'react-router';
+import * as db from '../core/database';
 import * as userRepository from '../domain/UserRepository';
 import UserPrompt from '../components/UserPrompt';
 import CalendarEntryContainer from '../containers/CalendarEntryContainer';
@@ -69,6 +70,15 @@ const MainContainer = React.createClass({
     return this.handleSaveUser(user);
   },
 
+  handleSaveThemeId(themeId) {
+    var user = this.state.user;
+    user.themeId = themeId;
+    userRepository.update(db.getUserRoot(this.state.user.owner), {
+      data: {themeId: themeId, },
+    });
+    return this.handleSaveUser(user);
+  },
+
   renderHeader(user) {
     return (
       <div style={styles.header}>
@@ -113,8 +123,13 @@ const MainContainer = React.createClass({
         {this.renderHeader(this.state.user)}
         <div style={styles.container}>
           {React.cloneElement(this.props.children,
-            { onAuthorize: this.handleAuthorization, user: this.state.user, onSaveDateInfo: this.handleSaveDateInfo, onSaveCalendarInfo: this.handleSaveCalendarInfo,
-              onSaveCurrentCalendarId: this.handleSaveCurrentCalendarId,  key: this.state.user.currentCalendarId, })}
+            { onAuthorize: this.handleAuthorization,
+              user: this.state.user,
+              onSaveDateInfo: this.handleSaveDateInfo,
+              onSaveCalendarInfo: this.handleSaveCalendarInfo,
+              onSaveCurrentCalendarId: this.handleSaveCurrentCalendarId,
+              onSaveThemeId: this.handleSaveThemeId,
+              key: this.state.user.currentCalendarId, })}
         </div>
         {this.renderFooter()}
       </div>
