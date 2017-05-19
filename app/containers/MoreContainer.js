@@ -4,9 +4,14 @@ import More from '../components/More';
 
 const MoreContainer = React.createClass({
 
+  themes : {dark: 0, light: 1},
+  defaultThemeId: 0,
+
   getInitialState() {
     let currentCalendarId = this.props.user.currentCalendarId;
     let years = this.getYears(this.props.user.calendars[currentCalendarId].dates);
+    this.defaultThemeId = this.themes.dark;
+    let selectedThemeId = this.props.user.selectedThemeId ? this.props.user.selectedThemeId : this.defaultThemeId;
 
     return (
       {
@@ -15,6 +20,7 @@ const MoreContainer = React.createClass({
         fromDate: dateUtils.getCurrentDate(),
         toDate: dateUtils.getCurrentDate(),
         years: years,
+        selectedThemeId: selectedThemeId,
       }
     )
   },
@@ -75,7 +81,11 @@ const MoreContainer = React.createClass({
   },
 
   handleThemeChange(event) {
-    this.setState({selectedTheme: event.target.value, })
+    let inputThemeId = event.target.value;
+    let selectedThemeId = isNaN(inputThemeId)
+      ? this.defaultThemeId
+      : parseInt(event.target.value);
+    this.setState({selectedThemeId: selectedThemeId, })
   },
 
   render() {
@@ -91,10 +101,11 @@ const MoreContainer = React.createClass({
         searchFields={this.searchFields}
         calendars={this.props.user.calendars}
         currentCalendarId={this.props.user.currentCalendarId}
-        selectedTheme={this.state.selectedTheme}
+        selectedThemeId={this.state.selectedThemeId}
         onSaveCalendarInfo={this.props.onSaveCalendarInfo}
         onSaveCurrentCalendarId={this.props.onSaveCurrentCalendarId}
         user={this.props.user}
+        themes={this.themes}
       />
     )
   }
