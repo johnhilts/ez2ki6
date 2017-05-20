@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router'
 import * as dateUtils from '../util/dateutils';
+import * as themeUtils from '../util/themeutils';
 import CalendarEntryContainer from '../containers/CalendarEntryContainer';
 
 const searchResults = (day) => {
@@ -87,12 +88,12 @@ const RenderDateRanges = (props) => {
 }
 
 const RenderThemeChoices = (props) => {
-  let themes = props.themes;
+  let themes = themeUtils.themes;
   return (
     <div>
-      <label htmlFor="dark-theme">Dark Theme</label>&nbsp;<input type="radio" name="theme" id="dark-theme" value={themes.dark} onChange={props.onThemeChange} checked={props.selectedThemeId==themes.dark} />
+      <label htmlFor="dark-theme">Dark Theme</label>&nbsp;<input type="radio" name="theme" id="dark-theme" value={themes.dark.id} onChange={props.onThemeChange} checked={props.selectedThemeId==themes.dark.id} />
       &nbsp;&nbsp;
-      <label htmlFor="light-theme">Light Theme</label>&nbsp;<input type="radio" name="theme" id="light-theme" value={themes.light} onChange={props.onThemeChange} checked={props.selectedThemeId==themes.light} />
+      <label htmlFor="light-theme">Light Theme</label>&nbsp;<input type="radio" name="theme" id="light-theme" value={themes.light.id} onChange={props.onThemeChange} checked={props.selectedThemeId==themes.light.id} />
     </div>
   )
 }

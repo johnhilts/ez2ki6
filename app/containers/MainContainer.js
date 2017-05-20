@@ -2,6 +2,7 @@ import React from 'react';
 import ReactRouter, {Link} from 'react-router';
 import * as db from '../core/database';
 import * as userRepository from '../domain/UserRepository';
+import * as themeUtils from '../util/themeutils';
 import UserPrompt from '../components/UserPrompt';
 import CalendarEntryContainer from '../containers/CalendarEntryContainer';
 
@@ -117,9 +118,10 @@ const MainContainer = React.createClass({
   },
 
   render() {
+    let theme = themeUtils.getThemeById(this.state.user.themeId);
     try {
     return (
-      <div>
+      <div className={theme}>
         {this.renderHeader(this.state.user)}
         <div style={styles.container}>
           {React.cloneElement(this.props.children,

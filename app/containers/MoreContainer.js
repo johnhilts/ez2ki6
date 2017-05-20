@@ -1,17 +1,14 @@
 import React from 'react';
 import * as dateUtils from '../util/dateutils';
+import * as themeUtils from '../util/themeutils';
 import More from '../components/More';
 
 const MoreContainer = React.createClass({
 
-  themes : {dark: 0, light: 1},
-  defaultThemeId: 0,
-
   getInitialState() {
     let currentCalendarId = this.props.user.currentCalendarId;
     let years = this.getYears(this.props.user.calendars[currentCalendarId].dates);
-    this.defaultThemeId = this.themes.dark;
-    let selectedThemeId = this.props.user.selectedThemeId ? this.props.user.selectedThemeId : this.defaultThemeId;
+    let selectedThemeId = this.props.user.selectedThemeId ? this.props.user.selectedThemeId : themeUtils.defaultThemeId;
 
     return (
       {
@@ -106,7 +103,6 @@ const MoreContainer = React.createClass({
         onSaveCalendarInfo={this.props.onSaveCalendarInfo}
         onSaveCurrentCalendarId={this.props.onSaveCurrentCalendarId}
         user={this.props.user}
-        themes={this.themes}
       />
     )
   }
