@@ -80,9 +80,10 @@ const MainContainer = React.createClass({
     return this.handleSaveUser(user);
   },
 
-  renderHeader(user) {
+  renderHeader(user, theme) {
+    let menuTheme = `${theme} t-header`
     return (
-      <div style={styles.header}>
+      <div className={menuTheme}>
         <div className="row">
           <div className="col-sm-3" style={styles.innerHeader}>
             <h1>
@@ -122,7 +123,7 @@ const MainContainer = React.createClass({
     try {
     return (
       <div className={theme}>
-        {this.renderHeader(this.state.user)}
+        {this.renderHeader(this.state.user, theme)}
         <div style={styles.container}>
           {React.cloneElement(this.props.children,
             { onAuthorize: this.handleAuthorization,
