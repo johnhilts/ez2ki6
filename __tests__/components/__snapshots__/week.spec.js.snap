@@ -121,6 +121,7 @@ exports[`Week component snapshot test Should compare the Week component with a s
       <tbody>
         <tr>
           <td
+            className="gridLines"
             style={
               Object {
                 "borderStyle": "solid",

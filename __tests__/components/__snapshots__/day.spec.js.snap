@@ -1,6 +1,7 @@
 exports[`Day component snapshot test Should compare the Day component with a snapshot 1`] = `
 <tr>
   <td
+    className="gridLines"
     style={
       Object {
         "borderStyle": "solid",
@@ -32,6 +33,7 @@ exports[`Day component snapshot test Should compare the Day component with a sna
     </a>
   </td>
   <td
+    className="gridLines"
     style={
       Object {
         "borderStyle": "solid",
@@ -63,6 +65,7 @@ exports[`Day component snapshot test Should compare the Day component with a sna
     </a>
   </td>
   <td
+    className="gridLines"
     style={
       Object {
         "borderStyle": "solid",
@@ -92,6 +95,7 @@ exports[`Day component snapshot test Should compare the Day component with a sna
     </a>
   </td>
   <td
+    className="gridLines"
     style={
       Object {
         "borderStyle": "solid",
@@ -121,6 +125,7 @@ exports[`Day component snapshot test Should compare the Day component with a sna
     </a>
   </td>
   <td
+    className="gridLines"
     style={
       Object {
         "borderStyle": "solid",
@@ -150,6 +155,7 @@ exports[`Day component snapshot test Should compare the Day component with a sna
     </a>
   </td>
   <td
+    className="gridLines"
     style={
       Object {
         "borderStyle": "solid",
@@ -179,6 +185,7 @@ exports[`Day component snapshot test Should compare the Day component with a sna
     </a>
   </td>
   <td
+    className="gridLines"
     style={
       Object {
         "borderStyle": "solid",
