@@ -104,7 +104,7 @@ export default function More(props) {
       <form onSubmit={props.onSearch}>
         <div className="row">
           <div className="col-sm-12">
-            <input placeholder="Search" />&nbsp;<button type="submit"><span className="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+            <input placeholder="Search" />&nbsp;<button type="submit"><span className="glyphicon glyphicon-search searchButtonText" aria-hidden="true"></span></button>
           </div>
         </div>
         <div>&nbsp;</div>

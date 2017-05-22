@@ -80,7 +80,7 @@ export default function Day(props) {
     let cellStyle = getCellStyle(borderStyle, borderWidth, verticalAlign);
     dataIcon = showDataIcon ? dataIcon : '';
     return (
-      <td key={dayInfo.absoluteIndex} style={cellStyle}>
+      <td key={dayInfo.absoluteIndex} style={cellStyle} className="gridLines">
         <Link to={{pathname: pathname, state: {dayInfo: dayInfo, weekInfo: weekInfo, weekIndex: props.weekIndex, monthGrid: props.monthGrid, }}}>
           <div style={dayStyle}>
             {dayInfo.day}
