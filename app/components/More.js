@@ -89,11 +89,12 @@ const RenderDateRanges = (props) => {
 
 const RenderThemeChoices = (props) => {
   let themes = themeUtils.themes;
+  let selectedThemeId = props.user.themeId;
   return (
     <div>
-      <label htmlFor="dark-theme">Dark Theme</label>&nbsp;<input type="radio" name="theme" id="dark-theme" value={themes.dark.id} onChange={props.onThemeChange} checked={props.selectedThemeId==themes.dark.id} />
+      <label htmlFor="dark-theme">Dark Theme</label>&nbsp;<input type="radio" name="theme" id="dark-theme" value={themes.dark.id} onChange={props.onThemeChange} checked={selectedThemeId==themes.dark.id} />
       &nbsp;&nbsp;
-      <label htmlFor="light-theme">Light Theme</label>&nbsp;<input type="radio" name="theme" id="light-theme" value={themes.light.id} onChange={props.onThemeChange} checked={props.selectedThemeId==themes.light.id} />
+      <label htmlFor="light-theme">Light Theme</label>&nbsp;<input type="radio" name="theme" id="light-theme" value={themes.light.id} onChange={props.onThemeChange} checked={selectedThemeId==themes.light.id} />
     </div>
   )
 }
