@@ -15,10 +15,10 @@ const handleDateInfoEditComplete = (key) => {
 
 const alsoEnteredOnThisDate = (dateInfo, onChange) => {
   return (
-    <div key={dateInfo.key} className="list-group-item">
-      <a id={'a' + dateInfo.key} className="list-group-item" onClick={handleDateInfoEditStart.bind(null, dateInfo.key)}>{stringUtils.formatLineBreaksForHtml(dateInfo.dateInfo)}</a>
+    <div key={dateInfo.key} className="list-group-item linkBackground">
+      <a id={'a' + dateInfo.key} className="list-group-item linkLabel" onClick={handleDateInfoEditStart.bind(null, dateInfo.key)}>{stringUtils.formatLineBreaksForHtml(dateInfo.dateInfo)}</a>
       <textArea id={'txt' + dateInfo.key} onChange={onChange.bind(null, dateInfo.key)} onBlur={handleDateInfoEditComplete.bind(null, dateInfo.key)}
-        style={{display: 'none', width: '100%', }} value={dateInfo.dateInfo} />
+        style={{display: 'none', width: '100%', }} value={dateInfo.dateInfo} className="linkLabel" />
     </div>
   )
 }
@@ -41,6 +41,7 @@ export default function Calendar(props) {
           <input type="hidden" value={dayInfo.day} />
           <button type="submit" className="btn btn-info">Save</button>
         </form>
+        <div>&nbsp;</div>
         <ul>
           {props.dates.map(datesWithEntries)}
         </ul>
