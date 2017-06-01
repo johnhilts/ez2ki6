@@ -19,11 +19,11 @@ export default function CalendarEntry(props) {
   return (
     <div>
       Calendars<br />
-      <select value={props.currentCalendarId} onChange={props.onChangeCalendar}>
+      <select value={props.currentCalendarId} onChange={props.onChangeCalendar} className='invertedText'>
         {calendarKeys.map(calendarEntries)}
       </select>
       &nbsp;
-      <button onClick={showAddNewCalendar}><span className="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+      <button onClick={showAddNewCalendar}><span className="glyphicon glyphicon-plus buttonText" aria-hidden="true"></span></button>
       <div id='divAddNewCalendar' style={{display: 'none', }}>
         Add a New Calendar<br />
         <input placeholder="Calendar Name" id="newCalendarName" onBlur={props.onAddCalendar} />

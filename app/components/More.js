@@ -14,7 +14,7 @@ const searchResults = (day) => {
 
 const getCommonDateSelect = (currentElement, onDateChange, searchField, items) => {
   return (
-    <select value={currentElement} onChange={onDateChange.bind(null, searchField)}>
+    <select value={currentElement} onChange={onDateChange.bind(null, searchField)} className='invertedText'>
       {items}
     </select>
   )
@@ -106,8 +106,8 @@ export default function More(props) {
     <div>
       <form onSubmit={props.onSearch}>
         <div className="row">
-          <div className="col-sm-12">
-            <input placeholder="Search" />&nbsp;<button type="submit"><span className="glyphicon glyphicon-search searchButtonText" aria-hidden="true"></span></button>
+          <div className="col-sm-12 invertedText">
+            <input placeholder="Search" />&nbsp;<button type="submit"><span className="glyphicon glyphicon-search" aria-hidden="true"></span></button>
           </div>
         </div>
         <div>&nbsp;</div>

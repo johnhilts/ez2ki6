@@ -135,6 +135,9 @@ const MainContainer = React.createClass({
               key: this.state.user.currentCalendarId, })}
         </div>
         {this.renderFooter()}
+        <div style={{height: '100vh', }}>
+          &nbsp;
+        </div>
       </div>
     )
   }
