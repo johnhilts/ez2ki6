@@ -16,7 +16,7 @@ const handleDateInfoEditComplete = (key) => {
 const alsoEnteredOnThisDate = (dateInfo, onChange) => {
   return (
     <div key={dateInfo.key} className="list-group-item linkBackground">
-      <a id={'a' + dateInfo.key} className="list-group-item linkLabel" onClick={handleDateInfoEditStart.bind(null, dateInfo.key)}>{stringUtils.formatLineBreaksForHtml(dateInfo.dateInfo)}</a>
+      <a id={'a' + dateInfo.key} onClick={handleDateInfoEditStart.bind(null, dateInfo.key)}>{stringUtils.formatLineBreaksForHtml(dateInfo.dateInfo)}</a>
       <textArea id={'txt' + dateInfo.key} onChange={onChange.bind(null, dateInfo.key)} onBlur={handleDateInfoEditComplete.bind(null, dateInfo.key)}
         style={{display: 'none', width: '100%', }} value={dateInfo.dateInfo} className="linkLabel" />
     </div>
@@ -35,7 +35,7 @@ export default function Calendar(props) {
         <CurrentMonthLink dayInfo={props.dayInfo} />
         <form onSubmit={props.onSubmit}>
           <div>Write down something related to {dayInfo.month+1}/{dayInfo.day}/{dayInfo.year}</div>
-          <textArea style={{width: 300, height: 150, }}/><br />
+          <textArea style={{width: 300, height: 150, }} className="linkLabel" /><br />
           <input type="hidden" value={dayInfo.year} />
           <input type="hidden" value={dayInfo.month} />
           <input type="hidden" value={dayInfo.day} />
