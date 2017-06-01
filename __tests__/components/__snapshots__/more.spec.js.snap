@@ -5,7 +5,7 @@ exports[`More component snapshot test Should compare the More component with a s
     <div
       className="row">
       <div
-        className="col-sm-12">
+        className="col-sm-12 invertedText">
         <input
           placeholder="Search" />
          
@@ -13,7 +13,7 @@ exports[`More component snapshot test Should compare the More component with a s
           type="submit">
           <span
             aria-hidden="true"
-            className="glyphicon glyphicon-search invertedText" />
+            className="glyphicon glyphicon-search" />
         </button>
       </div>
     </div>
@@ -26,6 +26,7 @@ exports[`More component snapshot test Should compare the More component with a s
         From: 
         <span>
           <select
+            className="invertedText"
             onChange={[Function]}
             value={4}>
             <option
@@ -79,6 +80,7 @@ exports[`More component snapshot test Should compare the More component with a s
           </select>
           /
           <select
+            className="invertedText"
             onChange={[Function]}
             value={31}>
             <option
@@ -208,6 +210,7 @@ exports[`More component snapshot test Should compare the More component with a s
           </select>
           /
           <select
+            className="invertedText"
             onChange={[Function]}
             value={2017}>
             <option
@@ -224,6 +227,7 @@ exports[`More component snapshot test Should compare the More component with a s
         To:  
         <span>
           <select
+            className="invertedText"
             onChange={[Function]}
             value={4}>
             <option
@@ -277,6 +281,7 @@ exports[`More component snapshot test Should compare the More component with a s
           </select>
           /
           <select
+            className="invertedText"
             onChange={[Function]}
             value={31}>
             <option
@@ -406,6 +411,7 @@ exports[`More component snapshot test Should compare the More component with a s
           </select>
           /
           <select
+            className="invertedText"
             onChange={[Function]}
             value={2017}>
             <option
