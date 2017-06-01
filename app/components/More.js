@@ -12,12 +12,18 @@ const searchResults = (day) => {
   )
 }
 
+const getCommonDateSelect = (currentElement, onDateChange, searchField, items) => {
+  return (
+    <select value={currentElement} onChange={onDateChange.bind(null, searchField)}>
+      {items}
+    </select>
+  )
+}
+
 const getYearsSelect = (currentYear, years, onDateChange, searchField) => {
   const listOfYears = (year) => { return <option key={searchField + year} value={year}>{year}</option> }
     return (
-      <select value={currentYear} onChange={onDateChange.bind(null, searchField)}>
-        {years.map(listOfYears)}
-      </select>
+      getCommonDateSelect(currentYear, onDateChange, searchField, years.map(listOfYears))
     )
 }
 
@@ -32,9 +38,7 @@ const getMonthsSelect = (currentMonth, onDateChange, searchField) => {
   let months = getMonthRange();
   const listOfMonths = (month) => {return <option key={searchField + month} value={month}>{month+1}</option>}
   return (
-    <select value={currentMonth} onChange={onDateChange.bind(null, searchField)}>
-    {months.map(listOfMonths)}
-    </select>
+    getCommonDateSelect(currentMonth, onDateChange, searchField, months.map(listOfMonths))
   )
 }
 
@@ -50,9 +54,7 @@ const getDaysSelect = (currentYear, currentMonth, currentDay, onDateChange, sear
     let days = getMonthDayRange(currentYear, currentMonth);
     const listOfDays = (day) => {return <option key={searchField + day} value={day}>{day}</option>}
       return (
-        <select value={currentDay} onChange={onDateChange.bind(null, searchField)}>
-          {days.map(listOfDays)}
-        </select>
+        getCommonDateSelect(currentDay, onDateChange, searchField, days.map(listOfDays))
       )
     }
 
