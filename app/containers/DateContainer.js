@@ -9,6 +9,8 @@ const DateContainer = React.createClass({
       {
         dayInfo: this.props.location.state.dayInfo,
         dates: [],
+        // this will match the dates array but I don't want to sync it with the database, so declaring it separately
+        showDeletes: [],
         isLoading: true,
       }
     )
@@ -64,12 +66,26 @@ const DateContainer = React.createClass({
 		this.props.onSaveDateInfo(this.state.dates);
 	},
 
+	handleMouseOverDateInfo(key, event) {
+    let index = this.state.dates.findIndex(x=>{return x.key == key});
+    this.state.showDeletes[index] = !this.state.showDeletes[index];
+		this.setState({ showDeletes : this.state.showDeletes });
+	},
+
   render() {
     const byCurrentDate = (dateInfo) => {return dateInfo.year == dayInfo.year && dateInfo.month == dayInfo.month && dateInfo.day == dayInfo.day;}
     var dayInfo = this.state.dayInfo;
     var filteredDates = this.state.dates.filter(byCurrentDate);
     return (
-      <DateEntry dayInfo={dayInfo} isLoading={this.state.isLoading} onSubmit={this.handleAddInfo} onChange={this.handleUpdateDateInfo} dates={filteredDates} />
+      <DateEntry
+        dayInfo={dayInfo}
+        isLoading={this.state.isLoading}
+        onSubmit={this.handleAddInfo}
+        onChange={this.handleUpdateDateInfo}
+        onMouseOver={this.handleMouseOverDateInfo}
+        dates={filteredDates}
+        showDeletes={this.state.showDeletes}
+      />
     )
   }
 });
