@@ -68,7 +68,11 @@ const DateContainer = React.createClass({
 
 	handleMouseOverDateInfo(key, event) {
     let index = this.state.dates.findIndex(x=>{return x.key == key});
-    this.state.showDeletes[index] = !this.state.showDeletes[index];
+    // set all delete flags to false using map or reduce
+    // set only the "current" flag to true
+    // add mouse out event (or whatever it's called) to also hide the button
+    // make sure to hide button when div is actually removed (can re-clear all)
+    this.state.showDeletes[index] = true;
 		this.setState({ showDeletes : this.state.showDeletes });
 	},
 
