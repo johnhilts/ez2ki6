@@ -64,6 +64,16 @@ const DateContainer = React.createClass({
 		this.props.onSaveDateInfo(this.state.dates);
 	},
 
+	handleDeleteDateInfo(key, event) {
+    let canDelete = confirm('Are you sure you want to delete this?');
+    if (canDelete){
+      let index = this.state.dates.findIndex(x=>{return x.key == key});
+      this.state.dates.splice(index, 1);
+      this.setState({ dates : this.state.dates });
+      this.props.onSaveDateInfo(this.state.dates);
+    }
+	},
+
   render() {
     const byCurrentDate = (dateInfo) => {return dateInfo.year == dayInfo.year && dateInfo.month == dayInfo.month && dateInfo.day == dayInfo.day;}
     var dayInfo = this.state.dayInfo;
@@ -74,7 +84,7 @@ const DateContainer = React.createClass({
         isLoading={this.state.isLoading}
         onSubmit={this.handleAddInfo}
         onChange={this.handleUpdateDateInfo}
-        onMouseOver={this.handleMouseOverDateInfo}
+        onDelete={this.handleDeleteDateInfo}
         dates={filteredDates}
       />
     )

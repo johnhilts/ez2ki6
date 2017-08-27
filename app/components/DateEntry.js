@@ -13,10 +13,10 @@ const handleDateInfoEditComplete = (key) => {
   document.querySelector('[id="a' + key + '"]').style.display = 'block';
 }
 
-const alsoEnteredOnThisDate = (dateInfo, onChange) => {
+const alsoEnteredOnThisDate = (dateInfo, onChange, onDelete) => {
   const deleteButton = () => {
     return (
-      <button type="button" className="btn btn-danger hoverButton">
+      <button type="button" className="btn btn-danger hoverButton" onClick={onDelete.bind(null, dateInfo.key)}>
         <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
       </button>
     )
@@ -33,7 +33,7 @@ const alsoEnteredOnThisDate = (dateInfo, onChange) => {
 
 export default function Calendar(props) {
   let dayInfo = props.dayInfo;
-  const datesWithEntries = (dateInfo) => {return alsoEnteredOnThisDate(dateInfo, props.onChange);}
+  const datesWithEntries = (dateInfo) => {return alsoEnteredOnThisDate(dateInfo, props.onChange, props.onDelete);}
   return (
     props.isLoading
     ?
