@@ -17,7 +17,7 @@ const alsoEnteredOnThisDate = (dateInfo, onChange) => {
   const deleteButton = () => {
     return (
       <button type="button" className="btn btn-danger hoverButton">
-        <span className="glyphicon glyphicon-minus" aria-hidden="true"></span>
+        <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
       </button>
     )
   }
