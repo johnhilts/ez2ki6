@@ -13,7 +13,7 @@ const handleDateInfoEditComplete = (key) => {
   document.querySelector('[id="a' + key + '"]').style.display = 'block';
 }
 
-const alsoEnteredOnThisDate = (dateInfo, onChange, onDelete) => {
+const alsoEnteredOnThisDate = (dateInfo, onChange, onDelete, onTouchStart, onTouchEnd) => {
   const deleteButton = () => {
     return (
       <button type="button" className="btn btn-danger hoverButton" onClick={onDelete.bind(null, dateInfo.key)}>
@@ -22,7 +22,7 @@ const alsoEnteredOnThisDate = (dateInfo, onChange, onDelete) => {
     )
   }
   return (
-    <div key={dateInfo.key} className="list-group-item linkBackground hoverContainer">
+    <div key={dateInfo.key} className="list-group-item linkBackground hoverContainer" onTouchStart={onTouchStart.bind(null, dateInfo.key)} onTouchEnd={onTouchEnd.bind(null, dateInfo.key)}>
       <a id={'a' + dateInfo.key} onClick={handleDateInfoEditStart.bind(null, dateInfo.key)}>{stringUtils.formatLineBreaksForHtml(dateInfo.dateInfo)}</a>
       <textArea id={'txt' + dateInfo.key} onChange={onChange.bind(null, dateInfo.key)} onBlur={handleDateInfoEditComplete.bind(null, dateInfo.key)}
         style={{display: 'none', width: '100%', }} value={dateInfo.dateInfo} className="linkLabel" />
@@ -33,7 +33,7 @@ const alsoEnteredOnThisDate = (dateInfo, onChange, onDelete) => {
 
 export default function Calendar(props) {
   let dayInfo = props.dayInfo;
-  const datesWithEntries = (dateInfo) => {return alsoEnteredOnThisDate(dateInfo, props.onChange, props.onDelete);}
+  const datesWithEntries = (dateInfo) => {return alsoEnteredOnThisDate(dateInfo, props.onChange, props.onDelete, props.onTouchStart, props.onTouchEnd);}
   return (
     props.isLoading
     ?
