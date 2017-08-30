@@ -74,25 +74,6 @@ const DateContainer = React.createClass({
     }
 	},
 
-	handleTouchStartDateInfo(key, event) {
-    const touchStart = {x: event.changedTouches[0].screenX, y: event.changedTouches[0].screenY, }
-    this.setState({touchStart: touchStart, })
-	},
-
-	handleTouchEndDateInfo(key, event) {
-    const touchEnd = {x: event.changedTouches[0].screenX, y: event.changedTouches[0].screenY, }
-    this.setState({touchEnd: touchEnd, }, this.handleGesture)
-	},
-
-	handleGesture() {
-	    if (this.state.touchEnd.x != this.state.touchStart.x || this.state.touchEnd.y != this.state.touchStart.y) {
-        alert('swiped!');
-	    }
-	    if (this.state.touchEnd.x == this.state.touchStart.x && this.state.touchEnd.y == this.state.touchStart.y) {
-        alert('tap!');
-	    }
-	},
-
   render() {
     const byCurrentDate = (dateInfo) => {return dateInfo.year == dayInfo.year && dateInfo.month == dayInfo.month && dateInfo.day == dayInfo.day;}
     var dayInfo = this.state.dayInfo;
@@ -104,8 +85,6 @@ const DateContainer = React.createClass({
         onSubmit={this.handleAddInfo}
         onChange={this.handleUpdateDateInfo}
         onDelete={this.handleDeleteDateInfo}
-        onTouchStart={this.handleTouchStartDateInfo}
-        onTouchEnd={this.handleTouchEndDateInfo}
         dates={filteredDates}
       />
     )
