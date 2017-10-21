@@ -27,8 +27,12 @@ const MoreContainer = React.createClass({
       return [dateUtils.getCurrentDate().year];
     }
 
-    let years = [];
-    dates.map((date) => { if (years.indexOf(date.year) < 0) years.push(date.year); } );
+    const uniqueYears = (date, index, array) => array.findIndex(element => element.year === date.year) === index
+    let years = dates.filter(uniqueYears).map(date => date.year);
+    let currentYear = dateUtils.getCurrentDate().year;
+    if (years.findIndex(year => year === currentYear) < 0) {
+      years.push(currentYear);
+    }
     return years;
   },
 
