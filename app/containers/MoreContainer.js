@@ -1,6 +1,7 @@
 import React from 'react';
 import * as dateUtils from '../util/dateutils';
 import * as themeUtils from '../util/themeutils';
+import * as searchUtils from '../util/searchutils';
 import More from '../components/More';
 
 const MoreContainer = React.createClass({
@@ -42,18 +43,10 @@ const MoreContainer = React.createClass({
 		event.preventDefault();
 
     let searchText = event.target[this.searchFields.searhText].value;
-    let fromDate = new Date(this.state.fromDate.year, this.state.fromDate.month, this.state.fromDate.day);
-    let toDate = new Date(this.state.toDate.year, this.state.toDate.month, this.state.toDate.day);
+    const searchByDateRange = searchUtils.searchByDateRange.bind(null, searchText, this.state.fromDate, this.state.toDate);
 
     this.setState({
-        searchResults: this.props.user.calendars[this.props.user.currentCalendarId].dates.filter(date => {
-          let compareDate = new Date(date.year, date.month, date.day);
-          return (
-            date.dateInfo.toLowerCase().indexOf(searchText.toLowerCase()) >= 0
-            && fromDate <= compareDate
-            && toDate >= compareDate
-          );
-        })
+        searchResults: this.props.user.calendars[this.props.user.currentCalendarId].dates.filter(searchByDateRange)
       }
     )
   },
