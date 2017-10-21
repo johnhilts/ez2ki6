@@ -7,7 +7,7 @@ import CalendarEntryContainer from '../containers/CalendarEntryContainer';
 const searchResults = (day) => {
   return (
     <div key={day.key} className="col-sm-12">
-      <Link to={{pathname: 'day', state: {monthInfo: day, }}}>{dateUtils.getFormattedMonthDayYear(day.year, day.month, day.day)} : {day.dateInfo}</Link>
+      <Link to={{pathname: 'day', state: {dayInfo: day, }}}>{dateUtils.getFormattedMonthDayYear(day.year, day.month, day.day)} : {day.dateInfo}</Link>
     </div>
   )
 }
